@@ -6,9 +6,14 @@ contract violation {
     struct Challan {
         uint256 id;
         address violator;
-        string violationDetails;
-        uint256 fineAmount;
-        bool isTerminated;
+        string violatorCnic;     // CNIC of the violator
+        string violatorName;     // Name of the violator
+        uint256 wardenId;        // ID of the warden issuing the challan
+        string violationDetails; // Details of the violation
+        string location;         // Location where violation occurred
+        uint256 date;            // Timestamp of the violation
+        uint256 fineAmount;      // Fine amount for the violation
+        bool isTerminated;       // Status if challan is terminated
     }
 
     // Array to store all challans
@@ -23,11 +28,18 @@ contract violation {
     event ChallanGenerated(
         uint id,
         address violator,
+        string violatorCnic,
+        string violatorName,
+        uint256 wardenId,
         string violationDetails,
+        string location,
+        uint256 date,
         uint fineAmount
     );
+    
     // Event to emit when a challan is updated
     event ChallanUpdated(uint id, string violationDetails, uint fineAmount);
+    
     // Event to emit when a challan is terminated
     event ChallanTerminated(uint id);
 
@@ -42,7 +54,12 @@ contract violation {
     // Function to generate a new challan
     function generateChallan(
         address _violator,
-        string memory _violationDetails
+        string memory _violatorCnic,
+        string memory _violatorName,
+        uint256 _wardenId,
+        string memory _violationDetails,
+        string memory _location,
+        uint256 _date
     ) public {
         // Ensure the violation type exists in the pre-defined list
         require(violationFines[_violationDetails] > 0, "Invalid violation type");
@@ -53,7 +70,12 @@ contract violation {
         Challan memory newChallan = Challan({
             id: challanCounter,
             violator: _violator,
+            violatorCnic: _violatorCnic,
+            violatorName: _violatorName,
+            wardenId: _wardenId,
             violationDetails: _violationDetails,
+            location: _location,
+            date: _date,
             fineAmount: fineAmount,
             isTerminated: false
         });
@@ -62,7 +84,12 @@ contract violation {
         emit ChallanGenerated(
             challanCounter,
             _violator,
+            _violatorCnic,
+            _violatorName,
+            _wardenId,
             _violationDetails,
+            _location,
+            _date,
             fineAmount
         );
     }
@@ -76,7 +103,12 @@ contract violation {
         returns (
             uint id,
             address violator,
+            string memory violatorCnic,
+            string memory violatorName,
+            uint256 wardenId,
             string memory violationDetails,
+            string memory location,
+            uint256 date,
             uint fineAmount,
             bool isTerminated
         )
@@ -91,7 +123,12 @@ contract violation {
         return (
             challan.id,
             challan.violator,
+            challan.violatorCnic,
+            challan.violatorName,
+            challan.wardenId,
             challan.violationDetails,
+            challan.location,
+            challan.date,
             challan.fineAmount,
             challan.isTerminated
         );
