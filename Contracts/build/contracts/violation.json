@@ -1,0 +1,3794 @@
+{
+  "contractName": "violation",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "violator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "violationDetails",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fineAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChallanGenerated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChallanTerminated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "violationDetails",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fineAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChallanUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "challanCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "challans",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "violator",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "violationDetails",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fineAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isTerminated",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "violationFines",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_violator",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_violationDetails",
+          "type": "string"
+        }
+      ],
+      "name": "generateChallan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getChallan",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "violator",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "violationDetails",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "fineAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isTerminated",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_violationDetails",
+          "type": "string"
+        }
+      ],
+      "name": "updateChallan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "terminateChallan",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"violationDetails\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"}],\"name\":\"ChallanGenerated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"ChallanTerminated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"violationDetails\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"}],\"name\":\"ChallanUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"challanCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"challans\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"violationDetails\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isTerminated\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_violator\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_violationDetails\",\"type\":\"string\"}],\"name\":\"generateChallan\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getChallan\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"violationDetails\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isTerminated\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"terminateChallan\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_violationDetails\",\"type\":\"string\"}],\"name\":\"updateChallan\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"violationFines\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/violation.sol\":\"violation\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/violation.sol\":{\"keccak256\":\"0xd98e382602205fca43c451ed6361af8864ecdf859abb8d468aba7de0d028e593\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e56ef850411f3976a894bcc95d290f513c4a316cba30213e84667314b9219dcf\",\"dweb:/ipfs/QmeMJFeQKEEysm11mEydNULoUWTv9svmZoRCVQzaGKwHBT\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461007457602881675370656564696e6760c01b6101f4935260026008820152205560c86027604051665061726b696e6760c81b81526002600782015220556064602b6040516a139bc814d9585d18995b1d60aa1b81526002600b8201522055604051610b48908161007a8239f35b600080fdfe6080604052600436101561001257600080fd5b60003560e01c80635146b42f1461079157806396ab4bab146107345780639c1cfb61146106cc5780639d5f4be7146103dc578063c0dcdd8914610125578063e4f2266d146101075763fef88e971461006957600080fd5b3461010257602036600319011261010257600435801515806100f6575b61008f90610acd565b60001981018181116100e0577fd4c7402b4f900bcb67a96ed6052c481de7c7015122b904145ad8dd766e6c3d4e9160046100ca60209361095a565b5001805460ff19166001179055604051908152a1005b634e487b7160e01b600052601160045260246000fd5b50600154811115610086565b600080fd5b34610102576000366003190112610102576020600154604051908152f35b346101025760403660031901126101025760043567ffffffffffffffff6024358181116101025761015a903690600401610903565b821515806103d0575b61016c90610acd565b600019918383018481116100e0576101839061095a565b509060ff60048301541661037757604051938351916101c16020968781818901966101af81838a610844565b81016002815203019020541515610a88565b60028401918551918211610361576101d983546109a8565b601f811161031b575b5086601f831160011461028757610271947fd88cd3fc9322ccf50df7dec6797866a2d3b8f4c45b92303b1a2c61dc1da54330999794846003989561024a958c9560009261027c575b508260011b928b1b1c19161790555b604051809381928751928391610844565b81016002815203019020549384910155606060405195869586528501526060840190610867565b9060408301520390a1005b89015191508e61022a565b90601f1983169184600052886000209260005b81811061030457509460018561024a958c956102719a957fd88cd3fc9322ccf50df7dec6797866a2d3b8f4c45b92303b1a2c61dc1da543309f9d9a9960039d9a106102ed575b505050811b019055610239565b8a01519060f8848e1b161c191690558d80806102e0565b91938a60018192878d01518155019501920161029a565b8360005287600020601f840160051c810191898510610357575b601f0160051c01905b81811061034b57506101e2565b6000815560010161033e565b9091508190610335565b634e487b7160e01b600052604160045260246000fd5b60405162461bcd60e51b815260206004820152602b60248201527f4368616c6c616e206973207465726d696e6174656420616e642063616e6e6f7460448201526a081899481d5c19185d195960aa1b6064820152608490fd5b50600154831115610163565b34610102576040366003190112610102576004356001600160a01b03811681036101025760243567ffffffffffffffff811161010257610420903690600401610903565b906040519161043d815193602081818501966101af81838a610844565b60015460001981146100e0576020600161046892019485600155604051809381928651928391610844565b810160028152030190205460405193610480856108c5565b8452602084019360018060a01b0384168552604081018381528260608301526000608083015260005468010000000000000000811015610361578060016104ca920160005561095a565b9690966106b65782518755600187019060018060a01b039051166bffffffffffffffffffffffff60a01b8254161790555194855167ffffffffffffffff81116103615761051a60028301546109a8565b601f811161066f575b506020601f82116001146105da5791816004926080947fa489fe610c894fc9981c2e2606f89202188af3ca814a1567f5e196dcfcfa2adc9a6000926105cf575b50508160011b916000199060031b1c19161760028201555b6060840151600382015501910151151560ff801983541691161790556105c460015492604051948594855260018060a01b03166020850152608060408501526080840190610867565b9060608301520390a1005b015190508a80610563565b6002830160005260206000209760005b601f19841681106106575750827fa489fe610c894fc9981c2e2606f89202188af3ca814a1567f5e196dcfcfa2adc9960809593600193600496601f1981161061063e575b505050811b01600282015561057b565b015160001960f88460031b161c191690558a808061062e565b828201518a55600190990198602092830192016105ea565b600283016000526020600020601f830160051c8101602084106106af575b601f830160051c820181106106a3575050610523565b6000815560010161068d565b508061068d565b634e487b7160e01b600052600060045260246000fd5b3461010257602036600319011261010257600435600054811015610102576106f39061095a565b50805460018201546001600160a01b03169161073090610715600282016109e2565b9060ff6004600383015492015416916040519586958661088c565b0390f35b346101025760203660031901126101025760043567ffffffffffffffff81116101025761077e602061076b81933690600401610903565b8160405193828580945193849201610844565b8101600281520301902054604051908152f35b346101025760203660031901126101025760043580151580610838575b6107b790610acd565b60001981019081116100e0576107cc9061095a565b50604051906107da826108c5565b8054825261073060018060a01b0392836001840154169260208201938452610804600282016109e2565b9485604084015260ff600460038401549384606087015201541615159283608082015251945116946040519586958661088c565b506001548111156107ae565b60005b8381106108575750506000910152565b8181015183820152602001610847565b9060209161088081518092818552858086019101610844565b601f01601f1916010190565b93959491926080936108b892865260018060a01b0316602086015260a0604086015260a0850190610867565b9460608401521515910152565b60a0810190811067ffffffffffffffff82111761036157604052565b90601f8019910116810190811067ffffffffffffffff82111761036157604052565b81601f820112156101025780359067ffffffffffffffff82116103615760405192610938601f8401601f1916602001856108e1565b8284526020838301011161010257816000926020809301838601378301015290565b90600091825481101561099457600590838052027f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563019190565b634e487b7160e01b83526032600452602483fd5b90600182811c921680156109d8575b60208310146109c257565b634e487b7160e01b600052602260045260246000fd5b91607f16916109b7565b90604051918260008254926109f6846109a8565b908184526001948581169081600014610a655750600114610a22575b5050610a20925003836108e1565b565b9093915060005260209081600020936000915b818310610a4d575050610a2093508201013880610a12565b85548884018501529485019487945091830191610a35565b915050610a2094506020925060ff191682840152151560051b8201013880610a12565b15610a8f57565b60405162461bcd60e51b8152602060048201526016602482015275496e76616c69642076696f6c6174696f6e207479706560501b6044820152606490fd5b15610ad457565b60405162461bcd60e51b815260206004820152601660248201527510da185b1b185b88191bd95cc81b9bdd08195e1a5cdd60521b6044820152606490fdfea264697066735822122091a6d3a5f65385a5ada7a8c19f624cceb9ddde48261fc905f62389ae769d4a9a64736f6c63430008130033",
+  "deployedBytecode": "0x6080604052600436101561001257600080fd5b60003560e01c80635146b42f1461079157806396ab4bab146107345780639c1cfb61146106cc5780639d5f4be7146103dc578063c0dcdd8914610125578063e4f2266d146101075763fef88e971461006957600080fd5b3461010257602036600319011261010257600435801515806100f6575b61008f90610acd565b60001981018181116100e0577fd4c7402b4f900bcb67a96ed6052c481de7c7015122b904145ad8dd766e6c3d4e9160046100ca60209361095a565b5001805460ff19166001179055604051908152a1005b634e487b7160e01b600052601160045260246000fd5b50600154811115610086565b600080fd5b34610102576000366003190112610102576020600154604051908152f35b346101025760403660031901126101025760043567ffffffffffffffff6024358181116101025761015a903690600401610903565b821515806103d0575b61016c90610acd565b600019918383018481116100e0576101839061095a565b509060ff60048301541661037757604051938351916101c16020968781818901966101af81838a610844565b81016002815203019020541515610a88565b60028401918551918211610361576101d983546109a8565b601f811161031b575b5086601f831160011461028757610271947fd88cd3fc9322ccf50df7dec6797866a2d3b8f4c45b92303b1a2c61dc1da54330999794846003989561024a958c9560009261027c575b508260011b928b1b1c19161790555b604051809381928751928391610844565b81016002815203019020549384910155606060405195869586528501526060840190610867565b9060408301520390a1005b89015191508e61022a565b90601f1983169184600052886000209260005b81811061030457509460018561024a958c956102719a957fd88cd3fc9322ccf50df7dec6797866a2d3b8f4c45b92303b1a2c61dc1da543309f9d9a9960039d9a106102ed575b505050811b019055610239565b8a01519060f8848e1b161c191690558d80806102e0565b91938a60018192878d01518155019501920161029a565b8360005287600020601f840160051c810191898510610357575b601f0160051c01905b81811061034b57506101e2565b6000815560010161033e565b9091508190610335565b634e487b7160e01b600052604160045260246000fd5b60405162461bcd60e51b815260206004820152602b60248201527f4368616c6c616e206973207465726d696e6174656420616e642063616e6e6f7460448201526a081899481d5c19185d195960aa1b6064820152608490fd5b50600154831115610163565b34610102576040366003190112610102576004356001600160a01b03811681036101025760243567ffffffffffffffff811161010257610420903690600401610903565b906040519161043d815193602081818501966101af81838a610844565b60015460001981146100e0576020600161046892019485600155604051809381928651928391610844565b810160028152030190205460405193610480856108c5565b8452602084019360018060a01b0384168552604081018381528260608301526000608083015260005468010000000000000000811015610361578060016104ca920160005561095a565b9690966106b65782518755600187019060018060a01b039051166bffffffffffffffffffffffff60a01b8254161790555194855167ffffffffffffffff81116103615761051a60028301546109a8565b601f811161066f575b506020601f82116001146105da5791816004926080947fa489fe610c894fc9981c2e2606f89202188af3ca814a1567f5e196dcfcfa2adc9a6000926105cf575b50508160011b916000199060031b1c19161760028201555b6060840151600382015501910151151560ff801983541691161790556105c460015492604051948594855260018060a01b03166020850152608060408501526080840190610867565b9060608301520390a1005b015190508a80610563565b6002830160005260206000209760005b601f19841681106106575750827fa489fe610c894fc9981c2e2606f89202188af3ca814a1567f5e196dcfcfa2adc9960809593600193600496601f1981161061063e575b505050811b01600282015561057b565b015160001960f88460031b161c191690558a808061062e565b828201518a55600190990198602092830192016105ea565b600283016000526020600020601f830160051c8101602084106106af575b601f830160051c820181106106a3575050610523565b6000815560010161068d565b508061068d565b634e487b7160e01b600052600060045260246000fd5b3461010257602036600319011261010257600435600054811015610102576106f39061095a565b50805460018201546001600160a01b03169161073090610715600282016109e2565b9060ff6004600383015492015416916040519586958661088c565b0390f35b346101025760203660031901126101025760043567ffffffffffffffff81116101025761077e602061076b81933690600401610903565b8160405193828580945193849201610844565b8101600281520301902054604051908152f35b346101025760203660031901126101025760043580151580610838575b6107b790610acd565b60001981019081116100e0576107cc9061095a565b50604051906107da826108c5565b8054825261073060018060a01b0392836001840154169260208201938452610804600282016109e2565b9485604084015260ff600460038401549384606087015201541615159283608082015251945116946040519586958661088c565b506001548111156107ae565b60005b8381106108575750506000910152565b8181015183820152602001610847565b9060209161088081518092818552858086019101610844565b601f01601f1916010190565b93959491926080936108b892865260018060a01b0316602086015260a0604086015260a0850190610867565b9460608401521515910152565b60a0810190811067ffffffffffffffff82111761036157604052565b90601f8019910116810190811067ffffffffffffffff82111761036157604052565b81601f820112156101025780359067ffffffffffffffff82116103615760405192610938601f8401601f1916602001856108e1565b8284526020838301011161010257816000926020809301838601378301015290565b90600091825481101561099457600590838052027f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563019190565b634e487b7160e01b83526032600452602483fd5b90600182811c921680156109d8575b60208310146109c257565b634e487b7160e01b600052602260045260246000fd5b91607f16916109b7565b90604051918260008254926109f6846109a8565b908184526001948581169081600014610a655750600114610a22575b5050610a20925003836108e1565b565b9093915060005260209081600020936000915b818310610a4d575050610a2093508201013880610a12565b85548884018501529485019487945091830191610a35565b915050610a2094506020925060ff191682840152151560051b8201013880610a12565b15610a8f57565b60405162461bcd60e51b8152602060048201526016602482015275496e76616c69642076696f6c6174696f6e207479706560501b6044820152606490fd5b15610ad457565b60405162461bcd60e51b815260206004820152601660248201527510da185b1b185b88191bd95cc81b9bdd08195e1a5cdd60521b6044820152606490fdfea264697066735822122091a6d3a5f65385a5ada7a8c19f624cceb9ddde48261fc905f62389ae769d4a9a64736f6c63430008130033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "60:4250:1:-:0;;;;;;;;;-1:-1:-1;;;1095:3:1;60:4250;;1066:14;60:4250;;;;;;1137:3;60:4250;;;-1:-1:-1;;;60:4250:1;;1066:14;60:4250;;;;;;1183:3;60:4250;;;-1:-1:-1;;;60:4250:1;;1066:14;60:4250;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "60:4250:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;4025:7;;;:32;;;60:4250;4017:67;;;:::i;:::-;-1:-1:-1;;60:4250:1;;;;;;;4277:22;4168:17;60:4250;4168:17;60:4250;4168:17;;:::i;:::-;-1:-1:-1;4232:20:1;60:4250;;-1:-1:-1;;60:4250:1;;;;;;;;;;4277:22;60:4250;;;;;;;;;;;;;4025:32;-1:-1:-1;60:4250:1;;4036:21;;;4025:32;;60:4250;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;405:26;60:4250;;;;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;;;;;;;;;;;;;;;;:::i;:::-;3175:7;;;:32;;;60:4250;3167:67;;;:::i;:::-;-1:-1:-1;;60:4250:1;;;;;;;;;3318:17;;;:::i;:::-;3406:20;;60:4250;;3406:20;;60:4250;;;;;;;;;;3560:72;60:4250;;;;;;;;;;;;;:::i;:::-;;;3568:14;60:4250;;;;;;;3568:37;;3560:72;:::i;:::-;3568:14;3684:24;;60:4250;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;3811:58;60:4250;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;3568:14;60:4250;;;;;;;3739:18;;;;60:4250;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;3811:58;;;60:4250;;;;;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3811:58;60:4250;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:4250:1;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:4250:1;;;;;;;3175:32;-1:-1:-1;60:4250:1;;3186:21;;;3175:32;;60:4250;;;;;;-1:-1:-1;;60:4250:1;;;;;;-1:-1:-1;;;;;60:4250:1;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;1497:72;60:4250;;;;;;;;;;;;;;:::i;1497:72::-;60:4250;;-1:-1:-1;;60:4250:1;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;1505:14;60:4250;;;;;;;;;;;;;:::i;:::-;;;;1740:208;;60:4250;;;;;;;;;;;1740:208;;60:4250;;;1740:208;;;;60:4250;;1740:208;;;60:4250;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1505:14;60:4250;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;1740:208;60:4250;2039:137;60:4250;;;;;;;;;;;;;;;;;;;;;1505:14;60:4250;;;;1740:208;;;60:4250;;;;;;1740:208;;60:4250;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1740:208;60:4250;;;;1740:208;60:4250;;;;:::i;:::-;;1740:208;60:4250;;;2039:137;;;60:4250;;;;;-1:-1:-1;60:4250:1;;;;;1505:14;60:4250;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;;;2039:137;60:4250;1740:208;60:4250;;;;;;;;;;;;;;;;;;;;1505:14;60:4250;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1505:14;60:4250;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;;;341:25;;;;;;;;:::i;:::-;-1:-1:-1;60:4250:1;;;341:25;;60:4250;-1:-1:-1;;;;;60:4250:1;;;;341:25;;;;;:::i;:::-;;60:4250;;;341:25;;60:4250;341:25;;60:4250;;;;;;;;;;:::i;:::-;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;:::i;:::-;;;508:48;60:4250;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;;2565:7;;;:32;;;60:4250;2557:67;;;:::i;:::-;-1:-1:-1;;60:4250:1;;;;;;;2707:17;;;:::i;:::-;60:4250;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;2565:32::-;-1:-1:-1;60:4250:1;;2576:21;;;2565:32;;60:4250;;;;;;;;-1:-1:-1;;60:4250:1;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;-1:-1:-1;;60:4250:1;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:4250:1;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;;;60:4250:1;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;60:4250:1;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;:::o;:::-;;;;;-1:-1:-1;60:4250:1;;;;-1:-1:-1;60:4250:1;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;60:4250:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;60:4250:1;;;;;;;;;;;;-1:-1:-1;;;60:4250:1;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;60:4250:1;;;;;;;;;;;;-1:-1:-1;;;60:4250:1;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract violation {\r\n    // Struct to store the details of a challan\r\n    struct Challan {\r\n        uint256 id;\r\n        address violator;\r\n        string violationDetails;\r\n        uint256 fineAmount;\r\n        bool isTerminated;\r\n    }\r\n\r\n    // Array to store all challans\r\n    Challan[] public challans;\r\n    // Counter for challan IDs\r\n    uint public challanCounter;\r\n\r\n    // Pre-defined violation details and their corresponding fines\r\n    mapping(string => uint256) public violationFines;\r\n\r\n    // Event to emit when a new challan is generated\r\n    event ChallanGenerated(\r\n        uint id,\r\n        address violator,\r\n        string violationDetails,\r\n        uint fineAmount\r\n    );\r\n    // Event to emit when a challan is updated\r\n    event ChallanUpdated(uint id, string violationDetails, uint fineAmount);\r\n    // Event to emit when a challan is terminated\r\n    event ChallanTerminated(uint id);\r\n\r\n    // Constructor to initialize violation details with fines\r\n    constructor() {\r\n        violationFines[\"Speeding\"] = 500;\r\n        violationFines[\"Parking\"] = 200;\r\n        violationFines[\"No Seatbelt\"] = 100;\r\n        // Add more predefined violations and fines as needed\r\n    }\r\n\r\n    // Function to generate a new challan\r\n    function generateChallan(\r\n        address _violator,\r\n        string memory _violationDetails\r\n    ) public {\r\n        // Ensure the violation type exists in the pre-defined list\r\n        require(violationFines[_violationDetails] > 0, \"Invalid violation type\");\r\n\r\n        challanCounter++;\r\n        uint fineAmount = violationFines[_violationDetails];  // Fetch fine based on violation type\r\n\r\n        Challan memory newChallan = Challan({\r\n            id: challanCounter,\r\n            violator: _violator,\r\n            violationDetails: _violationDetails,\r\n            fineAmount: fineAmount,\r\n            isTerminated: false\r\n        });\r\n        challans.push(newChallan);  // Add the new challan to the array\r\n\r\n        emit ChallanGenerated(\r\n            challanCounter,\r\n            _violator,\r\n            _violationDetails,\r\n            fineAmount\r\n        );\r\n    }\r\n\r\n    // Function to get a challan's details\r\n    function getChallan(\r\n        uint _id\r\n    )\r\n        external\r\n        view\r\n        returns (\r\n            uint id,\r\n            address violator,\r\n            string memory violationDetails,\r\n            uint fineAmount,\r\n            bool isTerminated\r\n        )\r\n    {\r\n        // Ensure the challan exists\r\n        require(_id > 0 && _id <= challanCounter, \"Challan does not exist\");\r\n\r\n        // Fetch the challan from the array\r\n        Challan memory challan = challans[_id - 1];\r\n\r\n        // Return the challan details\r\n        return (\r\n            challan.id,\r\n            challan.violator,\r\n            challan.violationDetails,\r\n            challan.fineAmount,\r\n            challan.isTerminated\r\n        );\r\n    }\r\n\r\n    // Function to update a challan's details\r\n    function updateChallan(\r\n        uint _id,\r\n        string memory _violationDetails\r\n    ) public {\r\n        // Ensure the challan exists\r\n        require(_id > 0 && _id <= challanCounter, \"Challan does not exist\");\r\n\r\n        // Fetch the challan from the array\r\n        Challan storage challan = challans[_id - 1];\r\n\r\n        // Ensure the challan is not terminated\r\n        require(!challan.isTerminated, \"Challan is terminated and cannot be updated\");\r\n\r\n        // Ensure the new violation type exists in the pre-defined list\r\n        require(violationFines[_violationDetails] > 0, \"Invalid violation type\");\r\n\r\n        // Update the challan details\r\n        challan.violationDetails = _violationDetails;\r\n        challan.fineAmount = violationFines[_violationDetails];\r\n\r\n        emit ChallanUpdated(_id, _violationDetails, challan.fineAmount);\r\n    }\r\n\r\n    // Function to terminate a challan\r\n    function terminateChallan(uint _id) public {\r\n        // Ensure the challan exists\r\n        require(_id > 0 && _id <= challanCounter, \"Challan does not exist\");\r\n\r\n        // Fetch the challan from the array\r\n        Challan storage challan = challans[_id - 1];\r\n\r\n        // Terminate the challan\r\n        challan.isTerminated = true;\r\n\r\n        emit ChallanTerminated(_id);\r\n    }\r\n}\r\n",
+  "sourcePath": "E:\\FAST\\FYP\\Contracts\\contracts\\violation.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/violation.sol",
+    "exportedSymbols": {
+      "violation": [
+        441
+      ]
+    },
+    "id": 442,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 176,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "violation",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 441,
+        "linearizedBaseContracts": [
+          441
+        ],
+        "name": "violation",
+        "nameLocation": "69:9:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "violation.Challan",
+            "id": 187,
+            "members": [
+              {
+                "constant": false,
+                "id": 178,
+                "mutability": "mutable",
+                "name": "id",
+                "nameLocation": "169:2:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 187,
+                "src": "161:10:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 177,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "161:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 180,
+                "mutability": "mutable",
+                "name": "violator",
+                "nameLocation": "190:8:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 187,
+                "src": "182:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 179,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "182:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 182,
+                "mutability": "mutable",
+                "name": "violationDetails",
+                "nameLocation": "216:16:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 187,
+                "src": "209:23:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 181,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "209:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 184,
+                "mutability": "mutable",
+                "name": "fineAmount",
+                "nameLocation": "251:10:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 187,
+                "src": "243:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 183,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "243:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 186,
+                "mutability": "mutable",
+                "name": "isTerminated",
+                "nameLocation": "277:12:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 187,
+                "src": "272:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 185,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "272:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Challan",
+            "nameLocation": "142:7:1",
+            "nodeType": "StructDefinition",
+            "scope": 441,
+            "src": "135:162:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "9c1cfb61",
+            "id": 191,
+            "mutability": "mutable",
+            "name": "challans",
+            "nameLocation": "358:8:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 441,
+            "src": "341:25:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage",
+              "typeString": "struct violation.Challan[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 189,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 188,
+                  "name": "Challan",
+                  "nameLocations": [
+                    "341:7:1"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 187,
+                  "src": "341:7:1"
+                },
+                "referencedDeclaration": 187,
+                "src": "341:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                  "typeString": "struct violation.Challan"
+                }
+              },
+              "id": 190,
+              "nodeType": "ArrayTypeName",
+              "src": "341:9:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage_ptr",
+                "typeString": "struct violation.Challan[]"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "e4f2266d",
+            "id": 193,
+            "mutability": "mutable",
+            "name": "challanCounter",
+            "nameLocation": "417:14:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 441,
+            "src": "405:26:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 192,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "405:4:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "96ab4bab",
+            "id": 197,
+            "mutability": "mutable",
+            "name": "violationFines",
+            "nameLocation": "542:14:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 441,
+            "src": "508:48:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+              "typeString": "mapping(string => uint256)"
+            },
+            "typeName": {
+              "id": 196,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 194,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "516:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "508:26:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                "typeString": "mapping(string => uint256)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 195,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "526:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "a489fe610c894fc9981c2e2606f89202188af3ca814a1567f5e196dcfcfa2adc",
+            "id": 207,
+            "name": "ChallanGenerated",
+            "nameLocation": "625:16:1",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 206,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 199,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "657:2:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 207,
+                  "src": "652:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 198,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "652:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 201,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "violator",
+                  "nameLocation": "678:8:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 207,
+                  "src": "670:16:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 200,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "670:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 203,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "violationDetails",
+                  "nameLocation": "704:16:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 207,
+                  "src": "697:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 202,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "697:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 205,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "fineAmount",
+                  "nameLocation": "736:10:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 207,
+                  "src": "731:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 204,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "731:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "641:112:1"
+            },
+            "src": "619:135:1"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "d88cd3fc9322ccf50df7dec6797866a2d3b8f4c45b92303b1a2c61dc1da54330",
+            "id": 215,
+            "name": "ChallanUpdated",
+            "nameLocation": "814:14:1",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 214,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 209,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "834:2:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 215,
+                  "src": "829:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 208,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "829:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 211,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "violationDetails",
+                  "nameLocation": "845:16:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 215,
+                  "src": "838:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 210,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "838:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 213,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "fineAmount",
+                  "nameLocation": "868:10:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 215,
+                  "src": "863:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 212,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "863:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "828:51:1"
+            },
+            "src": "808:72:1"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "d4c7402b4f900bcb67a96ed6052c481de7c7015122b904145ad8dd766e6c3d4e",
+            "id": 219,
+            "name": "ChallanTerminated",
+            "nameLocation": "943:17:1",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 218,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 217,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "966:2:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 219,
+                  "src": "961:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 216,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "961:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "960:9:1"
+            },
+            "src": "937:33:1"
+          },
+          {
+            "body": {
+              "id": 240,
+              "nodeType": "Block",
+              "src": "1055:202:1",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 226,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 222,
+                        "name": "violationFines",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 197,
+                        "src": "1066:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                          "typeString": "mapping(string memory => uint256)"
+                        }
+                      },
+                      "id": 224,
+                      "indexExpression": {
+                        "hexValue": "5370656564696e67",
+                        "id": 223,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1081:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e2c260bd9a062f4c72c5307aea46d6dd6f2d0e286d862416c5cd5a42e73d2011",
+                          "typeString": "literal_string \"Speeding\""
+                        },
+                        "value": "Speeding"
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1066:26:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "353030",
+                      "id": 225,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1095:3:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_500_by_1",
+                        "typeString": "int_const 500"
+                      },
+                      "value": "500"
+                    },
+                    "src": "1066:32:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 227,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1066:32:1"
+                },
+                {
+                  "expression": {
+                    "id": 232,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 228,
+                        "name": "violationFines",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 197,
+                        "src": "1109:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                          "typeString": "mapping(string memory => uint256)"
+                        }
+                      },
+                      "id": 230,
+                      "indexExpression": {
+                        "hexValue": "5061726b696e67",
+                        "id": 229,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1124:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_fb677a04844d33b8ca0158e2a7c9a447575e83d817a399c0add233c8dbfdf27f",
+                          "typeString": "literal_string \"Parking\""
+                        },
+                        "value": "Parking"
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1109:25:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "323030",
+                      "id": 231,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1137:3:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_200_by_1",
+                        "typeString": "int_const 200"
+                      },
+                      "value": "200"
+                    },
+                    "src": "1109:31:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 233,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1109:31:1"
+                },
+                {
+                  "expression": {
+                    "id": 238,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 234,
+                        "name": "violationFines",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 197,
+                        "src": "1151:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                          "typeString": "mapping(string memory => uint256)"
+                        }
+                      },
+                      "id": 236,
+                      "indexExpression": {
+                        "hexValue": "4e6f205365617462656c74",
+                        "id": 235,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1166:13:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_7f2f49fce9a84a76ad6f12c6cedc83cc768a60cfc3228a50384941bacf73072a",
+                          "typeString": "literal_string \"No Seatbelt\""
+                        },
+                        "value": "No Seatbelt"
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1151:29:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "313030",
+                      "id": 237,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1183:3:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_100_by_1",
+                        "typeString": "int_const 100"
+                      },
+                      "value": "100"
+                    },
+                    "src": "1151:35:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 239,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1151:35:1"
+                }
+              ]
+            },
+            "id": 241,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 220,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1052:2:1"
+            },
+            "returnParameters": {
+              "id": 221,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1055:0:1"
+            },
+            "scope": 441,
+            "src": "1041:216:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 290,
+              "nodeType": "Block",
+              "src": "1417:767:1",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 253,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 249,
+                            "name": "violationFines",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 197,
+                            "src": "1505:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                              "typeString": "mapping(string memory => uint256)"
+                            }
+                          },
+                          "id": 251,
+                          "indexExpression": {
+                            "id": 250,
+                            "name": "_violationDetails",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 245,
+                            "src": "1520:17:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "1505:33:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 252,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1541:1:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "1505:37:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c69642076696f6c6174696f6e2074797065",
+                        "id": 254,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1544:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_bab2c9121c276296cd6e94e7b10bd1045346ec61d32543611765ab524c0fc7e1",
+                          "typeString": "literal_string \"Invalid violation type\""
+                        },
+                        "value": "Invalid violation type"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_bab2c9121c276296cd6e94e7b10bd1045346ec61d32543611765ab524c0fc7e1",
+                          "typeString": "literal_string \"Invalid violation type\""
+                        }
+                      ],
+                      "id": 248,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1497:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 255,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1497:72:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 256,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1497:72:1"
+                },
+                {
+                  "expression": {
+                    "id": 258,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "1582:16:1",
+                    "subExpression": {
+                      "id": 257,
+                      "name": "challanCounter",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 193,
+                      "src": "1582:14:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 259,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1582:16:1"
+                },
+                {
+                  "assignments": [
+                    261
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 261,
+                      "mutability": "mutable",
+                      "name": "fineAmount",
+                      "nameLocation": "1614:10:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 290,
+                      "src": "1609:15:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 260,
+                        "name": "uint",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1609:4:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 265,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 262,
+                      "name": "violationFines",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 197,
+                      "src": "1627:14:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                        "typeString": "mapping(string memory => uint256)"
+                      }
+                    },
+                    "id": 264,
+                    "indexExpression": {
+                      "id": 263,
+                      "name": "_violationDetails",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 245,
+                      "src": "1642:17:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1627:33:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1609:51:1"
+                },
+                {
+                  "assignments": [
+                    268
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 268,
+                      "mutability": "mutable",
+                      "name": "newChallan",
+                      "nameLocation": "1727:10:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 290,
+                      "src": "1712:25:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                        "typeString": "struct violation.Challan"
+                      },
+                      "typeName": {
+                        "id": 267,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 266,
+                          "name": "Challan",
+                          "nameLocations": [
+                            "1712:7:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 187,
+                          "src": "1712:7:1"
+                        },
+                        "referencedDeclaration": 187,
+                        "src": "1712:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 276,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 270,
+                        "name": "challanCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 193,
+                        "src": "1767:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 271,
+                        "name": "_violator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 243,
+                        "src": "1806:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 272,
+                        "name": "_violationDetails",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 245,
+                        "src": "1848:17:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 273,
+                        "name": "fineAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 261,
+                        "src": "1892:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "hexValue": "66616c7365",
+                        "id": 274,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "bool",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1931:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "value": "false"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 269,
+                      "name": "Challan",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 187,
+                      "src": "1740:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_Challan_$187_storage_ptr_$",
+                        "typeString": "type(struct violation.Challan storage pointer)"
+                      }
+                    },
+                    "id": 275,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "nameLocations": [
+                      "1763:2:1",
+                      "1796:8:1",
+                      "1830:16:1",
+                      "1880:10:1",
+                      "1917:12:1"
+                    ],
+                    "names": [
+                      "id",
+                      "violator",
+                      "violationDetails",
+                      "fineAmount",
+                      "isTerminated"
+                    ],
+                    "nodeType": "FunctionCall",
+                    "src": "1740:208:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                      "typeString": "struct violation.Challan memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1712:236:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 280,
+                        "name": "newChallan",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 268,
+                        "src": "1973:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                          "typeString": "struct violation.Challan memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                          "typeString": "struct violation.Challan memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 277,
+                        "name": "challans",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 191,
+                        "src": "1959:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage",
+                          "typeString": "struct violation.Challan storage ref[] storage ref"
+                        }
+                      },
+                      "id": 279,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1968:4:1",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "1959:13:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Challan_$187_storage_$dyn_storage_ptr_$_t_struct$_Challan_$187_storage_$returns$__$attached_to$_t_array$_t_struct$_Challan_$187_storage_$dyn_storage_ptr_$",
+                        "typeString": "function (struct violation.Challan storage ref[] storage pointer,struct violation.Challan storage ref)"
+                      }
+                    },
+                    "id": 281,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1959:25:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 282,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1959:25:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 284,
+                        "name": "challanCounter",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 193,
+                        "src": "2070:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 285,
+                        "name": "_violator",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 243,
+                        "src": "2099:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 286,
+                        "name": "_violationDetails",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 245,
+                        "src": "2123:17:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "id": 287,
+                        "name": "fineAmount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 261,
+                        "src": "2155:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 283,
+                      "name": "ChallanGenerated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 207,
+                      "src": "2039:16:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,address,string memory,uint256)"
+                      }
+                    },
+                    "id": 288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2039:137:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 289,
+                  "nodeType": "EmitStatement",
+                  "src": "2034:142:1"
+                }
+              ]
+            },
+            "functionSelector": "9d5f4be7",
+            "id": 291,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "generateChallan",
+            "nameLocation": "1317:15:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 246,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 243,
+                  "mutability": "mutable",
+                  "name": "_violator",
+                  "nameLocation": "1351:9:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 291,
+                  "src": "1343:17:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 242,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1343:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 245,
+                  "mutability": "mutable",
+                  "name": "_violationDetails",
+                  "nameLocation": "1385:17:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 291,
+                  "src": "1371:31:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 244,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1371:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1332:77:1"
+            },
+            "returnParameters": {
+              "id": 247,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1417:0:1"
+            },
+            "scope": 441,
+            "src": "1308:876:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 338,
+              "nodeType": "Block",
+              "src": "2508:457:1",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 313,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 309,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 307,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 293,
+                            "src": "2565:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">",
+                          "rightExpression": {
+                            "hexValue": "30",
+                            "id": 308,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2571:1:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "src": "2565:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "&&",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 312,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 310,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 293,
+                            "src": "2576:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<=",
+                          "rightExpression": {
+                            "id": 311,
+                            "name": "challanCounter",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 193,
+                            "src": "2583:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "2576:21:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "2565:32:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4368616c6c616e20646f6573206e6f74206578697374",
+                        "id": 314,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2599:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        },
+                        "value": "Challan does not exist"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        }
+                      ],
+                      "id": 306,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2557:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 315,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2557:67:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 316,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2557:67:1"
+                },
+                {
+                  "assignments": [
+                    319
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 319,
+                      "mutability": "mutable",
+                      "name": "challan",
+                      "nameLocation": "2697:7:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 338,
+                      "src": "2682:22:1",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                        "typeString": "struct violation.Challan"
+                      },
+                      "typeName": {
+                        "id": 318,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 317,
+                          "name": "Challan",
+                          "nameLocations": [
+                            "2682:7:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 187,
+                          "src": "2682:7:1"
+                        },
+                        "referencedDeclaration": 187,
+                        "src": "2682:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 325,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 320,
+                      "name": "challans",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 191,
+                      "src": "2707:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage",
+                        "typeString": "struct violation.Challan storage ref[] storage ref"
+                      }
+                    },
+                    "id": 324,
+                    "indexExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 323,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 321,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 293,
+                        "src": "2716:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "hexValue": "31",
+                        "id": 322,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2722:1:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "2716:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "2707:17:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Challan_$187_storage",
+                      "typeString": "struct violation.Challan storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2682:42:1"
+                },
+                {
+                  "expression": {
+                    "components": [
+                      {
+                        "expression": {
+                          "id": 326,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 319,
+                          "src": "2798:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                            "typeString": "struct violation.Challan memory"
+                          }
+                        },
+                        "id": 327,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2806:2:1",
+                        "memberName": "id",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 178,
+                        "src": "2798:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 328,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 319,
+                          "src": "2823:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                            "typeString": "struct violation.Challan memory"
+                          }
+                        },
+                        "id": 329,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2831:8:1",
+                        "memberName": "violator",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 180,
+                        "src": "2823:16:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 330,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 319,
+                          "src": "2854:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                            "typeString": "struct violation.Challan memory"
+                          }
+                        },
+                        "id": 331,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2862:16:1",
+                        "memberName": "violationDetails",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 182,
+                        "src": "2854:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 332,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 319,
+                          "src": "2893:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                            "typeString": "struct violation.Challan memory"
+                          }
+                        },
+                        "id": 333,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2901:10:1",
+                        "memberName": "fineAmount",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 184,
+                        "src": "2893:18:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 334,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 319,
+                          "src": "2926:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_memory_ptr",
+                            "typeString": "struct violation.Challan memory"
+                          }
+                        },
+                        "id": 335,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2934:12:1",
+                        "memberName": "isTerminated",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 186,
+                        "src": "2926:20:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "id": 336,
+                    "isConstant": false,
+                    "isInlineArray": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "TupleExpression",
+                    "src": "2783:174:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$_t_uint256_$_t_address_$_t_string_memory_ptr_$_t_uint256_$_t_bool_$",
+                      "typeString": "tuple(uint256,address,string memory,uint256,bool)"
+                    }
+                  },
+                  "functionReturnParameters": 305,
+                  "id": 337,
+                  "nodeType": "Return",
+                  "src": "2776:181:1"
+                }
+              ]
+            },
+            "functionSelector": "5146b42f",
+            "id": 339,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getChallan",
+            "nameLocation": "2245:10:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 294,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 293,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nameLocation": "2271:3:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2266:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 292,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2266:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2255:26:1"
+            },
+            "returnParameters": {
+              "id": 305,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 296,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "2351:2:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2346:7:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 295,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2346:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 298,
+                  "mutability": "mutable",
+                  "name": "violator",
+                  "nameLocation": "2376:8:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2368:16:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 297,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2368:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 300,
+                  "mutability": "mutable",
+                  "name": "violationDetails",
+                  "nameLocation": "2413:16:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2399:30:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 299,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2399:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 302,
+                  "mutability": "mutable",
+                  "name": "fineAmount",
+                  "nameLocation": "2449:10:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2444:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 301,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2444:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 304,
+                  "mutability": "mutable",
+                  "name": "isTerminated",
+                  "nameLocation": "2479:12:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "2474:17:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 303,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2474:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2331:171:1"
+            },
+            "scope": 441,
+            "src": "2236:729:1",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 403,
+              "nodeType": "Block",
+              "src": "3118:759:1",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 353,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 349,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 347,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 341,
+                            "src": "3175:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">",
+                          "rightExpression": {
+                            "hexValue": "30",
+                            "id": 348,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "3181:1:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "src": "3175:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "&&",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 352,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 350,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 341,
+                            "src": "3186:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<=",
+                          "rightExpression": {
+                            "id": 351,
+                            "name": "challanCounter",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 193,
+                            "src": "3193:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "3186:21:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "3175:32:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4368616c6c616e20646f6573206e6f74206578697374",
+                        "id": 354,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3209:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        },
+                        "value": "Challan does not exist"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        }
+                      ],
+                      "id": 346,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "3167:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 355,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3167:67:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 356,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3167:67:1"
+                },
+                {
+                  "assignments": [
+                    359
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 359,
+                      "mutability": "mutable",
+                      "name": "challan",
+                      "nameLocation": "3308:7:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 403,
+                      "src": "3292:23:1",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                        "typeString": "struct violation.Challan"
+                      },
+                      "typeName": {
+                        "id": 358,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 357,
+                          "name": "Challan",
+                          "nameLocations": [
+                            "3292:7:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 187,
+                          "src": "3292:7:1"
+                        },
+                        "referencedDeclaration": 187,
+                        "src": "3292:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 365,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 360,
+                      "name": "challans",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 191,
+                      "src": "3318:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage",
+                        "typeString": "struct violation.Challan storage ref[] storage ref"
+                      }
+                    },
+                    "id": 364,
+                    "indexExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 363,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 361,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 341,
+                        "src": "3327:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "hexValue": "31",
+                        "id": 362,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3333:1:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "3327:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "3318:17:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Challan_$187_storage",
+                      "typeString": "struct violation.Challan storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "3292:43:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 369,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "3405:21:1",
+                        "subExpression": {
+                          "expression": {
+                            "id": 367,
+                            "name": "challan",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 359,
+                            "src": "3406:7:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                              "typeString": "struct violation.Challan storage pointer"
+                            }
+                          },
+                          "id": 368,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "3414:12:1",
+                          "memberName": "isTerminated",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 186,
+                          "src": "3406:20:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4368616c6c616e206973207465726d696e6174656420616e642063616e6e6f742062652075706461746564",
+                        "id": 370,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3428:45:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_357df8f853245c5bb26b4918036c13da10e712b34695bc0d303c87a95830d7bc",
+                          "typeString": "literal_string \"Challan is terminated and cannot be updated\""
+                        },
+                        "value": "Challan is terminated and cannot be updated"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_357df8f853245c5bb26b4918036c13da10e712b34695bc0d303c87a95830d7bc",
+                          "typeString": "literal_string \"Challan is terminated and cannot be updated\""
+                        }
+                      ],
+                      "id": 366,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "3397:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 371,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3397:77:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 372,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3397:77:1"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 378,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "baseExpression": {
+                            "id": 374,
+                            "name": "violationFines",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 197,
+                            "src": "3568:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                              "typeString": "mapping(string memory => uint256)"
+                            }
+                          },
+                          "id": 376,
+                          "indexExpression": {
+                            "id": 375,
+                            "name": "_violationDetails",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 343,
+                            "src": "3583:17:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "3568:33:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 377,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "3604:1:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "3568:37:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c69642076696f6c6174696f6e2074797065",
+                        "id": 379,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "3607:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_bab2c9121c276296cd6e94e7b10bd1045346ec61d32543611765ab524c0fc7e1",
+                          "typeString": "literal_string \"Invalid violation type\""
+                        },
+                        "value": "Invalid violation type"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_bab2c9121c276296cd6e94e7b10bd1045346ec61d32543611765ab524c0fc7e1",
+                          "typeString": "literal_string \"Invalid violation type\""
+                        }
+                      ],
+                      "id": 373,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "3560:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 380,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3560:72:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 381,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3560:72:1"
+                },
+                {
+                  "expression": {
+                    "id": 386,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 382,
+                        "name": "challan",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 359,
+                        "src": "3684:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan storage pointer"
+                        }
+                      },
+                      "id": 384,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "3692:16:1",
+                      "memberName": "violationDetails",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 182,
+                      "src": "3684:24:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 385,
+                      "name": "_violationDetails",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 343,
+                      "src": "3711:17:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "3684:44:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 387,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3684:44:1"
+                },
+                {
+                  "expression": {
+                    "id": 394,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 388,
+                        "name": "challan",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 359,
+                        "src": "3739:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan storage pointer"
+                        }
+                      },
+                      "id": 390,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "3747:10:1",
+                      "memberName": "fineAmount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 184,
+                      "src": "3739:18:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "baseExpression": {
+                        "id": 391,
+                        "name": "violationFines",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 197,
+                        "src": "3760:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                          "typeString": "mapping(string memory => uint256)"
+                        }
+                      },
+                      "id": 393,
+                      "indexExpression": {
+                        "id": 392,
+                        "name": "_violationDetails",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 343,
+                        "src": "3775:17:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "3760:33:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "3739:54:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 395,
+                  "nodeType": "ExpressionStatement",
+                  "src": "3739:54:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 397,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 341,
+                        "src": "3826:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 398,
+                        "name": "_violationDetails",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 343,
+                        "src": "3831:17:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 399,
+                          "name": "challan",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 359,
+                          "src": "3850:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                            "typeString": "struct violation.Challan storage pointer"
+                          }
+                        },
+                        "id": 400,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "3858:10:1",
+                        "memberName": "fineAmount",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 184,
+                        "src": "3850:18:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 396,
+                      "name": "ChallanUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 215,
+                      "src": "3811:14:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,string memory,uint256)"
+                      }
+                    },
+                    "id": 401,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3811:58:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 402,
+                  "nodeType": "EmitStatement",
+                  "src": "3806:63:1"
+                }
+              ]
+            },
+            "functionSelector": "c0dcdd89",
+            "id": 404,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateChallan",
+            "nameLocation": "3029:13:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 344,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 341,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nameLocation": "3058:3:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 404,
+                  "src": "3053:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 340,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3053:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 343,
+                  "mutability": "mutable",
+                  "name": "_violationDetails",
+                  "nameLocation": "3086:17:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 404,
+                  "src": "3072:31:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 342,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3072:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3042:68:1"
+            },
+            "returnParameters": {
+              "id": 345,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3118:0:1"
+            },
+            "scope": 441,
+            "src": "3020:857:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 439,
+              "nodeType": "Block",
+              "src": "3968:339:1",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        "id": 416,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 412,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 410,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 406,
+                            "src": "4025:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": ">",
+                          "rightExpression": {
+                            "hexValue": "30",
+                            "id": 411,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "4031:1:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_0_by_1",
+                              "typeString": "int_const 0"
+                            },
+                            "value": "0"
+                          },
+                          "src": "4025:7:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "&&",
+                        "rightExpression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 415,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "id": 413,
+                            "name": "_id",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 406,
+                            "src": "4036:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "<=",
+                          "rightExpression": {
+                            "id": 414,
+                            "name": "challanCounter",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 193,
+                            "src": "4043:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "4036:21:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "src": "4025:32:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4368616c6c616e20646f6573206e6f74206578697374",
+                        "id": 417,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "4059:24:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        },
+                        "value": "Challan does not exist"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_72107244d69b5613d4aea98df2b8f355b13018deae79b42707116a7bfc41abc4",
+                          "typeString": "literal_string \"Challan does not exist\""
+                        }
+                      ],
+                      "id": 409,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "4017:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 418,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "4017:67:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 419,
+                  "nodeType": "ExpressionStatement",
+                  "src": "4017:67:1"
+                },
+                {
+                  "assignments": [
+                    422
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 422,
+                      "mutability": "mutable",
+                      "name": "challan",
+                      "nameLocation": "4158:7:1",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 439,
+                      "src": "4142:23:1",
+                      "stateVariable": false,
+                      "storageLocation": "storage",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                        "typeString": "struct violation.Challan"
+                      },
+                      "typeName": {
+                        "id": 421,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 420,
+                          "name": "Challan",
+                          "nameLocations": [
+                            "4142:7:1"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 187,
+                          "src": "4142:7:1"
+                        },
+                        "referencedDeclaration": 187,
+                        "src": "4142:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 428,
+                  "initialValue": {
+                    "baseExpression": {
+                      "id": 423,
+                      "name": "challans",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 191,
+                      "src": "4168:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_array$_t_struct$_Challan_$187_storage_$dyn_storage",
+                        "typeString": "struct violation.Challan storage ref[] storage ref"
+                      }
+                    },
+                    "id": 427,
+                    "indexExpression": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 426,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "id": 424,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 406,
+                        "src": "4177:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "hexValue": "31",
+                        "id": 425,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "4183:1:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "4177:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "4168:17:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Challan_$187_storage",
+                      "typeString": "struct violation.Challan storage ref"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "4142:43:1"
+                },
+                {
+                  "expression": {
+                    "id": 433,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 429,
+                        "name": "challan",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 422,
+                        "src": "4232:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Challan_$187_storage_ptr",
+                          "typeString": "struct violation.Challan storage pointer"
+                        }
+                      },
+                      "id": 431,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "4240:12:1",
+                      "memberName": "isTerminated",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 186,
+                      "src": "4232:20:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 432,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "4255:4:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "4232:27:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 434,
+                  "nodeType": "ExpressionStatement",
+                  "src": "4232:27:1"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 436,
+                        "name": "_id",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 406,
+                        "src": "4295:3:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 435,
+                      "name": "ChallanTerminated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 219,
+                      "src": "4277:17:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 437,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "4277:22:1",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 438,
+                  "nodeType": "EmitStatement",
+                  "src": "4272:27:1"
+                }
+              ]
+            },
+            "functionSelector": "fef88e97",
+            "id": 440,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "terminateChallan",
+            "nameLocation": "3934:16:1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 407,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 406,
+                  "mutability": "mutable",
+                  "name": "_id",
+                  "nameLocation": "3956:3:1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 440,
+                  "src": "3951:8:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 405,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3951:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3950:10:1"
+            },
+            "returnParameters": {
+              "id": 408,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3968:0:1"
+            },
+            "scope": 441,
+            "src": "3925:382:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 442,
+        "src": "60:4250:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:4279:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x81B63F9353D08430F251c369ED375f81a2A8464c",
+      "transactionHash": "0x139d924fc819a023a7720c1b58e71882c2cc1a45204472ca68a7d52b9fe17cf1"
+    }
+  },
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-09-10T22:48:01.998Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
