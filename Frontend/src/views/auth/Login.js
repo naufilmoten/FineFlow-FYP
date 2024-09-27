@@ -50,7 +50,7 @@ export default function Login() {
         alert(`${role.charAt(0).toUpperCase() + role.slice(1)} login successful!`);
         // Redirect based on role
         if (role === "warden") {
-          history.push("/warden/dashboard");
+          history.push("/warden/WardenDashBoard");
         } else if (role === "citizen") {
           history.push("/citizen/dashboard");
         }
@@ -150,6 +150,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 }

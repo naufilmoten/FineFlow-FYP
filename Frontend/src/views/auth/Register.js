@@ -79,21 +79,6 @@ export default function Register() {
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <form onSubmit={handleRegister}>
-
-              <div className="relative w-full mb-3">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Role</label>
-                  <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="border-0 px-3 py-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                  >
-                    <option value="">Choose a role</option>
-                    <option value="warden">Warden</option>
-                    <option value="citizen">Citizen</option>
-                  </select>
-                </div>
-
-
                 <div className="relative w-full mb-3">
                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Name</label>
                   <input
@@ -138,7 +123,18 @@ export default function Register() {
                   />
                 </div>
 
-                
+                <div className="relative w-full mb-3">
+                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Role</label>
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="border-0 px-3 py-3 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  >
+                    <option value="">Choose a role</option>
+                    <option value="warden">Warden</option>
+                    <option value="citizen">Citizen</option>
+                  </select>
+                </div>
 
                 {role === 'citizen' && (
                   <>

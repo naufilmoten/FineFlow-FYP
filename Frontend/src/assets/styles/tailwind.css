@@ -406,6 +406,7 @@ textarea {
   resize: vertical;
 }
 
+
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   opacity: 1;
   color: #a1a1aa;
