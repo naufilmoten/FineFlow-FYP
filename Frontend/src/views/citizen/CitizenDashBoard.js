@@ -1,15 +1,15 @@
+// src/views/citizen/CitizenDashBoard.js
 
 import React, { useState } from "react";
+import CardPageVisits from "components/Cards/CardPageVisits.js"; // Import the CardPageVisits component
 
 export default function CitizenDashBoard() {
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
-    lastName: "",
     cardNumber: "",
     expiryDate: "",
-    cvc: "",
-    zip: "",
+    amount: "", // Added amount field
   });
 
   const handleChange = (e) => {
@@ -25,111 +25,105 @@ export default function CitizenDashBoard() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">Pay Your Traffic Challan</h2>
+    <div className="container mx-auto px-4 h-full pt-12"> {/* Increased top padding to pt-12 */}
+      <div className="flex flex-wrap justify-between">
+        {/* Form Section */}
+        <div className="w-full lg:w-6/12 px-4 mb-6">
+          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+          <div className="bg-blueGray-800 text-white text-center py-4 rounded-t-lg">
+  <h1 className="text-2xl font-bold">Traffic Challan Payment</h1>
+</div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              placeholder="you@example.com"
-            />
+            <form onSubmit={handleSubmit} className="p-8">
+              {/* Email Field */}
+              <div className="form-group mb-4">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-4">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-3 block w-full max-w-xs mx-auto shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+
+                  placeholder="Enter Email"
+                />
+              </div>
+
+              {/* First Name Field */}
+              <div className="form-group mb-4">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-4 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="First Name"
+                />
+              </div>
+
+              {/* Card Number Field */}
+              <div className="form-group mb-4">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Card Number</label>
+                <input
+                  type="text"
+                  name="cardNumber"
+                  value={formData.cardNumber}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Card Number"
+                />
+              </div>
+
+              {/* Expiry Date Field */}
+              <div className="form-group mb-4">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Expiry Date</label>
+                <input
+                  type="text"
+                  name="expiryDate"
+                  value={formData.expiryDate}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="MM/YY"
+                />
+              </div>
+
+              {/* Amount Field */}
+              <div className="form-group mb-4">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Amount</label>
+                <input
+                  type="number"
+                  name="amount"
+                  value={formData.amount}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter Amount"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center mt-4">
+              <button
+  type="submit"
+  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+>
+  Pay Amount
+</button>
+
+              </div>
+            </form>
           </div>
+        </div>
 
-          <div className="form-group grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-                className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                placeholder="John"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Doe"
-              />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700">Card Number</label>
-            <input
-              type="text"
-              name="cardNumber"
-              value={formData.cardNumber}
-              onChange={handleChange}
-              required
-              className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              placeholder="1234 1234 1234 1234"
-            />
-          </div>
-
-          <div className="form-group grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Expiration Date</label>
-              <input
-                type="text"
-                name="expiryDate"
-                value={formData.expiryDate}
-                onChange={handleChange}
-                required
-                className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                placeholder="MM/YY"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">CVC</label>
-              <input
-                type="text"
-                name="cvc"
-                value={formData.cvc}
-                onChange={handleChange}
-                required
-                className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                placeholder="CVC"
-              />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="block text-sm font-medium text-gray-700">ZIP Code</label>
-            <input
-              type="text"
-              name="zip"
-              value={formData.zip}
-              onChange={handleChange}
-              required
-              className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-              placeholder="12345"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-md shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200"
-          >
-            Pay $60
-          </button>
-        </form>
+        {/* Card Page Visits Section */}
+        <div className="w-full lg:w-6/12 px-4 mb-6 mt-6"> {/* Added mt-6 for spacing */}
+          <CardPageVisits />
+        </div>
       </div>
     </div>
   );

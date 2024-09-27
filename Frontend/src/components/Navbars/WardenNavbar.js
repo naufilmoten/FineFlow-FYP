@@ -1,37 +1,43 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
-// import { AiOutlineDashboard } from "react-icons/ai"; // Optional icon for the title
+import { FaSearch } from "react-icons/fa"; // Importing search icon
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-export default function Navbar() {
+export default function WardenNavbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-md">
-        <div className="w-full mx-auto flex justify-between items-center px-6 py-4">
-          {/* Brand Title */}
-          
+      <nav className="fixed top-0 left-0 w-full z-10 bg-blueGray-800 flex items-center p-4 shadow-md">
+        <div className="w-full mx-auto flex justify-between items-center px-4">
+          {/* Brand */}
+          <a
+            className="text-white text-sm uppercase font-semibold"
+            href="#"
+            onClick={(e) => e.preventDefault()}
+          >
+            Dashboard
+          </a>
 
           {/* Search Form */}
-          <form className="hidden md:flex flex-row items-center space-x-2 lg:ml-auto">
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-white">
-                <FaSearch />
+          <form className="flex items-center lg:ml-auto mr-3">
+            <div className="relative flex w-full flex-wrap items-stretch">
+              <span className="absolute left-0 flex items-center pl-3">
+                <FaSearch className="text-blueGray-300" />
               </span>
               <input
                 type="text"
                 placeholder="Search here..."
-                className="pl-12 pr-6 py-3 w-80 rounded-lg bg-gray-50 text-gray-800 placeholder-gray-500 focus:bg-white focus:ring-4 focus:ring-indigo-400 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
               />
             </div>
           </form>
 
           {/* User Dropdown */}
-          <ul className="list-none hidden md:flex items-center space-x-6">
+          <ul className="flex-col list-none items-center hidden md:flex">
             <UserDropdown />
           </ul>
         </div>
       </nav>
+      {/* End Navbar */}
     </>
   );
 }

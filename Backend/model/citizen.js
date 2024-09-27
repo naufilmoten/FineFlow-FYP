@@ -5,7 +5,7 @@ const citizenSchema = new mongoose.Schema({
   citizen_cnic: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   citizen_password: {
     type: String,

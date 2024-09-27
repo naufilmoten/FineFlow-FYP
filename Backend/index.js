@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 // Enable CORS for all routes
 app.use(cors({
-    origin: 'http://localhost:3001', // Allow requests from this origin (your frontend)
+    origin: 'http://localhost:3000', // Allow requests from this origin (your frontend)
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Specify the allowed headers
 }));

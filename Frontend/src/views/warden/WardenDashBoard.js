@@ -46,9 +46,9 @@ const WardenDashBoard = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-white border-0">
-        <div className="bg-lightBlue-500 text-white text-center py-4 rounded-t-lg">
+    <div className="flex items-center justify-center min-h-screen bg-white p-8">
+      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2"> {/* Added mt-10 here */}
+        <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
           <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
         </div>
 
@@ -97,7 +97,7 @@ const WardenDashBoard = () => {
                     placeholder="Enter Registration Number"
                     value={registrationNumber}
                     onChange={(e) => setRegistrationNumber(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-lightBlue-500 transition duration-200"
+                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
                   />
                 </div>
                 <div className="relative w-full">
@@ -105,7 +105,7 @@ const WardenDashBoard = () => {
                   <input
                     type="file"
                     onChange={handlePhotoUpload}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-lightBlue-500 transition duration-200"
+                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
                   />
                 </div>
                 <div className="relative w-full">
@@ -113,7 +113,7 @@ const WardenDashBoard = () => {
                   <select
                     value={violationType}
                     onChange={(e) => setViolationType(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-lightBlue-500 transition duration-200"
+                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
                   >
                     <option value="">Select Violation Type</option>
                     {violationTypes.map((violation) => (
@@ -128,7 +128,7 @@ const WardenDashBoard = () => {
               <div className="flex justify-center mt-6">
                 <button
                   onClick={handleNextStep}
-                  className="bg-lightBlue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                   type="button"
                 >
                   Next
@@ -156,13 +156,13 @@ const WardenDashBoard = () => {
               <div className="flex justify-between mt-6">
                 <button
                   onClick={handleBackStep}
-                  className="bg-lightBlue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                 >
                   Back
                 </button>
                 <button
                   onClick={handleNextStep}
-                  className="bg-lightBlue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                 >
                   Generate Challan
                 </button>
@@ -187,11 +187,11 @@ const WardenDashBoard = () => {
               <div className="flex justify-between mt-6">
                 <button
                   onClick={handleBackStep}
-                  className="bg-lightBlue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                 >
                   Back
                 </button>
-                <button className="bg-lightBlue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200">
+                <button className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200">
                   Confirm Challan
                 </button>
               </div>

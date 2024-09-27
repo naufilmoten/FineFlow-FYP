@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const wardenSchema = new mongoose.Schema({
   warden_id: {
     type: String,
-    required: false,
-    unique: true
+    unique: true,
+    default : ()=> new mongoose.Types.ObjectId()
   },
   warden_name: {
     type: String,
@@ -26,7 +26,7 @@ const wardenSchema = new mongoose.Schema({
   },
   account_id: {
     type: String,
-    required: false,
+
     unique: true // Ensures each warden has a unique Ethereum account
   }
 });
