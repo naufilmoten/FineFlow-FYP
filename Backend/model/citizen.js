@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // Define the schema for citizen
 const citizenSchema = new mongoose.Schema({
+  citizen_id: {
+    type: String,
+    unique: true,
+  },
   citizen_cnic: {
     type: String,
     required: true,
@@ -39,8 +43,10 @@ const citizenSchema = new mongoose.Schema({
   },
   account_id: {
     type: String,
-    required: false,
-    unique: true // Ensures that each citizen has a unique Ethereum account
+    sparse: true,
+    unique: true,
+   // Ensures each warden has a unique Ethereum account
+    default: undefined
   }
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+
 // Constants for admin login
 const ADMIN_USERNAME = "admin123"; // Replace with your admin CNIC
 const ADMIN_PASSWORD = "admin123"; // Replace with your admin password
@@ -101,7 +102,7 @@ export default function Login() {
                 </div>
 
                 {/* Role Selection */}
-                <div className="mb-6">
+                {/* <div className="mb-6">
                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-center">
                     Select Role
                   </label>
@@ -122,7 +123,30 @@ export default function Login() {
                       </label>
                     ))}
                   </div>
-                </div>
+                </div> */}
+
+<div className="mb-6">
+  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-start">
+    Select Role
+  </label>
+  <div className="flex flex-row items-center justify-start">
+    {["warden", "citizen", "admin"].map((roleOption) => (
+      <label key={roleOption} className="flex items-center cursor-pointer mx-4"> {/* Added mx-4 for horizontal margin */}
+        <input
+          type="checkbox"
+          className="form-checkbox h-5 w-5 text-blueGray-800"
+          checked={role === roleOption}
+          onChange={() => setRole(roleOption)} // Update role state
+        />
+        <span className="ml-2 text-sm font-semibold text-blueGray-600">
+          {roleOption.charAt(0).toUpperCase() + roleOption.slice(1)}
+        </span>
+      </label>
+    ))}
+  </div>
+</div>
+
+
 
                 <div className="text-center mt-4">
                   <button
@@ -153,3 +177,4 @@ export default function Login() {
     </div>
   );
 }
+

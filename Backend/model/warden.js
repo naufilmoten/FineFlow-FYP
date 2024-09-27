@@ -5,7 +5,6 @@ const wardenSchema = new mongoose.Schema({
   warden_id: {
     type: String,
     unique: true,
-    default : ()=> new mongoose.Types.ObjectId()
   },
   warden_name: {
     type: String,
@@ -13,7 +12,8 @@ const wardenSchema = new mongoose.Schema({
   },
   warden_cnic: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   warden_username: {
     type: String,
@@ -26,8 +26,10 @@ const wardenSchema = new mongoose.Schema({
   },
   account_id: {
     type: String,
-
-    unique: true // Ensures each warden has a unique Ethereum account
+    sparse: true,
+    unique: true,
+   // Ensures each warden has a unique Ethereum account
+    default: undefined
   }
 });
 
