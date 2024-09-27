@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
+import { Link, useHistory } from "react-router-dom";
+
 export default function Register() {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
@@ -13,6 +16,9 @@ export default function Register() {
   const [email, setEmail] = useState(''); // Citizen specific field
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const history = useHistory();
+  
+ 
 
   // Handle form submission
   const handleRegister = async (e) => {
@@ -60,10 +66,15 @@ export default function Register() {
       await axios.post(route, requestData);
       setSuccessMessage(`${role.charAt(0).toUpperCase() + role.slice(1)} account created successfully`);
       setErrorMessage('');
+      
+      // Redirect to the login page after a short delay to show success message
+      setTimeout(() => {
+        history.push('/auth/login'); // Redirect to the login page
+      }, 2000); // 2-second delay for user feedback
     } catch (error) {
       console.error('Error details:', error);  // Log the full error
       setErrorMessage(`Failed to create ${role} account. ${error.response ? error.response.data.message : error.message}`);
-      setSuccessMessage('');
+      setSuccessMessage('Sucessfully created account');
     }
   };
   
