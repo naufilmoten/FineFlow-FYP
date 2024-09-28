@@ -149,6 +149,7 @@ export default function CitizenDashBoard() {
     expiryDate: "",
     amount: "",
   });
+  console.log("Citizen ID from URL:", citizen_id);
   const [userDetails, setUserDetails] = useState({}); // State to hold user details
 
   // Fetch user details based on citizen_id when component mounts

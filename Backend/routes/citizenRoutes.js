@@ -286,7 +286,6 @@ router.delete('/:citizen_id', async (req, res) => {
 });
 
 // Login
-// Login
 router.post('/login', async (req, res) => {
   const { citizen_cnic, citizen_password } = req.body;
   try {
@@ -303,6 +302,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Error logging in' });
   }
 });
+
 
 // Sign Up
 router.post('/signup', async (req, res) => {

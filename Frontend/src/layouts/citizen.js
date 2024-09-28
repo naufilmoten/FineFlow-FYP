@@ -19,7 +19,7 @@ export default function Citizen() {
       <div className="relative md:ml-64 bg-blueGray-100 min-h-screen">
         <div className="px-4 md:px-10 mx-auto w-full mt-20 -m-24"> {/* Added margin-top to avoid overlap */}
           <Switch>
-            <Route path="/citizen/CitizenDashBoard/ :citizen_id" exact component={CitizenDashBoard} />
+            <Route path="/citizen/CitizenDashBoard/:citizen_id" exact component={CitizenDashBoard} />
             <Route path="/citizen/tables" exact component={Tables} />
             <Redirect from="/citizen" to="/citizen/CitizenDashBoard" />
           </Switch>
