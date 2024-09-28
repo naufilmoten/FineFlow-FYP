@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import violationContracts from "../../contracts/violation"
-import Web3 from "web3";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 // Dummy data for violation types
 const violationTypes = [
@@ -20,13 +20,28 @@ const steps = [
 ];
 
 const WardenDashBoard = () => {
+  const { warden_id } = useParams(); // Get warden_id from URL
   const [currentStep, setCurrentStep] = useState(1);
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [Location, setLocation] = useState("");
   const [photo, setPhoto] = useState(null);
   const [violationType, setViolationType] = useState("");
   const [dummyData, setDummyData] = useState({});
-  const [ownerData, setOwnerData] = useState({});
+  const [userDetails, setUserDetails] = useState({}); // State to hold user details
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`);
+        setUserDetails(response.data); // Assuming response contains user details
+        console.log("User details:", response.data); // Log user details
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserDetails();
+  }, [warden_id]); // Fetch user details when warden_id changes
 
 
   //new

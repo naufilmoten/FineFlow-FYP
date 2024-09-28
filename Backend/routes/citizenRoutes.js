@@ -148,12 +148,16 @@ router.delete('/:citizen_id', async (req, res) => {
 });
 
 // Login
+// Login
 router.post('/login', async (req, res) => {
   const { citizen_cnic, citizen_password } = req.body;
   try {
     const citizen = await Citizen.findOne({ citizen_cnic });
     if (citizen && citizen.citizen_password === citizen_password) {
-      res.status(200).json({ message: 'Login successful' });
+      res.status(200).json({ 
+        message: 'Login successful', 
+        citizen_id: citizen.citizen_id // Include citizen_id in the response
+      });
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
     }

@@ -1,10 +1,8 @@
-// src/views/citizen/Citizen.js
-
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
-import WardenNavbar from "components/Navbars/WardenNavbar";
+import WardenNavbar from "components/Navbars/WardenNavbar"; // You might want to replace this with a CitizenNavbar if you have one
 import Sidebar from "components/Sidebar/Sidebar.js";
 
 // views
@@ -19,10 +17,9 @@ export default function Citizen() {
       </div>
 
       <div className="relative md:ml-64 bg-blueGray-100 min-h-screen">
-        {/* Container for content */}
         <div className="px-4 md:px-10 mx-auto w-full mt-20 -m-24"> {/* Added margin-top to avoid overlap */}
           <Switch>
-            <Route path="/citizen/CitizenDashBoard" exact component={CitizenDashBoard} />
+            <Route path="/citizen/CitizenDashBoard/ :citizen_id" exact component={CitizenDashBoard} />
             <Route path="/citizen/tables" exact component={Tables} />
             <Redirect from="/citizen" to="/citizen/CitizenDashBoard" />
           </Switch>
@@ -34,3 +31,4 @@ export default function Citizen() {
     </>
   );
 }
+
