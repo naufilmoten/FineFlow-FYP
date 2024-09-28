@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 
 // Define the schema for citizen
 const citizenSchema = new mongoose.Schema({
-<<<<<<< HEAD
-  citizen_cnic: {
-    type: String,
-    required: true,
-    unique: true
-=======
   citizen_id: {
     type: String,
     unique: true,
@@ -16,7 +10,6 @@ const citizenSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
->>>>>>> hammad1
   },
   citizen_password: {
     type: String,
@@ -39,11 +32,6 @@ const citizenSchema = new mongoose.Schema({
     required: true,
     match: [/.+\@.+\..+/, 'Please fill a valid email address'] // Ensures email format is correct
   },
-<<<<<<< HEAD
-  citizen_dob: {
-    type: String,
-    required: true
-=======
   citizen_username: {
     type: String,
     required: true,
@@ -56,7 +44,6 @@ const citizenSchema = new mongoose.Schema({
   account_index: {
     type: Number,
     unique: true,
->>>>>>> hammad1
   }
 });
 
