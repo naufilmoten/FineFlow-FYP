@@ -41,12 +41,9 @@ const citizenSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  account_id: {
-    type: String,
-    sparse: true,
+  account_index: {
+    type: Number,
     unique: true,
-   // Ensures each warden has a unique Ethereum account
-    default: undefined
   }
 });
 

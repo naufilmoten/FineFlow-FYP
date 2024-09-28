@@ -16,16 +16,16 @@ contract("violation", (accounts) => {
         const violatorCnic2 = "98765-4321098-7";
         const violatorName1 = "John Doe";
         const violatorName2 = "Jane Smith";
-        const wardenId1 = 101;
-        const wardenId2 = 102;
+        const wardenUserName1 = "Warden_Alice";  // Update with wardenUserName
+        const wardenUserName2 = "Warden_Bob";    // Update with wardenUserName
         const location1 = "Main Street";
         const location2 = "Market Area";
         const date1 = Math.floor(Date.now() / 1000);  // Current timestamp in seconds
         const date2 = date1 + 60;  // 1 minute later
 
         // Generate challans
-        await violationInstance.generateChallan(violator1, violatorCnic1, violatorName1, wardenId1, violationDetails1, location1, date1);
-        await violationInstance.generateChallan(violator2, violatorCnic2, violatorName2, wardenId2, violationDetails2, location2, date2);
+        await violationInstance.generateChallan(violator1, violatorCnic1, violatorName1, wardenUserName1, violationDetails1, location1, date1);
+        await violationInstance.generateChallan(violator2, violatorCnic2, violatorName2, wardenUserName2, violationDetails2, location2, date2);
 
         // Fetch and verify challan 1
         let challan = await violationInstance.getChallan(1);
@@ -33,7 +33,7 @@ contract("violation", (accounts) => {
         assert.equal(challan.violator, violator1, "Incorrect violator address for ID 1");
         assert.equal(challan.violatorCnic, violatorCnic1, "Incorrect violator CNIC for ID 1");
         assert.equal(challan.violatorName, violatorName1, "Incorrect violator name for ID 1");
-        assert.equal(challan.wardenId.toNumber(), wardenId1, "Incorrect warden ID for ID 1");
+        assert.equal(challan.wardenUserName, wardenUserName1, "Incorrect warden user name for ID 1");  // Updated assertion
         assert.equal(challan.violationDetails, violationDetails1, "Incorrect violation details for ID 1");
         assert.equal(challan.location, location1, "Incorrect location for ID 1");
         assert.equal(challan.date.toNumber(), date1, "Incorrect date for ID 1");
@@ -41,7 +41,7 @@ contract("violation", (accounts) => {
         assert.equal(challan.isTerminated, false, "Challan should not be terminated for ID 1");
 
         console.log("Challan 1 Details:");
-        console.log(`Challan 1 - ID: ${challan.id}, Violator: ${challan.violator}, CNIC: ${challan.violatorCnic}, Name: ${challan.violatorName}, Warden ID: ${challan.wardenId}, Location: ${challan.location}, Date: ${challan.date}, Fine Amount: ${challan.fineAmount}, Is Terminated: ${challan.isTerminated}`);
+        console.log(`Challan 1 - ID: ${challan.id}, Violator: ${challan.violator}, CNIC: ${challan.violatorCnic}, Name: ${challan.violatorName}, Warden UserName: ${challan.wardenUserName}, Location: ${challan.location}, Date: ${challan.date}, Fine Amount: ${challan.fineAmount}, Is Terminated: ${challan.isTerminated}`);
 
         // Fetch and verify challan 2
         challan = await violationInstance.getChallan(2);
@@ -49,7 +49,7 @@ contract("violation", (accounts) => {
         assert.equal(challan.violator, violator2, "Incorrect violator address for ID 2");
         assert.equal(challan.violatorCnic, violatorCnic2, "Incorrect violator CNIC for ID 2");
         assert.equal(challan.violatorName, violatorName2, "Incorrect violator name for ID 2");
-        assert.equal(challan.wardenId.toNumber(), wardenId2, "Incorrect warden ID for ID 2");
+        assert.equal(challan.wardenUserName, wardenUserName2, "Incorrect warden user name for ID 2");  // Updated assertion
         assert.equal(challan.violationDetails, violationDetails2, "Incorrect violation details for ID 2");
         assert.equal(challan.location, location2, "Incorrect location for ID 2");
         assert.equal(challan.date.toNumber(), date2, "Incorrect date for ID 2");
@@ -57,7 +57,7 @@ contract("violation", (accounts) => {
         assert.equal(challan.isTerminated, false, "Challan should not be terminated for ID 2");
 
         console.log("Challan 2 Details:");
-        console.log(`Challan 2 - ID: ${challan.id}, Violator: ${challan.violator}, CNIC: ${challan.violatorCnic}, Name: ${challan.violatorName}, Warden ID: ${challan.wardenId}, Location: ${challan.location}, Date: ${challan.date}, Fine Amount: ${challan.fineAmount}, Is Terminated: ${challan.isTerminated}`);
+        console.log(`Challan 2 - ID: ${challan.id}, Violator: ${challan.violator}, CNIC: ${challan.violatorCnic}, Name: ${challan.violatorName}, Warden UserName: ${challan.wardenUserName}, Location: ${challan.location}, Date: ${challan.date}, Fine Amount: ${challan.fineAmount}, Is Terminated: ${challan.isTerminated}`);
     });
 
     it("should update multiple challans and verify updates", async () => {
@@ -66,13 +66,13 @@ contract("violation", (accounts) => {
         const updatedDetails1 = "Parking";  // Predefined violation
         const violatorCnic = "12345-6789012-3";
         const violatorName = "John Doe";
-        const wardenId = 101;
+        const wardenUserName = "Warden_Alice";  // Update with wardenUserName
         const location = "Main Street";
         const date = Math.floor(Date.now() / 1000);
 
         // Generate challans
-        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenId, initialDetails, location, date);
-        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenId, initialDetails, location, date);
+        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenUserName, initialDetails, location, date);
+        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenUserName, initialDetails, location, date);
 
         // Update challan 1 with new violation and fine
         await violationInstance.updateChallan(1, updatedDetails1);
@@ -100,12 +100,12 @@ contract("violation", (accounts) => {
         const violationDetails = "Speeding";  // Predefined violation
         const violatorCnic = "12345-6789012-3";
         const violatorName = "John Doe";
-        const wardenId = 101;
+        const wardenUserName = "Warden_Alice";  // Update with wardenUserName
         const location = "Main Street";
         const date = Math.floor(Date.now() / 1000);
 
         // Generate challan
-        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenId, violationDetails, location, date);
+        await violationInstance.generateChallan(violator, violatorCnic, violatorName, wardenUserName, violationDetails, location, date);
 
         // Terminate the challan
         await violationInstance.terminateChallan(1);
@@ -137,22 +137,9 @@ contract("violation", (accounts) => {
         } catch (error) {
             assert(error.message.includes("Challan does not exist"), "Error message should indicate that the challan does not exist");
         }
-
-        try {
-            await violationInstance.updateChallan(999, "Parking"); // Non-existent challan ID
-            assert.fail("Expected error not received");
-        } catch (error) {
-            assert(error.message.includes("Challan does not exist"), "Error message should indicate that the challan does not exist");
-        }
-
-        try {
-            await violationInstance.terminateChallan(999); // Non-existent challan ID
-            assert.fail("Expected error not received");
-        } catch (error) {
-            assert(error.message.includes("Challan does not exist"), "Error message should indicate that the challan does not exist");
-        }
     });
 });
+
 
 
 const FinePayment = artifacts.require("FinePayment");

@@ -219,14 +219,6 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ message: 'Duplicate warden_cnic or warden_username' });
   }
 
-  // Check if account_id is provided and is unique
-  if (wardenData.account_id) {
-    const existingAccount = await Warden.findOne({ account_id: wardenData.account_id });
-    if (existingAccount) {
-      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-    }
-  }
-
   try {
     const newWarden = await createWarden(wardenData);
     res.status(201).json(newWarden);
