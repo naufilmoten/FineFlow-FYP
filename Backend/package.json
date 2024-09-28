@@ -4,29 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-=======
     "start": "node index.js",
     "dev": "nodemon index.js",
->>>>>>> hammad1
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.3",
-<<<<<<< HEAD
-    "dotenv": "^16.4.5",
-    "express": "^4.20.0",
-    "mongodb": "^6.8.1",
-    "mongoose": "^8.6.1",
-=======
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.3",
->>>>>>> hammad1
     "nodemon": "^3.1.4"
   }
 }
