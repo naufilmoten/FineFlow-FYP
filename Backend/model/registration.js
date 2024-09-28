@@ -7,6 +7,7 @@ const registrationSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+<<<<<<< HEAD
   owner_name: {
     type: String,
     required: true
@@ -25,6 +26,18 @@ const registrationSchema = new mongoose.Schema({
     match: [/.+\@.+\..+/, 'Please fill a valid email address'] // Ensures email format is correct
   },
   owner_address: {
+=======
+  owner_cnic: {
+    type: String,
+    required: true,
+    ref: 'Citizen' // Reference to the Citizen model
+  },
+  vehicle_name: {
+    type: String,
+    required: true
+  },
+  model: {
+>>>>>>> hammad1
     type: String,
     required: true
   }

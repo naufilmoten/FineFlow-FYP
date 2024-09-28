@@ -8,7 +8,11 @@ contract violation {
         address violator;
         string violatorCnic;     // CNIC of the violator
         string violatorName;     // Name of the violator
+<<<<<<< HEAD
         uint256 wardenId;        // ID of the warden issuing the challan
+=======
+        string wardenUserName;        // Username of the warden issuing the challan
+>>>>>>> hammad1
         string violationDetails; // Details of the violation
         string location;         // Location where violation occurred
         uint256 date;            // Timestamp of the violation
@@ -30,7 +34,11 @@ contract violation {
         address violator,
         string violatorCnic,
         string violatorName,
+<<<<<<< HEAD
         uint256 wardenId,
+=======
+        string wardenUserName,
+>>>>>>> hammad1
         string violationDetails,
         string location,
         uint256 date,
@@ -48,6 +56,12 @@ contract violation {
         violationFines["Speeding"] = 500;
         violationFines["Parking"] = 200;
         violationFines["No Seatbelt"] = 100;
+<<<<<<< HEAD
+=======
+        violationFines["Traffic Signal Violation"] = 800;
+        violationFines["Wrong Way"] = 300;
+        violationFines["Tinted Windows"] = 400;
+>>>>>>> hammad1
         // Add more predefined violations and fines as needed
     }
 
@@ -56,7 +70,11 @@ contract violation {
         address _violator,
         string memory _violatorCnic,
         string memory _violatorName,
+<<<<<<< HEAD
         uint256 _wardenId,
+=======
+        string memory _wardenUserName,
+>>>>>>> hammad1
         string memory _violationDetails,
         string memory _location,
         uint256 _date
@@ -72,7 +90,11 @@ contract violation {
             violator: _violator,
             violatorCnic: _violatorCnic,
             violatorName: _violatorName,
+<<<<<<< HEAD
             wardenId: _wardenId,
+=======
+            wardenUserName: _wardenUserName,
+>>>>>>> hammad1
             violationDetails: _violationDetails,
             location: _location,
             date: _date,
@@ -86,7 +108,11 @@ contract violation {
             _violator,
             _violatorCnic,
             _violatorName,
+<<<<<<< HEAD
             _wardenId,
+=======
+            _wardenUserName,
+>>>>>>> hammad1
             _violationDetails,
             _location,
             _date,
@@ -105,7 +131,11 @@ contract violation {
             address violator,
             string memory violatorCnic,
             string memory violatorName,
+<<<<<<< HEAD
             uint256 wardenId,
+=======
+            string memory wardenUserName,
+>>>>>>> hammad1
             string memory violationDetails,
             string memory location,
             uint256 date,
@@ -125,7 +155,11 @@ contract violation {
             challan.violator,
             challan.violatorCnic,
             challan.violatorName,
+<<<<<<< HEAD
             challan.wardenId,
+=======
+            challan.wardenUserName,
+>>>>>>> hammad1
             challan.violationDetails,
             challan.location,
             challan.date,

@@ -4,8 +4,12 @@ const mongoose = require('mongoose');
 const wardenSchema = new mongoose.Schema({
   warden_id: {
     type: String,
+<<<<<<< HEAD
     required: true,
     unique: true
+=======
+    unique: true,
+>>>>>>> hammad1
   },
   warden_name: {
     type: String,
@@ -13,7 +17,12 @@ const wardenSchema = new mongoose.Schema({
   },
   warden_cnic: {
     type: String,
+<<<<<<< HEAD
     required: true
+=======
+    required: true,
+    unique: true
+>>>>>>> hammad1
   },
   warden_username: {
     type: String,
@@ -23,6 +32,13 @@ const wardenSchema = new mongoose.Schema({
   warden_password: {
     type: String,
     required: true
+<<<<<<< HEAD
+=======
+  },
+  account_index: {
+    type: Number,
+    unique: true,
+>>>>>>> hammad1
   }
 });
 
