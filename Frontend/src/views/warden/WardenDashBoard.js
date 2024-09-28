@@ -7,6 +7,9 @@ const violationTypes = [
   { id: 1, name: "Speeding" },
   { id: 2, name: "Running a red light" },
   { id: 3, name: "No seatbelt" },
+  { id: 4, name: "Traffic Signal Violation" },
+  { id: 5, name: "Wrong Way" },
+  { id: 6, name: "Tinted Windows" },
   // Add more violation types as needed
 ];
 
