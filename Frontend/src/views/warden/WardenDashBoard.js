@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 // Dummy data for violation types
 const violationTypes = [
@@ -15,11 +17,27 @@ const steps = [
 ];
 
 const WardenDashBoard = () => {
+  const { warden_id } = useParams(); // Get warden_id from URL
   const [currentStep, setCurrentStep] = useState(1);
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [photo, setPhoto] = useState(null);
   const [violationType, setViolationType] = useState("");
   const [dummyData, setDummyData] = useState({});
+  const [userDetails, setUserDetails] = useState({}); // State to hold user details
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`);
+        setUserDetails(response.data); // Assuming response contains user details
+        console.log("User details:", response.data); // Log user details
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserDetails();
+  }, [warden_id]); // Fetch user details when warden_id changes
 
   const handleNextStep = () => {
     if (currentStep === 1) {
@@ -47,7 +65,7 @@ const WardenDashBoard = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white p-8">
-      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2"> {/* Added mt-10 here */}
+      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2">
         <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
           <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
         </div>

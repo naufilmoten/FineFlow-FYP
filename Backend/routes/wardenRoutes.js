@@ -278,13 +278,17 @@ router.delete('/:warden_id', async (req, res) => {
   }
 });
 
-// Login
+// // Login
 router.post('/login', async (req, res) => {
   const { warden_cnic, warden_password } = req.body;
   try {
     const warden = await Warden.findOne({ warden_cnic });
     if (warden && warden.warden_password === warden_password) {
-      res.status(200).json({ message: 'Login successful' });
+      // Respond with the warden_id along with the success message
+      res.status(200).json({ 
+        message: 'Login successful', 
+        warden_id: warden.warden_id // Include warden_id in the response
+      });
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
     }

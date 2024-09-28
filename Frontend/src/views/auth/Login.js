@@ -1,6 +1,8 @@
+
+
+
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 
 // Constants for admin login
 const ADMIN_USERNAME = "admin123"; // Replace with your admin CNIC
@@ -49,11 +51,22 @@ export default function Login() {
   
       if (response.ok) {
         alert(`${role.charAt(0).toUpperCase() + role.slice(1)} login successful!`);
-        // Redirect based on role
+        
+        // Check if it's a warden or citizen and redirect with the appropriate ID
         if (role === "warden") {
-          history.push("/warden/WardenDashBoard");
+          const wardenId = data.warden_id; // Assuming the response contains warden_id
+          if (wardenId) {
+            history.push(`/warden/WardenDashBoard/${wardenId}`); // Redirect with warden_id
+          } else {
+            alert("Warden ID not found in response");
+          }
         } else if (role === "citizen") {
-          history.push("/citizen/dashboard");
+          const citizenId = data.citizen_id; // Assuming the response contains citizen_id
+          if (citizenId) {
+            history.push(`/citizen/dashboard/${citizenId}`); // Redirect with citizen_id
+          } else {
+            alert("Citizen ID not found in response");
+          }
         }
       } else {
         alert(data.message || "Invalid CNIC or password");
@@ -101,19 +114,16 @@ export default function Login() {
                   />
                 </div>
 
-                {/* Role Selection */}
-                {/* <div className="mb-6">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-center">
+                <div className="mb-6">
+                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-start">
                     Select Role
                   </label>
-                  <div className="flex flex-wrap items-center justify-center">
+                  <div className="flex flex-row items-center justify-start">
                     {["warden", "citizen", "admin"].map((roleOption) => (
-                      <label key={roleOption} className="inline-flex items-center mr-10 mb-4">
+                      <label key={roleOption} className="flex items-center cursor-pointer mx-4">
                         <input
-                          type="radio"
-                          name="role"
-                          value={roleOption}
-                          className="form-radio h-6 w-6 text-blueGray-700 focus:ring-blueGray-500 border-blueGray-300 rounded-lg transition duration-150 ease-in-out"
+                          type="checkbox"
+                          className="form-checkbox h-5 w-5 text-blueGray-800"
                           checked={role === roleOption}
                           onChange={() => setRole(roleOption)} // Update role state
                         />
@@ -123,30 +133,7 @@ export default function Login() {
                       </label>
                     ))}
                   </div>
-                </div> */}
-
-<div className="mb-6">
-  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2 text-start">
-    Select Role
-  </label>
-  <div className="flex flex-row items-center justify-start">
-    {["warden", "citizen", "admin"].map((roleOption) => (
-      <label key={roleOption} className="flex items-center cursor-pointer mx-4"> {/* Added mx-4 for horizontal margin */}
-        <input
-          type="checkbox"
-          className="form-checkbox h-5 w-5 text-blueGray-800"
-          checked={role === roleOption}
-          onChange={() => setRole(roleOption)} // Update role state
-        />
-        <span className="ml-2 text-sm font-semibold text-blueGray-600">
-          {roleOption.charAt(0).toUpperCase() + roleOption.slice(1)}
-        </span>
-      </label>
-    ))}
-  </div>
-</div>
-
-
+                </div>
 
                 <div className="text-center mt-4">
                   <button
@@ -174,7 +161,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 }
-
