@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Web3 from "web3";
+import violationContracts from "../../contracts/violation"
 
 // Dummy data for violation types
 const violationTypes = [
@@ -28,6 +30,7 @@ const WardenDashBoard = () => {
   const [violationType, setViolationType] = useState("");
   const [dummyData, setDummyData] = useState({});
   const [userDetails, setUserDetails] = useState({}); // State to hold user details
+  const [ownerData, setOwnerData] = useState({});
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -120,6 +123,30 @@ const WardenDashBoard = () => {
   const handlePhotoUpload = (event) => {
     setPhoto(event.target.files[0]);
   };
+
+  const GenerateChallan = async () => {
+    const date = Math.floor(Date.now() / 1000);
+    
+    try {
+        const response = await contract.methods.generateChallan(
+            accounts[ownerData.account_index], 
+            ownerData.citizen_cnic, 
+            ownerData.citizen_name, 
+            userDetails.warden_username, 
+            "No seatbelt", 
+            Location, 
+            date
+        );
+
+        console.log("Successful", response); // Log the response if needed
+    } catch (error) {
+        console.error("Error occurred while generating challan:", error);
+    }
+
+    let challan = await contract.methods.getChallan(1);
+    console.log("challan: ", challan.violatorCnic)
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white p-8">
@@ -288,7 +315,7 @@ const WardenDashBoard = () => {
               </p>
 
               <div className="flex justify-center mt-6">
-                <button
+                <button onClick={GenerateChallan}
                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                 >
                   Submit Challan

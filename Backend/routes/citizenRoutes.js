@@ -15,6 +15,7 @@ const getCitizenByCnic = async (citizen_cnic) => {
   return await Citizen.findOne({ citizen_cnic });
 };
 
+
 const createCitizen = async (citizenData) => {
   const newCitizen = new Citizen(citizenData);
   newCitizen.citizen_id = newCitizen._id; // Assign the generated ID to citizen_id
@@ -96,6 +97,13 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ message: 'Duplicate CNIC or username' });
   }
 
+  if (citizenData.account_id) {
+    const existingAccount = await Citizen.findOne({ account_id: citizenData.account_id });
+    if (existingAccount) {
+      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
+    }
+  }
+
   try {
     const newCitizen = await createCitizen(citizenData);
     res.status(201).json(newCitizen);
@@ -148,7 +156,6 @@ router.delete('/:citizen_id', async (req, res) => {
 });
 
 // Login
-// Login
 router.post('/login', async (req, res) => {
   const { citizen_cnic, citizen_password } = req.body;
   try {
@@ -165,6 +172,7 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Error logging in' });
   }
 });
+
 
 // Sign Up
 router.post('/signup', async (req, res) => {

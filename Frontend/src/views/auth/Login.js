@@ -11,32 +11,32 @@ const ADMIN_PASSWORD = "admin123"; // Replace with your admin password
 export default function Login() {
   const [cnic, setCnic] = useState(""); // CNIC state
   const [password, setPassword] = useState(""); // Password state
-  const [role, setRole] = useState("warden"); // Default role
+  const [role, setRole] = useState(""); // Default role
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Admin login logic
     if (cnic === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       alert("Admin login successful!");
       history.push("/admin/dashboard");
       return;
     }
-  
+
     // Define the endpoint based on the selected role
     const endpoint = role === "citizen"
       ? "http://localhost:5000/api/citizen/login"
       : "http://localhost:5000/api/warden/login";
-  
+
     // Create the payload based on role
     const payload = role === "citizen" 
       ? { citizen_cnic: cnic, citizen_password: password }
       : { warden_cnic: cnic, warden_password: password };
-  
+
     // Log the payload
     console.log("Payload being sent:", payload);
-  
+
     // Attempt to log in
     try {
       const response = await fetch(endpoint, {
@@ -46,9 +46,14 @@ export default function Login() {
         },
         body: JSON.stringify(payload), // Payload for the request
       });
-  
+
       const data = await response.json();
-  
+
+
+
+    // Log the full response for debugging
+    console.log("Login response:", data);
+
       if (response.ok) {
         alert(`${role.charAt(0).toUpperCase() + role.slice(1)} login successful!`);
         
@@ -63,7 +68,7 @@ export default function Login() {
         } else if (role === "citizen") {
           const citizenId = data.citizen_id; // Assuming the response contains citizen_id
           if (citizenId) {
-            history.push(`/citizen/dashboard/${citizenId}`); // Redirect with citizen_id
+            history.push(`/citizen/CitizenDashBoard/${citizenId}`); // Redirect with citizen_id
           } else {
             alert("Citizen ID not found in response");
           }
@@ -76,6 +81,7 @@ export default function Login() {
       alert("An error occurred during login. Please try again later.");
     }
   };
+
   
 
   return (
