@@ -8,7 +8,8 @@ contract violation {
         address violator;
         string violatorCnic;     // CNIC of the violator
         string violatorName;     // Name of the violator
-        string wardenUserName;        // Username of the warden issuing the challan
+        address warden;          // Address of the warden issuing the challan
+        string wardenUserName;   // Username of the warden issuing the challan
         string violationDetails; // Details of the violation
         string location;         // Location where violation occurred
         uint256 date;            // Timestamp of the violation
@@ -30,6 +31,7 @@ contract violation {
         address violator,
         string violatorCnic,
         string violatorName,
+        address warden,
         string wardenUserName,
         string violationDetails,
         string location,
@@ -59,7 +61,6 @@ contract violation {
         address _violator,
         string memory _violatorCnic,
         string memory _violatorName,
-        string memory _wardenUserName,
         string memory _violationDetails,
         string memory _location,
         uint256 _date
@@ -75,7 +76,8 @@ contract violation {
             violator: _violator,
             violatorCnic: _violatorCnic,
             violatorName: _violatorName,
-            wardenUserName: _wardenUserName,
+            warden: msg.sender,  // The warden issuing the challan is the sender of the transaction
+            wardenUserName: "",  // We leave the username empty for now; it can be handled separately
             violationDetails: _violationDetails,
             location: _location,
             date: _date,
@@ -89,7 +91,8 @@ contract violation {
             _violator,
             _violatorCnic,
             _violatorName,
-            _wardenUserName,
+            msg.sender,  // The warden issuing the challan
+            "",  // Empty username for now
             _violationDetails,
             _location,
             _date,
@@ -108,6 +111,7 @@ contract violation {
             address violator,
             string memory violatorCnic,
             string memory violatorName,
+            address warden,
             string memory wardenUserName,
             string memory violationDetails,
             string memory location,
@@ -128,6 +132,7 @@ contract violation {
             challan.violator,
             challan.violatorCnic,
             challan.violatorName,
+            challan.warden,
             challan.wardenUserName,
             challan.violationDetails,
             challan.location,
@@ -154,6 +159,9 @@ contract violation {
         // Ensure the new violation type exists in the pre-defined list
         require(violationFines[_violationDetails] > 0, "Invalid violation type");
 
+        // Ensure only the original warden can update the challan
+        require(challan.warden == msg.sender, "Only the warden who issued the challan can update it");
+
         // Update the challan details
         challan.violationDetails = _violationDetails;
         challan.fineAmount = violationFines[_violationDetails];
@@ -168,6 +176,9 @@ contract violation {
 
         // Fetch the challan from the array
         Challan storage challan = challans[_id - 1];
+
+        // Ensure only the original warden can terminate the challan
+        require(challan.warden == msg.sender, "Only the warden who issued the challan can terminate it");
 
         // Terminate the challan
         challan.isTerminated = true;
