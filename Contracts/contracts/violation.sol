@@ -142,6 +142,56 @@ contract violation {
         );
     }
 
+    // Function to get all challans by a specific citizen (violator)
+    function getChallansByCitizen(address _citizen) public view returns (Challan[] memory) {
+        uint count = 0;
+        
+        // Count the number of challans associated with the citizen
+        for (uint i = 0; i < challans.length; i++) {
+            if (challans[i].violator == _citizen) {
+                count++;
+            }
+        }
+
+        Challan[] memory result = new Challan[](count);
+        uint index = 0;
+
+        // Retrieve the challans associated with the citizen
+        for (uint i = 0; i < challans.length; i++) {
+            if (challans[i].violator == _citizen) {
+                result[index] = challans[i];
+                index++;
+            }
+        }
+        
+        return result;
+    }
+
+    // Function to get all challans issued by a specific warden
+    function getChallansByWarden(address _warden) public view returns (Challan[] memory) {
+        uint count = 0;
+
+        // Count the number of challans issued by the warden
+        for (uint i = 0; i < challans.length; i++) {
+            if (challans[i].warden == _warden) {
+                count++;
+            }
+        }
+
+        Challan[] memory result = new Challan[](count);
+        uint index = 0;
+
+        // Retrieve the challans issued by the warden
+        for (uint i = 0; i < challans.length; i++) {
+            if (challans[i].warden == _warden) {
+                result[index] = challans[i];
+                index++;
+            }
+        }
+        
+        return result;
+    }
+
     // Function to update a challan's details
     function updateChallan(
         uint _id,
