@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
-import CardPageVisits from "components/Cards/CardPageVisits.js"; // Import the CardPageVisits component
+import Web3 from "web3";
+import violationContracts from "../../contracts/violation";
+import FinePayment from "../../contracts/FinePayment";
+import CardPageVisits from "components/Cards/CardPageVisits.js";
 
 export default function CitizenDashBoard() {
   const { citizen_id } = useParams(); // Extract citizen_id from URL
-  const [formData, setFormData] = useState({
-    email: "",
-    firstName: "",
-    cardNumber: "",
-    expiryDate: "",
-    amount: "",
-  });
-  const [userDetails, setUserDetails] = useState({}); // State to hold user details
+  const [challans, setChallans] = useState([]); // State to hold challans
+  const [accounts, setAccounts] = useState([]);
+  const [contract, setContract] = useState(null);
+  const [contract2, setContract2] = useState(null);
+  const [userDetails, setUserDetails] = useState({});
+  const [Payment, setPayment] = useState([]);
 
   // Fetch user details based on citizen_id when component mounts
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function CitizenDashBoard() {
       try {
         const response = await axios.get(`http://localhost:5000/api/citizen/${citizen_id}`); // Update API endpoint accordingly
         setUserDetails(response.data);
-        console.log("User details:", response.data); // Log user details to console
+        console.log("User Data:", response.data); // Log user data to console
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
@@ -30,118 +30,165 @@ export default function CitizenDashBoard() {
     fetchUserDetails();
   }, [citizen_id]);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  useEffect(() => {
+    const initWeb3 = async () => {
+      try {
+        const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545");
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = violationContracts.networks[networkId];
+        const deployedNetwork2 = FinePayment.networks[networkId];
+        
+        if (!deployedNetwork || !deployedNetwork2) {
+          throw new Error("Contract network not found");
+        }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Payment details submitted", formData);
-  };
+        const contractInstance = new web3.eth.Contract(
+          violationContracts.abi,
+          deployedNetwork.address
+        );
 
+        const contractInstance2 = new web3.eth.Contract(
+          FinePayment.abi,
+          deployedNetwork2.address
+        );
+
+        const accs = await web3.eth.getAccounts();
+        setAccounts(accs);
+        setContract(contractInstance);
+        setContract2(contractInstance2);
+        console.log("Web3 initialized");
+      } catch (error) {
+        console.error("Error initializing Web3:", error);
+      }
+    };
+
+    initWeb3();
+  }, []);
+
+  // Fetch Challans when contract is set and accounts are available
+  useEffect(() => {
+    const getAllChallans = async () => {
+      if (contract && accounts.length > 0 && userDetails.account_index !== undefined) {
+        try {
+          // Fetch the challans first
+          const response = await contract.methods.getChallansByCitizen(accounts[userDetails.account_index]).call();
+          console.log("Challans fetched:", response);
+  
+          // For each challan, check if it's paid
+          const challansWithStatus = await Promise.all(
+            response.map(async (challan) => {
+              const isPaid = await contract2.methods.isChallanPaid(challan.id).call();
+              return {
+                ...challan,
+                isTerminated: isPaid, // Update challan status with `isPaid` value
+              };
+            })
+          );
+  
+          setChallans(challansWithStatus); // Update state with challans that include their payment status
+        } catch (error) {
+          console.error("Error fetching challans:", error);
+        }
+      }
+    };
+  
+    getAllChallans();
+  }, [contract, accounts, userDetails.account_index, contract2]); // Add contract2 to dependencies since it's used
+  // Add dependencies
+
+  // Handle the payment and update the challan status
+  const handlePay = async (challan) => {
+    try {
+      const estimatedGas = await contract2.methods.payChallan(challan.id).estimateGas({
+        from: accounts[userDetails.account_index],
+        value: challan.fineAmount,
+      });
+  
+      const response = await contract2.methods.payChallan(challan.id).send({
+        from: accounts[userDetails.account_index],
+        gas: estimatedGas,
+        value: challan.fineAmount,
+      });
+  
+      console.log("Payment successful:", response);
+  
+      // Check if the payment has been registered as successful
+      const isPaid = await contract2.methods.isChallanPaid(challan.id).call();
+  
+      // Update challan status in the frontend
+      setChallans((prevChallans) =>
+        prevChallans.map((c) =>
+          c.id === challan.id ? { ...c, isTerminated: isPaid } : c
+        )
+      );
+  
+      alert("Payment successful and status updated!");
+    } catch (error) {
+      console.error("Error during payment:", error);
+      alert("Payment failed. Please try again.");
+    }
+  };
+  
   return (
     <div className="container mx-auto px-4 h-full pt-12">
-      <div className="flex flex-wrap justify-between items-stretch"> {/* Use items-stretch to equalize height */}
-        {/* Form Section */}
-        <div className="w-full lg:w-6/12 px-4 mb-6"> {/* Half width for larger screens */}
+      <div className="flex flex-wrap justify-between items-stretch">
+        <div className="w-full lg:w-6/12 px-4 mb-6">
           <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="bg-blueGray-800 text-white text-center py-4 rounded-t-lg">
-              <h1 className="text-2xl font-bold">Traffic Challan Payment</h1>
+              <h1 className="text-2xl font-bold">Traffic Challans</h1>
             </div>
-
-            <form onSubmit={handleSubmit} className="p-8">
-              {/* Email Field */}
-              <div className="form-group mb-4">
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-4">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter Email"
-                />
-              </div>
-
-              {/* First Name Field */}
-              <div className="form-group mb-4">
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 p-4 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="First Name"
-                />
-              </div>
-
-              {/* Card Number Field */}
-              <div className="form-group mb-4">
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Card Number</label>
-                <input
-                  type="text"
-                  name="cardNumber"
-                  value={formData.cardNumber}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Card Number"
-                />
-              </div>
-
-              {/* Expiry Date Field */}
-              <div className="form-group mb-4">
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Expiry Date</label>
-                <input
-                  type="text"
-                  name="expiryDate"
-                  value={formData.expiryDate}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="MM/YY"
-                />
-              </div>
-
-              {/* Amount Field */}
-              <div className="form-group mb-4">
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2">Amount</label>
-                <input
-                  type="number"
-                  name="amount"
-                  value={formData.amount}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 p-3 block w-full shadow-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter Amount"
-                />
-              </div>
-
-              {/* Submit Button */}
-              <div className="flex justify-center mt-4">
-                <button
-                  type="submit"
-                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-                >
-                  Pay Amount
-                </button>
-              </div>
-            </form>
+            <div className="p-8">
+              <table className="min-w-full bg-white">
+                <thead>
+                  <tr>
+                    <th className="py-2 px-4 border-b">Challan ID</th>
+                    <th className="py-2 px-4 border-b">Registration ID</th>
+                    <th className="py-2 px-4 border-b">Violation</th>
+                    <th className="py-2 px-4 border-b">Amount</th>
+                    <th className="py-2 px-4 border-b">Date</th>
+                    <th className="py-2 px-4 border-b">Status</th>
+                    <th className="py-2 px-4 border-b">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {challans.length > 0 ? (
+                    challans.map((challan) => (
+                      <tr key={challan.id}>
+                      <td className="py-2 px-4 border-b text-center">{challan.id.toString()}</td>
+                      {/* <td className="py-2 px-4 border-b text-center">{challan.registrationNumber}</td> */}
+                      <td className="py-2 px-4 border-b">{challan.violationDetails}</td>
+                      <td className="py-2 px-4 border-b">{challan.fineAmount.toString()}</td>
+                      <td className="py-2 px-4 border-b">{challan.date.toString()}</td>
+                      <td className="py-2 px-4 border-b">{challan.isTerminated ? "Terminated" : "Active"}</td>
+                      <td className="py-2 px-4 border-b">
+                        {!challan.isTerminated && (
+                          <button
+                            onClick={() => handlePay(challan)}
+                            className="bg-blueGray-800 text-white font-bold py-1 px-3 rounded"
+                          >
+                            Pay Now
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                    
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5" className="py-2 px-4 border-b text-center">No Challans Found</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        {/* Card Page Visits Section */}
-        <div className="w-full lg:w-6/12 px-4 mb-6"> {/* Half width for larger screens */}
-          <div className="h-full"> {/* Ensure it takes full height */}
+        {/* <div className="w-full lg:w-6/12 px-4 mb-6">
+          <div className="h-full">
             <CardPageVisits />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

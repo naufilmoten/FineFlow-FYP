@@ -131,13 +131,14 @@ const WardenDashBoard = () => {
         // Estimate gas for the generateChallan transaction
         const estimatedGas = await contract.methods.generateChallan(
             accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,              // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name    // Warden's username
-            dummyData.violation,                       // Violation type
-            Location,                            // Violation location
-            date                                 // Date of violation
+            ownerData.citizen_cnic,             // Citizen's CNIC
+            ownerData.citizen_name,              // Citizen's name
+            dummyData.violation,                  // Violation type
+            Location,                             // Violation location
+            date,
+            dummyData.registration_id                                  // Date of violation
         ).estimateGas({
-            from: accounts[userDetails.account_index] // Warden's account (from userDetails)
+            from: accounts[userDetails.account_index],// Warden's account (from userDetails)
         });
 
         console.log("Estimated Gas:", estimatedGas); // Log estimated gas for debugging
@@ -145,36 +146,47 @@ const WardenDashBoard = () => {
         // Send the transaction with the estimated gas limit
         const response = await contract.methods.generateChallan(
             accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,              // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name     // Warden's username
-            dummyData.violation,                       // Violation type
-            Location,                            // Violation location
-            date                                 // Date of violation
+            ownerData.citizen_cnic,             // Citizen's CNIC
+            ownerData.citizen_name,              // Citizen's name
+            dummyData.violation,                  // Violation type
+            Location,                             // Violation location
+            date,
+           registrationNumber                                         // Date of violation
         ).send({
             from: accounts[userDetails.account_index], // Warden's account (from userDetails)
             gas: estimatedGas                           // Use estimated gas
         });
 
         console.log("Successful", response);
-        alert("Challan generated successfully!") 
+        alert("Challan generated successfully!");
+
+        // Resetting the form to Step 1 and clearing states
+        setCurrentStep(1);
+        setRegistrationNumber("");
+        setLocation("");
+        setPhoto(null);
+        setViolationType("");
+        setDummyData({});
+        setOwnerData({});
+        
+        // Optionally fetch new challans if needed
         try {
-          const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
-          console.log("Fetched challans from contract:", challans); // Debug log
-          
-          if (!challans || challans.length === 0) {
-              console.warn("No challans found for this warden."); // Warning log
-          }
-  
-          // setChallanDetails(challans); // Set the fetched challan details in state
-      } catch (error) {
-          console.error("Error fetching challan details:", error);
-      }
+            const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
+            console.log("Fetched challans from contract:", challans); // Debug log
+            
+            if (!challans || challans.length === 0) {
+                console.warn("No challans found for this warden."); // Warning log
+            }
+            // setChallanDetails(challans); // Set the fetched challan details in state if needed
+        } catch (error) {
+            console.error("Error fetching challan details:", error);
+        }
     } catch (error) {
         console.error("Error occurred while generating challan:", error);
-    }
+    }
 };
 
-
+console.log(registrationNumber)
     // let challan = await contract.methods.getChallan(1);
     // console.log("challan: ", challan.violatorCnic)
 
