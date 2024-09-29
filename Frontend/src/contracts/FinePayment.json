@@ -202,7 +202,7 @@
   "sourceMap": "60:1909:0:-:0;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "60:1909:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;-1:-1:-1;;;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;;;994:66;60:1909;;;;;;;909:69;60:1909;;;;;;;;;:::i;:::-;;;;;;909:69;;60:1909;;;909:69;;;60:1909;;;;;909:69;;60:1909;;;;909:69;;;;60:1909;;;;;909:69;;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;994:66;60:1909;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1777:50;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1785:15;;1777:50;:::i;:::-;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;;;;;360:40;;60:1909;360:40;;;60:1909;;360:40;;60:1909;360:40;;;60:1909;360:40;;;;60:1909;;;;;;-1:-1:-1;;;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;439:26;60:1909;;;;;;;;-1:-1:-1;60:1909:0;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;1189:50;60:1909;;1197:15;;1189:50;:::i;:::-;1255:14;;;60:1909;;;;;;;;;1322:18;;60:1909;1309:9;:31;60:1909;;;;1508:40;60:1909;;;;;;;;1452:24;1479:15;1452:24;;60:1909;;;;;;1479:15;60:1909;;;;1508:40;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;-1:-1:-1;;;60:1909:0;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract FinePayment {\r\n    // Struct to store payment details\r\n    struct Payment {\r\n        uint id;\r\n        address violator;\r\n        uint challanId;\r\n        uint fineAmount;\r\n        bool isPaid;\r\n        uint paymentTimestamp;\r\n    }\r\n\r\n    // Mapping to store payments with a unique ID\r\n    mapping(uint => Payment) public payments;\r\n    // Counter for payment IDs\r\n    uint public paymentCounter;\r\n\r\n    // Event to emit when a new payment is created\r\n    event PaymentCreated(uint id, address violator, uint challanId, uint fineAmount);\r\n    // Event to emit when a payment is made\r\n    event PaymentMade(uint id, uint timestamp);\r\n\r\n    // Function to create a payment for a challan\r\n    function createPayment(address _violator, uint _challanId, uint _fineAmount) public {\r\n        paymentCounter++;\r\n        payments[paymentCounter] = Payment(paymentCounter, _violator, _challanId, _fineAmount, false, 0);\r\n        emit PaymentCreated(paymentCounter, _violator, _challanId, _fineAmount);\r\n    }\r\n\r\n    function makePayment(uint _paymentId) public payable {\r\n    Payment storage payment = payments[_paymentId];\r\n    require(payment.id != 0, \"Payment does not exist\");\r\n    require(!payment.isPaid, \"Payment already made\");\r\n    require(msg.value == payment.fineAmount, \"Incorrect payment amount\"); // This is the check that should throw an error\r\n    payment.isPaid = true;\r\n    payment.paymentTimestamp = block.timestamp;\r\n\r\n    emit PaymentMade(_paymentId, block.timestamp);\r\n}\r\n\r\n    // Function to get payment details by ID\r\n    function getPaymentDetails(uint _paymentId) public view returns (uint, address, uint, uint, bool, uint) {\r\n        Payment memory payment = payments[_paymentId];\r\n        require(payment.id != 0, \"Payment does not exist\");\r\n\r\n        return (payment.id, payment.violator, payment.challanId, payment.fineAmount, payment.isPaid, payment.paymentTimestamp);\r\n    }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\naufi\\FineFlow-FYP\\contracts\\contracts\\FinePayment.sol",
+  "sourcePath": "D:\\naufil\\FineFlow-FYP\\Contracts\\contracts\\FinePayment.sol",
   "ast": {
     "absolutePath": "project:/contracts/FinePayment.sol",
     "exportedSymbols": {
@@ -2533,12 +2533,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x5F232ADfd39F0fF53137F5a03a55D30cB581EA18",
-      "transactionHash": "0x84b7f8782357082cf7cb914d65c692a06a03aa1635f8ea2ffa86c79ac13e3fe6"
+      "address": "0x8C005E3548933Aff61A69D5dBF0A77aEFC1e8BFA",
+      "transactionHash": "0x4958d4c24a042fd9898fc32e92532c7da93bdf5b15ebe60e011aea8cf01a52aa"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-09-28T22:16:56.383Z",
+  "updatedAt": "2024-09-29T12:01:13.157Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -157,8 +157,18 @@ const WardenDashBoard = () => {
 
         console.log("Successful", response);
         alert("Challan generated successfully!") 
-        let challan = await contract.methods.getChallan(response._id);
-        console.log("challan: ", challan)
+        try {
+          const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
+          console.log("Fetched challans from contract:", challans); // Debug log
+          
+          if (!challans || challans.length === 0) {
+              console.warn("No challans found for this warden."); // Warning log
+          }
+  
+          // setChallanDetails(challans); // Set the fetched challan details in state
+      } catch (error) {
+          console.error("Error fetching challan details:", error);
+      }
     } catch (error) {
         console.error("Error occurred while generating challan:", error);
     }
