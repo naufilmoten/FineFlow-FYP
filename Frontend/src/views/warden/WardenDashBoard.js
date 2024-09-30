@@ -32,6 +32,8 @@ const WardenDashBoard = () => {
   const [userDetails, setUserDetails] = useState({}); // State to hold user details
   const [ownerData, setOwnerData] = useState({});
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -91,8 +93,13 @@ const WardenDashBoard = () => {
   const handleNextStep = async () => {
     if (currentStep === 1) {
       try {
+        const token = localStorage.getItem("token");
         // Fetch vehicle details based on registration number
-        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`);
+        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+        });
         const vehicleData = await response.json();
 
         // Set vehicle data
@@ -103,7 +110,11 @@ const WardenDashBoard = () => {
         });
 
         // Fetch owner details based on owner CNIC
-        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`);
+        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+      });
         const ownerDetails = await ownerResponse.json();
 
         // Set owner data
