@@ -12,6 +12,7 @@ export default function CitizenDashBoard() {
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(null);
   const [contract2, setContract2] = useState(null);
+  console.log("Citizen ID from URL:", citizen_id);
   const [userDetails, setUserDetails] = useState({});
   const [Payment, setPayment] = useState([]);
 
@@ -19,14 +20,19 @@ export default function CitizenDashBoard() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/citizen/${citizen_id}`); // Update API endpoint accordingly
-        setUserDetails(response.data);
-        console.log("User Data:", response.data); // Log user data to console
+        const token = localStorage.getItem("token"); // Get the token from local storage
+        const response = await axios.get(`http://localhost:5000/api/citizen/${citizen_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Include token in the request headers
+          }
+        });
+        setUserDetails(response.data); // Set the user details in the state
+        console.log("User details:", response.data); // Log user details to console
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        console.error("Error fetching user details:", error); // Log any error that occurs
       }
     };
-
+    
     fetchUserDetails();
   }, [citizen_id]);
 

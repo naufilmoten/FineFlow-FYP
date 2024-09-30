@@ -1,20 +1,37 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import { useHistory } from "react-router-dom"; // Import useHistory for navigation
 
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  const history = useHistory(); // Get the history object for navigation
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start",
     });
     setDropdownPopoverShow(true);
   };
+
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  // Logout function
+  const handleLogout = () => {
+    // Clear authentication data from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("warden_id");
+    localStorage.removeItem("citizen_id");
+
+    // Redirect to the login page
+    history.push("/auth/login"); // Adjust the path as needed
+  };
+
   return (
     <>
       <a
@@ -76,9 +93,12 @@ const UserDropdown = () => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => {
+            e.preventDefault();
+            handleLogout(); // Call the logout function on click
+          }}
         >
-          Seprated link
+          Logout
         </a>
       </div>
     </>
