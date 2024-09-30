@@ -155,7 +155,7 @@ export default function CitizenDashBoard() {
                     challans.map((challan) => (
                       <tr key={challan.id}>
                       <td className="py-2 px-4 border-b text-center">{challan.id.toString()}</td>
-                      {/* <td className="py-2 px-4 border-b text-center">{challan.registrationNumber}</td> */}
+                      <td className="py-2 px-4 border-b text-center">{challan.registrationNumber}</td>
                       <td className="py-2 px-4 border-b">{challan.violationDetails}</td>
                       <td className="py-2 px-4 border-b">{challan.fineAmount.toString()}</td>
                       <td className="py-2 px-4 border-b">{challan.date.toString()}</td>

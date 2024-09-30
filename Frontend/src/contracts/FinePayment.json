@@ -161,7 +161,7 @@
   "sourceMap": "60:1592:0:-:0;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "60:1592:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:9;;:13;60:1592;;;;;;;;;;;;;;;;;1091:16;60:1592;-1:-1:-1;;60:1592:0;;;;;;;1091:16;60:1592;;;;;;;;;;;;;;;;;;;;;;;;1145:81;60:1592;;1384:84;60:1592;;;;;;1145:81;;;;1169:10;60:1592;;1145:81;;;60:1592;;;;1145:81;;;;882:9;;60:1592;;1145:81;;;;60:1592;;;;1145:81;;;1210:15;;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1091:16;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1091:16;60:1592;;;;;;;1169:10;60:1592;;;;;;;882:9;1145:81;60:1592;;;1210:15;1145:81;60:1592;;;1384:84;60:1592;;;-1:-1:-1;;;60:1592:0;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;371:40;;60:1592;;371:40;;;;60:1592;371:40;;60:1592;;371:40;;60:1592;371:40;;;60:1592;;371:40;;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;525:26;60:1592;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;;",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract FinePayment {\r\n    // Struct to store payment details\r\n    struct Payment {\r\n        uint id;\r\n        address violator;\r\n        uint challanId;\r\n        uint fineAmount;\r\n        bool isPaid;\r\n        uint paymentTimestamp;\r\n    }\r\n\r\n    // Mappings to store payments and track challans' status\r\n    mapping(uint => Payment) public payments;\r\n    mapping(uint => bool) public challanStatus; // Mapping to track if a challan is paid/terminated\r\n    \r\n    uint public paymentCounter; // Counter for payments\r\n\r\n    // Event to emit when a new payment is processed\r\n    event PaymentProcessed(uint paymentId, address violator, uint challanId, uint fineAmount, uint timestamp);\r\n\r\n    // Function to handle payment for an existing challan\r\n    function payChallan(uint _challanId) public payable {\r\n        require(msg.value > 0, \"Payment amount must be greater than zero\");\r\n        require(!challanStatus[_challanId], \"Challan already paid\");\r\n\r\n        // Increment the payment counter and store payment details\r\n        paymentCounter++;\r\n        payments[paymentCounter] = Payment(paymentCounter, msg.sender, _challanId, msg.value, true, block.timestamp);\r\n\r\n        // Mark the challan as terminated (paid)\r\n        challanStatus[_challanId] = true;\r\n\r\n        // Emit the payment processed event\r\n        emit PaymentProcessed(paymentCounter, msg.sender, _challanId, msg.value, block.timestamp);\r\n    }\r\n\r\n    // Function to check if a challan is paid\r\n    function isChallanPaid(uint _challanId) public view returns (bool) {\r\n        return challanStatus[_challanId];\r\n    }\r\n}\r\n",
-  "sourcePath": "D:\\naufil\\FineFlow-FYP\\Contracts\\contracts\\FinePayment.sol",
+  "sourcePath": "C:\\Users\\naufi\\Desktop\\FYP\\FineFlow-FYP\\Contracts\\contracts\\FinePayment.sol",
   "ast": {
     "absolutePath": "project:/contracts/FinePayment.sol",
     "exportedSymbols": {
@@ -1626,12 +1626,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xbccE5b7AA07cb5E74B1b443bc2936fC64C2A7A5D",
-      "transactionHash": "0x7aaa0b6468c2d4c9f9e76b9a16fe795f296c6a90718cfe9b51ecf801806c1d4a"
+      "address": "0x6222eA8b69ba5A9927031539e2a07641DBcfdfde",
+      "transactionHash": "0x52df225a902b042cc6e133369faae23b9dd37a090b3628d9561d79dfcc620c09"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-09-29T17:19:12.222Z",
+  "updatedAt": "2024-09-30T19:20:40.227Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
