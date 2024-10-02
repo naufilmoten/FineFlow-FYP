@@ -1,5 +1,5 @@
 {
-  "name": "notus-react",
+  "name": "fine flow",
   "version": "1.1.0",
   "description": "FINE FLOW",
   "repository": "https://github.com/creativetimofficial/notus-react",
@@ -20,10 +20,13 @@
     "gulp-append-prepend": "1.0.8",
     "postcss": "8.4.39",
     "react": "18.3.1",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "18.3.1",
     "react-icons": "^5.3.0",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4",
+     "chart.js": "^3.9.1",  
+    "react-chartjs-2": "^4.3.1",
     "react-scripts": "5.0.1",
     "tailwindcss": "2.0.4",
     "web3": "^4.13.0"

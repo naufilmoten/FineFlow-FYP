@@ -6,7 +6,7 @@ import Web3 from "web3";
 import violationContracts from "../../contracts/violation";
 import FinePayment from "../../contracts/FinePayment";
 import CardPageVisits from "components/Cards/CardPageVisits.js";
-import PaymentForm from './PaymentForm'; // Import the PaymentForm component
+import PaymentForm from './PaymentForm'; // Ensure the path is correct
 
 export default function CitizenDashBoard() {
   const { citizen_id } = useParams(); // Extract citizen_id from URL
