@@ -6,14 +6,31 @@ import violationContracts from "../../contracts/violation"
 
 // Dummy data for violation types
 const violationTypes = [
-  { id: 1, name: "Speeding" },
-  { id: 2, name: "Parking" },
-  { id: 3, name: "No Seatbelt" },
-  { id: 4, name: "Traffic Signal Violation" },
-  { id: 5, name: "Wrong Way" },
-  { id: 6, name: "Tinted Windows" },
-  // Add more violation types as needed
+  // LTV Violations
+  { id: 1, name: "Speeding (LTV)" },
+  { id: 2, name: "Parking (LTV)" },
+  { id: 3, name: "No Seatbelt (LTV)" },
+  { id: 4, name: "Traffic Signal Violation (LTV)" },
+  { id: 5, name: "Wrong Way (LTV)" },
+  { id: 6, name: "Tinted Windows (LTV)" },
+
+  // Motorbike Violations
+  { id: 7, name: "Speeding (Motorbike)" },
+  { id: 8, name: "Parking (Motorbike)" },
+  { id: 9, name: "No Helmet (Motorbike)" },
+  { id: 10, name: "Traffic Signal Violation (Motorbike)" },
+  { id: 11, name: "Wrong Way (Motorbike)" },
+  { id: 12, name: "Pillion Riding (Motorbike)" },
+
+  // HTV Violations
+  { id: 13, name: "Speeding (HTV)" },
+  { id: 14, name: "Parking (HTV)" },
+  { id: 15, name: "No Seatbelt (HTV)" },
+  { id: 16, name: "Traffic Signal Violation (HTV)" },
+  { id: 17, name: "Wrong Way (HTV)" },
+  { id: 18, name: "Tinted Windows (HTV)" }
 ];
+
 
 const steps = [
   { id: 1, name: "Enter Details" },
@@ -142,7 +159,7 @@ const WardenDashBoard = () => {
             Location,                            // Violation location
             date                                 // Date of violation
         ).estimateGas({
-            from: accounts[userDetails.account_index] // Warden's account (from userDetails)
+            from: accounts[userDetails.account_index],// Warden's account (from userDetails)
         });
 
         console.log("Estimated Gas:", estimatedGas); // Log estimated gas for debugging
@@ -161,25 +178,36 @@ const WardenDashBoard = () => {
         });
 
         console.log("Successful", response);
-        alert("Challan generated successfully!") 
+        alert("Challan generated successfully!");
+
+        // Resetting the form to Step 1 and clearing states
+        setCurrentStep(1);
+        setRegistrationNumber("");
+        setLocation("");
+        setPhoto(null);
+        setViolationType("");
+        setDummyData({});
+        setOwnerData({});
+        
+        // Optionally fetch new challans if needed
         try {
-          const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
-          console.log("Fetched challans from contract:", challans); // Debug log
-          
-          if (!challans || challans.length === 0) {
-              console.warn("No challans found for this warden."); // Warning log
-          }
-  
-          // setChallanDetails(challans); // Set the fetched challan details in state
-      } catch (error) {
-          console.error("Error fetching challan details:", error);
-      }
+            const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
+            console.log("Fetched challans from contract:", challans); // Debug log
+            
+            if (!challans || challans.length === 0) {
+                console.warn("No challans found for this warden."); // Warning log
+            }
+            // setChallanDetails(challans); // Set the fetched challan details in state if needed
+        } catch (error) {
+            console.error("Error fetching challan details:", error);
+        }
     } catch (error) {
         console.error("Error occurred while generating challan:", error);
-    }
+    }
 };
 
 
+console.log(registrationNumber)
     // let challan = await contract.methods.getChallan(1);
     // console.log("challan: ", challan.violatorCnic)
 
