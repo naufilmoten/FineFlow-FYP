@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Web3 from "web3";
 import violationContracts from "../../contracts/violation"
+const token = localStorage.getItem("token");
 
 // Dummy data for violation types
 const violationTypes = [
@@ -108,8 +109,13 @@ const WardenDashBoard = () => {
   const handleNextStep = async () => {
     if (currentStep === 1) {
       try {
+        const token = localStorage.getItem("token");
         // Fetch vehicle details based on registration number
-        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`);
+        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+        });
         const vehicleData = await response.json();
 
         // Set vehicle data
@@ -120,7 +126,11 @@ const WardenDashBoard = () => {
         });
 
         // Fetch owner details based on owner CNIC
-        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`);
+        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+      });
         const ownerDetails = await ownerResponse.json();
 
         // Set owner data
@@ -393,4 +403,11 @@ console.log(registrationNumber)
   );
 };
 
+
+
+
+
+
 export default WardenDashBoard;
+
+

@@ -8,14 +8,12 @@ import CardPageVisits from "components/Cards/CardPageVisits.js";
 
 export default function CitizenDashBoard() {
   const { citizen_id } = useParams(); // Extract citizen_id from URL
-  const [formData, setFormData] = useState({
-    email: "",
-    firstName: "",
-    cardNumber: "",
-    expiryDate: "",
-    amount: "",
-  });
-  const [userDetails, setUserDetails] = useState({}); // State to hold user details
+  const [challans, setChallans] = useState([]); // State to hold challans
+  const [accounts, setAccounts] = useState([]);
+  const [contract, setContract] = useState(null);
+  const [contract2, setContract2] = useState(null);
+  const [userDetails, setUserDetails] = useState({});
+  const [Payment, setPayment] = useState([]);
 
   // Fetch user details based on citizen_id when component mounts
   useEffect(() => {
@@ -28,7 +26,7 @@ export default function CitizenDashBoard() {
           }
         });
         setUserDetails(response.data); // Set the user details in the state
-        console.log("User Data:", response.data); // Log user data to console
+        console.log("User details:", response.data); // Log user details to console
       } catch (error) {
         console.error("Error fetching user details:", error); // Log any error that occurs
       }
