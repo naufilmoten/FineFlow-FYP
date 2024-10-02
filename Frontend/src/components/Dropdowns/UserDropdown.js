@@ -1,13 +1,12 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
-import { useHistory } from "react-router-dom"; // Import useHistory for navigation
+import { useHistory } from "react-router-dom"; // Make sure to import useHistory
 
-const UserDropdown = () => {
-  // dropdown props
+const UserDropdown = ({ citizenId }) => { // Accept citizenId as a prop
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
-  const history = useHistory(); // Get the history object for navigation
+  const history = useHistory();
 
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -22,14 +21,17 @@ const UserDropdown = () => {
 
   // Logout function
   const handleLogout = () => {
-    // Clear authentication data from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("warden_id");
     localStorage.removeItem("citizen_id");
+    history.push("/auth/login");
+  };
 
-    // Redirect to the login page
-    history.push("/auth/login"); // Adjust the path as needed
+  // Handle navigation to the profile
+  const handleProfileClick = () => {
+    history.push(`/citizen/profile/${citizenId}`); // Change to the correct profile route
+    closeDropdownPopover(); // Close the dropdown after navigation
   };
 
   return (
@@ -62,40 +64,18 @@ const UserDropdown = () => {
       >
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          onClick={handleProfileClick} // Navigate to profile
         >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
+          Profile
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           onClick={(e) => {
             e.preventDefault();
-            handleLogout(); // Call the logout function on click
+            handleLogout(); // Call handleLogout when clicking Logout
           }}
         >
           Logout

@@ -1,19 +1,24 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa"; // Importing search icon
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import { useHistory } from "react-router-dom"; // Import useHistory
 
-export default function CitizenNavbar() {
+export default function CitizenNavbar({ citizenId }) { // Accept citizenId as a prop
+  const history = useHistory(); // Initialize useHistory
+
+  const handleDashboardClick = () => {
+    history.push("/citizen/dashboard"); // Navigate to the dashboard
+  };
+
   return (
     <>
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-10 bg-blueGray-800 flex items-center p-4 shadow-md">
-     
         <div className="w-full mx-auto flex justify-between items-center px-4">
           {/* Brand */}
           <a
-            className="text-white text-sm uppercase font-semibold"
-            href="#"
-            onClick={(e) => e.preventDefault()}
+            className="text-white text-sm uppercase font-semibold cursor-pointer"
+            onClick={handleDashboardClick}
           >
             Citizen Dashboard
           </a>
@@ -34,7 +39,7 @@ export default function CitizenNavbar() {
 
           {/* User Dropdown */}
           <ul className="flex-col list-none items-center hidden md:flex">
-            <UserDropdown />
+            <UserDropdown citizenId={citizenId} /> {/* Pass the citizenId prop here */}
           </ul>
         </div>
       </nav>
