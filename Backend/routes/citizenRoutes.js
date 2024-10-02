@@ -1,46 +1,60 @@
+// routes/citizenRoutes.js
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const authenticateJWT = require('../middleware/auth');
+const secretKey = process.env.JWT_SECRET;
 const Citizen = require('../model/citizen');
 
-// Service Functions (Business Logic)
-const getAllCitizens = async () => {
-  return await Citizen.find({});
-};
 
-const getCitizenById = async (citizen_id) => {
-  return await Citizen.findOne({ citizen_id });
-};
+// Login
+router.post('/login', async (req, res) => {
+  const { citizen_cnic, citizen_password } = req.body;
 
-const getCitizenByCnic = async (citizen_cnic) => {
-  return await Citizen.findOne({ citizen_cnic });
-};
+  try {
+    const citizen = await Citizen.findOne({ citizen_cnic });
 
+    if (citizen && citizen.citizen_password === citizen_password) {
+      const token = jwt.sign({ id: citizen.citizen_id, role: 'citizen' }, secretKey, { expiresIn: '1h' });
 
-const createCitizen = async (citizenData) => {
-  const newCitizen = new Citizen(citizenData);
-  newCitizen.citizen_id = newCitizen._id; // Assign the generated ID to citizen_id
-  return await newCitizen.save();
-};
+      res.status(200).json({
+        message: 'Login successful',
+        citizen_id: citizen.citizen_id,
+        token,
+      });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  } catch (err) {
+    handleErrorResponse(res, err, 'Error logging in');
+  }
+});
 
-const updateCitizen = async (citizen_id, citizenData) => {
-  return await Citizen.findOneAndUpdate(
-    { citizen_id },
-    citizenData,
-    { new: true }
-  );
-};
+// Sign Up
+router.post('/signup', async (req, res) => {
+  const citizenData = req.body;
 
-const deleteCitizen = async (citizen_id) => {
-  return await Citizen.findOneAndDelete({ citizen_id });
-};
+  try {
+    const existingCitizen = await Citizen.findOne({
+      $or: [
+        { citizen_cnic: citizenData.citizen_cnic },
+        { citizen_username: citizenData.citizen_username }
+      ]
+    });
 
-// Helper function to send error responses
-const handleErrorResponse = (res, err, defaultMessage) => {
-  console.error(err); // Log the error for debugging
-  res.status(500).json({ message: defaultMessage, error: err.message });
-};
+    if (existingCitizen) {
+      return res.status(400).json({ message: 'Citizen with this CNIC or username already exists' });
+    }
 
-// Controller Functions (Handle Requests and Responses)
+    const newCitizen = await createCitizen(citizenData);
+    res.status(201).json(newCitizen);
+  } catch (err) {
+    handleErrorResponse(res, err, 'Error signing up');
+  }
+});
+
+// Use the authenticateJWT middleware to protect these routes
+router.use(authenticateJWT);
 
 // Get All Citizens
 router.get('/', async (req, res) => {
@@ -67,6 +81,7 @@ router.get('/:citizen_id', async (req, res) => {
   }
 });
 
+// Get Citizen by CNIC
 router.get('/cnic/:citizen_cnic', async (req, res) => {
   const citizen_cnic = req.params.citizen_cnic;
   try {
@@ -81,30 +96,29 @@ router.get('/cnic/:citizen_cnic', async (req, res) => {
   }
 });
 
-// Post (Create) New Citizen
+// Create New Citizen
 router.post('/', async (req, res) => {
   const citizenData = req.body;
 
-  // Check for existing citizen based on CNIC, username, or Ethereum account_id
-  const existingCitizen = await Citizen.findOne({
-    $or: [
-      { citizen_cnic: citizenData.citizen_cnic },
-      { citizen_username: citizenData.citizen_username }
-    ]
-  });
-
-  if (existingCitizen) {
-    return res.status(400).json({ message: 'Duplicate CNIC or username' });
-  }
-
-  if (citizenData.account_id) {
-    const existingAccount = await Citizen.findOne({ account_id: citizenData.account_id });
-    if (existingAccount) {
-      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-    }
-  }
-
   try {
+    const existingCitizen = await Citizen.findOne({
+      $or: [
+        { citizen_cnic: citizenData.citizen_cnic },
+        { citizen_username: citizenData.citizen_username }
+      ]
+    });
+
+    if (existingCitizen) {
+      return res.status(400).json({ message: 'Duplicate CNIC or username' });
+    }
+
+    if (citizenData.account_id) {
+      const existingAccount = await Citizen.findOne({ account_id: citizenData.account_id });
+      if (existingAccount) {
+        return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
+      }
+    }
+
     const newCitizen = await createCitizen(citizenData);
     res.status(201).json(newCitizen);
   } catch (err) {
@@ -117,18 +131,17 @@ router.put('/:citizen_id', async (req, res) => {
   const citizen_id = req.params.citizen_id;
   const citizenData = req.body;
 
-  // Check if the new account_id is unique (in case it's being updated)
-  if (citizenData.account_id) {
-    const existingAccount = await Citizen.findOne({
-      account_id: citizenData.account_id,
-      citizen_id: { $ne: citizen_id } // Ensures it's not the same citizen
-    });
-    if (existingAccount) {
-      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-    }
-  }
-
   try {
+    if (citizenData.account_id) {
+      const existingAccount = await Citizen.findOne({
+        account_id: citizenData.account_id,
+        citizen_id: { $ne: citizen_id }
+      });
+      if (existingAccount) {
+        return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
+      }
+    }
+
     const updatedCitizen = await updateCitizen(citizen_id, citizenData);
     if (updatedCitizen) {
       res.status(200).json(updatedCitizen);
@@ -155,47 +168,42 @@ router.delete('/:citizen_id', async (req, res) => {
   }
 });
 
-// Login
-router.post('/login', async (req, res) => {
-  const { citizen_cnic, citizen_password } = req.body;
-  try {
-    const citizen = await Citizen.findOne({ citizen_cnic });
-    if (citizen && citizen.citizen_password === citizen_password) {
-      res.status(200).json({ 
-        message: 'Login successful', 
-        citizen_id: citizen.citizen_id // Include citizen_id in the response
-      });
-    } else {
-      res.status(401).json({ message: 'Invalid credentials' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: 'Error logging in' });
-  }
-});
 
 
-// Sign Up
-router.post('/signup', async (req, res) => {
-  const citizenData = req.body;
+// Service Functions
+const getAllCitizens = async () => {
+  return await Citizen.find({});
+};
 
-  // Check for duplicates before proceeding
-  const existingCitizen = await Citizen.findOne({
-    $or: [
-      { citizen_cnic: citizenData.citizen_cnic },
-      { citizen_username: citizenData.citizen_username }
-    ]
-  });
+const getCitizenById = async (citizen_id) => {
+  return await Citizen.findOne({ citizen_id });
+};
 
-  if (existingCitizen) {
-    return res.status(400).json({ message: 'Citizen with this CNIC or username already exists' });
-  }
+const getCitizenByCnic = async (citizen_cnic) => {
+  return await Citizen.findOne({ citizen_cnic });
+};
 
-  try {
-    const newCitizen = await createCitizen(citizenData);
-    res.status(201).json(newCitizen);
-  } catch (err) {
-    handleErrorResponse(res, err, 'Error signing up');
-  }
-});
+const createCitizen = async (citizenData) => {
+  const newCitizen = new Citizen(citizenData);
+  newCitizen.citizen_id = newCitizen._id; 
+  return await newCitizen.save();
+};
+
+const updateCitizen = async (citizen_id, citizenData) => {
+  return await Citizen.findOneAndUpdate(
+    { citizen_id },
+    citizenData,
+    { new: true }
+  );
+};
+
+const deleteCitizen = async (citizen_id) => {
+  return await Citizen.findOneAndDelete({ citizen_id });
+};
+
+const handleErrorResponse = (res, err, defaultMessage) => {
+  console.error(err);
+  res.status(500).json({ message: defaultMessage, error: err.message });
+};
 
 module.exports = router;

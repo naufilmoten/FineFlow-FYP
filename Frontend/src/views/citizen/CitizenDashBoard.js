@@ -8,25 +8,48 @@ import CardPageVisits from "components/Cards/CardPageVisits.js";
 
 export default function CitizenDashBoard() {
   const { citizen_id } = useParams(); // Extract citizen_id from URL
+<<<<<<< HEAD
   const [challans, setChallans] = useState([]); // State to hold challans
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(null);
   const [contract2, setContract2] = useState(null);
   const [userDetails, setUserDetails] = useState({});
   const [Payment, setPayment] = useState([]);
+=======
+  const [formData, setFormData] = useState({
+    email: "",
+    firstName: "",
+    cardNumber: "",
+    expiryDate: "",
+    amount: "",
+  });
+  console.log("Citizen ID from URL:", citizen_id);
+  const [userDetails, setUserDetails] = useState({}); // State to hold user details
+>>>>>>> 12b0f115fd308989b2f567bd8f88dc6b53abc056
 
   // Fetch user details based on citizen_id when component mounts
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`http://localhost:5000/api/citizen/${citizen_id}`); // Update API endpoint accordingly
         setUserDetails(response.data);
         console.log("User Data:", response.data); // Log user data to console
+=======
+        const token = localStorage.getItem("token"); // Get the token from local storage
+        const response = await axios.get(`http://localhost:5000/api/citizen/${citizen_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Include token in the request headers
+          }
+        });
+        setUserDetails(response.data); // Set the user details in the state
+        console.log("User details:", response.data); // Log user details to console
+>>>>>>> 12b0f115fd308989b2f567bd8f88dc6b53abc056
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        console.error("Error fetching user details:", error); // Log any error that occurs
       }
     };
-
+    
     fetchUserDetails();
   }, [citizen_id]);
 

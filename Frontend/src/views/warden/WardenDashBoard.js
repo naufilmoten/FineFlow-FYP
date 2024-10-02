@@ -52,7 +52,12 @@ const WardenDashBoard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`);
+        const token = localStorage.getItem("token"); // Assuming you're storing JWT in local storage
+        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+        });
         setUserDetails(response.data); // Assuming response contains user details
         console.log("User details:", response.data); // Log user details
       } catch (error) {

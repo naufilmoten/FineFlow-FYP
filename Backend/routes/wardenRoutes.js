@@ -134,49 +134,37 @@
 
 
 // module.exports = router;
-
-
-
-
-
 const express = require('express');
 const router = express.Router();
-const Warden = require('../model/warden'); // Adjust path as necessary
+const jwt = require('jsonwebtoken');
+const authenticateJWT = require('../middleware/auth');
+const Warden = require('../model/warden');
 
-// Service Functions (Business Logic)
-const getAllWardens = async () => {
-  return await Warden.find({});
-};
+// Login Route - Public
+router.post('/login', async (req, res) => {
+  const { warden_cnic, warden_password } = req.body;
 
-const getWardenById = async (warden_id) => {
-  return await Warden.findOne({ warden_id });
-};
+  try {
+    const warden = await Warden.findOne({ warden_cnic });
 
-const createWarden = async (wardenData) => {
-  const newWarden = new Warden(wardenData);
-  newWarden.warden_id = newWarden._id;
-  return await newWarden.save();
-};
+    if (warden && warden.warden_password === warden_password) {
+      const token = jwt.sign({ id: warden.warden_id, role: 'warden' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      return res.status(200).json({
+        message: 'Login successful',
+        warden_id: warden.warden_id,
+        token,
+      });
+    } else {
+      return res.status(403).json({ message: 'Invalid CNIC or password' });
+    }
+  } catch (err) {
+    handleErrorResponse(res, err, 'Error logging in');
+  }
+});
 
-const updateWarden = async (warden_id, wardenData) => {
-  return await Warden.findOneAndUpdate(
-    { warden_id },
-    wardenData,
-    { new: true }
-  );
-};
+// Use the authenticateJWT middleware to protect these routes
+router.use(authenticateJWT);
 
-const deleteWarden = async (warden_id) => {
-  return await Warden.findOneAndDelete({ warden_id });
-};
-
-// Helper function to send error responses
-const handleErrorResponse = (res, err, defaultMessage) => {
-  console.error(err); // Log the error for debugging
-  res.status(500).json({ message: defaultMessage, error: err.message });
-};
-
-// Controller Functions (Handle Requests and Responses)
 // Get All Wardens
 router.get('/', async (req, res) => {
   try {
@@ -202,32 +190,22 @@ router.get('/:warden_id', async (req, res) => {
   }
 });
 
-// Post (Create) New Warden
+// Create New Warden
 router.post('/', async (req, res) => {
   const wardenData = req.body;
-  console.log('Received warden data:', wardenData); // Log the data
-
-  // Check if CNIC or Username already exists
-  const existingWarden = await Warden.findOne({
-    $or: [
-      { warden_cnic: wardenData.warden_cnic },
-      { warden_username: wardenData.warden_username }
-    ]
-  });
-
-  if (existingWarden) {
-    return res.status(400).json({ message: 'Duplicate warden_cnic or warden_username' });
-  }
-
-  // Check if account_id is provided and is unique
-  if (wardenData.account_id) {
-    const existingAccount = await Warden.findOne({ account_id: wardenData.account_id });
-    if (existingAccount) {
-      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-    }
-  }
 
   try {
+    const existingWarden = await Warden.findOne({
+      $or: [
+        { warden_cnic: wardenData.warden_cnic },
+        { warden_username: wardenData.warden_username }
+      ]
+    });
+
+    if (existingWarden) {
+      return res.status(400).json({ message: 'Duplicate warden_cnic or warden_username' });
+    }
+
     const newWarden = await createWarden(wardenData);
     res.status(201).json(newWarden);
   } catch (err) {
@@ -239,18 +217,7 @@ router.post('/', async (req, res) => {
 router.put('/:warden_id', async (req, res) => {
   const warden_id = req.params.warden_id;
   const wardenData = req.body;
-
-  // Check if the new account_id is unique (in case it's being updated)
-  if (wardenData.account_id) {
-    const existingAccount = await Warden.findOne({
-      account_id: wardenData.account_id,
-      warden_id: { $ne: warden_id }
-    });
-    if (existingAccount) {
-      return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-    }
-  }
-
+  
   try {
     const updatedWarden = await updateWarden(warden_id, wardenData);
     if (updatedWarden) {
@@ -278,23 +245,36 @@ router.delete('/:warden_id', async (req, res) => {
   }
 });
 
-// // Login
-router.post('/login', async (req, res) => {
-  const { warden_cnic, warden_password } = req.body;
-  try {
-    const warden = await Warden.findOne({ warden_cnic });
-    if (warden && warden.warden_password === warden_password) {
-      // Respond with the warden_id along with the success message
-      res.status(200).json({ 
-        message: 'Login successful', 
-        warden_id: warden.warden_id // Include warden_id in the response
-      });
-    } else {
-      res.status(401).json({ message: 'Invalid credentials' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: 'Error logging in' });
-  }
-});
+// Service Functions
+const getAllWardens = async () => {
+  return await Warden.find({});
+};
+
+const getWardenById = async (warden_id) => {
+  return await Warden.findOne({ warden_id });
+};
+
+const createWarden = async (wardenData) => {
+  const newWarden = new Warden(wardenData);
+  newWarden.warden_id = newWarden._id; 
+  return await newWarden.save();
+};
+
+const updateWarden = async (warden_id, wardenData) => {
+  return await Warden.findOneAndUpdate(
+    { warden_id },
+    wardenData,
+    { new: true }
+  );
+};
+
+const deleteWarden = async (warden_id) => {
+  return await Warden.findOneAndDelete({ warden_id });
+};
+
+const handleErrorResponse = (res, err, defaultMessage) => {
+  console.error(err);
+  res.status(500).json({ message: defaultMessage, error: err.message });
+};
 
 module.exports = router;
