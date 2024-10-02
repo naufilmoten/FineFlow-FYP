@@ -7,7 +7,7 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "id",
+          "name": "paymentId",
           "type": "uint256"
         },
         {
@@ -27,19 +27,6 @@
           "internalType": "uint256",
           "name": "fineAmount",
           "type": "uint256"
-        }
-      ],
-      "name": "PaymentCreated",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
         },
         {
           "indexed": false,
@@ -48,8 +35,28 @@
           "type": "uint256"
         }
       ],
-      "name": "PaymentMade",
+      "name": "PaymentProcessed",
       "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "challanStatus",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -113,35 +120,12 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_violator",
-          "type": "address"
-        },
-        {
           "internalType": "uint256",
           "name": "_challanId",
           "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_fineAmount",
-          "type": "uint256"
         }
       ],
-      "name": "createPayment",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_paymentId",
-          "type": "uint256"
-        }
-      ],
-      "name": "makePayment",
+      "name": "payChallan",
       "outputs": [],
       "stateMutability": "payable",
       "type": "function",
@@ -151,41 +135,16 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_paymentId",
+          "name": "_challanId",
           "type": "uint256"
         }
       ],
-      "name": "getPaymentDetails",
+      "name": "isChallanPaid",
       "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
         {
           "internalType": "bool",
           "name": "",
           "type": "bool"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -193,24 +152,24 @@
       "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"challanId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"}],\"name\":\"PaymentCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"PaymentMade\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_violator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_challanId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fineAmount\",\"type\":\"uint256\"}],\"name\":\"createPayment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_paymentId\",\"type\":\"uint256\"}],\"name\":\"getPaymentDetails\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_paymentId\",\"type\":\"uint256\"}],\"name\":\"makePayment\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"payments\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"challanId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isPaid\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"paymentTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/FinePayment.sol\":\"FinePayment\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/FinePayment.sol\":{\"keccak256\":\"0x0f9a0c837d33fc58c00fa2745c1464c9ec6f91c107a04490b38db525492ac89d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://37a4bb9885dad5dbd0addc45ee67588c9466117ada0ec0f7f9ac00206e3dd8a5\",\"dweb:/ipfs/QmSrz7oSNCgEQneh6LQKSK3Jdzsicto8Z4LbtiMCEtrdpN\"]}},\"version\":1}",
-  "bytecode": "0x6080806040523461001657610491908161001c8239f35b600080fdfe6040608081526004908136101561001557600080fd5b600090813560e01c80635114cb52146102e357806376840b60146102c557806387d817891461024d5780639e70df21146101795763f585a1ee1461005857600080fd5b34610175576060366003190112610175576001600160a01b0383358181169290839003610171576024359060443592600154600019811461015e57917f6c23fabebe866e0b54591aeafeac12175f653dc7e660f6e5459b83d72c0cac70959391600589896001608099970191826001556100d06103e0565b94838652602086018a81528787019089825260608801928b8452898e8a019680885260a08b0198818a528152806020522098518955600189019151166bffffffffffffffffffffffff60a01b82541617905551600287015551600386015584019051151560ff801983541691161790555191015560015493815194855260208501528301526060820152a180f35b634e487b7160e01b875260118852602487fd5b8380fd5b5080fd5b5091903461024a57602036600319011261024a578261024691833581528060205220926101a46103e0565b9380549081865260018060a01b0394856001830154169560208801968752600283015497858101988952610201600560ff60038701549560608501968752870154169560808401961515875201549560a083019687521515610416565b51965116965190519151151592519351968796879260a094919796959260c08501988552600180871b0316602085015260408401526060830152151560808201520152565b0390f35b80fd5b50903461024a57602036600319011261024a578235815260208181529082902080546001820154600283015460038401549684015460059094015495519283526001600160a01b03909116938201939093526040810192909252606082019390935260ff9092161515608083015260a082015260c090f35b50346101755781600319360112610175576020906001549051908152f35b5060203660031901126101755782358083528260205281832061030881541515610416565b84810180549560ff87166103a65760038301543403610363575060017f0e9e4ec6fa83fe2a2893fd5d6517a890df20f72cc0ba40495b21e65d12223503959660ff19161790556005429101558151908152426020820152a180f35b606490602086519162461bcd60e51b8352820152601860248201527f496e636f7272656374207061796d656e7420616d6f756e7400000000000000006044820152fd5b606490602086519162461bcd60e51b835282015260146024820152735061796d656e7420616c7265616479206d61646560601b6044820152fd5b6040519060c0820182811067ffffffffffffffff82111761040057604052565b634e487b7160e01b600052604160045260246000fd5b1561041d57565b60405162461bcd60e51b815260206004820152601660248201527514185e5b595b9d08191bd95cc81b9bdd08195e1a5cdd60521b6044820152606490fdfea2646970667358221220156eb45d53daa20a14839cfa3dc6479b3ab181521b9434a88275b897ff1dc72064736f6c63430008130033",
-  "deployedBytecode": "0x6040608081526004908136101561001557600080fd5b600090813560e01c80635114cb52146102e357806376840b60146102c557806387d817891461024d5780639e70df21146101795763f585a1ee1461005857600080fd5b34610175576060366003190112610175576001600160a01b0383358181169290839003610171576024359060443592600154600019811461015e57917f6c23fabebe866e0b54591aeafeac12175f653dc7e660f6e5459b83d72c0cac70959391600589896001608099970191826001556100d06103e0565b94838652602086018a81528787019089825260608801928b8452898e8a019680885260a08b0198818a528152806020522098518955600189019151166bffffffffffffffffffffffff60a01b82541617905551600287015551600386015584019051151560ff801983541691161790555191015560015493815194855260208501528301526060820152a180f35b634e487b7160e01b875260118852602487fd5b8380fd5b5080fd5b5091903461024a57602036600319011261024a578261024691833581528060205220926101a46103e0565b9380549081865260018060a01b0394856001830154169560208801968752600283015497858101988952610201600560ff60038701549560608501968752870154169560808401961515875201549560a083019687521515610416565b51965116965190519151151592519351968796879260a094919796959260c08501988552600180871b0316602085015260408401526060830152151560808201520152565b0390f35b80fd5b50903461024a57602036600319011261024a578235815260208181529082902080546001820154600283015460038401549684015460059094015495519283526001600160a01b03909116938201939093526040810192909252606082019390935260ff9092161515608083015260a082015260c090f35b50346101755781600319360112610175576020906001549051908152f35b5060203660031901126101755782358083528260205281832061030881541515610416565b84810180549560ff87166103a65760038301543403610363575060017f0e9e4ec6fa83fe2a2893fd5d6517a890df20f72cc0ba40495b21e65d12223503959660ff19161790556005429101558151908152426020820152a180f35b606490602086519162461bcd60e51b8352820152601860248201527f496e636f7272656374207061796d656e7420616d6f756e7400000000000000006044820152fd5b606490602086519162461bcd60e51b835282015260146024820152735061796d656e7420616c7265616479206d61646560601b6044820152fd5b6040519060c0820182811067ffffffffffffffff82111761040057604052565b634e487b7160e01b600052604160045260246000fd5b1561041d57565b60405162461bcd60e51b815260206004820152601660248201527514185e5b595b9d08191bd95cc81b9bdd08195e1a5cdd60521b6044820152606490fdfea2646970667358221220156eb45d53daa20a14839cfa3dc6479b3ab181521b9434a88275b897ff1dc72064736f6c63430008130033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"paymentId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"challanId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"PaymentProcessed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"challanStatus\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_challanId\",\"type\":\"uint256\"}],\"name\":\"isChallanPaid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_challanId\",\"type\":\"uint256\"}],\"name\":\"payChallan\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paymentCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"payments\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"violator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"challanId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"fineAmount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isPaid\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"paymentTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/FinePayment.sol\":\"FinePayment\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/FinePayment.sol\":{\"keccak256\":\"0x1551da403989a2c2155d36866939c7259a78a715b3cab6050ad74618a7129418\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8aa6c9f26e8d2a5acc41eb3071bffb4425b5f68bf5c19c77d6f64758c624682b\",\"dweb:/ipfs/QmcgQjXYED8Zvw6pgtGBUqAAbkuVW2UNLeMHBm9PmiLM3S\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461001657610363908161001c8239f35b600080fdfe6080604081815260048036101561001557600080fd5b600092833560e01c9081631d7c96b7146102fe5750806376840b60146102db57806387d8178914610272578063a9ad498e146100895763c063806a1461005a57600080fd5b34610085576020366003190112610085578160209360ff923581526001855220541690519015158152f35b8280fd5b5091906020908160031936011261008557833590341561021f57818452600180845260ff82862054166101e55760025460001981146101d25781018060025582519060c0820182811067ffffffffffffffff8211176101bf5792849260058896938b60a099977f819ad4e191d509edf3ef1ce419ff7fe793d9157e0cc1ff15b049daef35a9dfac9b96528184528b868501338152888601908a82528960608801933485528060808a019b8b8d5260a08b0198428a528252522096518755878701906001808f1b039051166bffffffffffffffffffffffff8e1b8254161790555160028601555160038501558301945115159460ff199560ff87835416911617905551910155838852808552828820918254161790556002549281519384523390840152820152346060820152426080820152a180f35b634e487b7160e01b885260418952602488fd5b634e487b7160e01b865260118752602486fd5b815162461bcd60e51b8152808701859052601460248201527310da185b1b185b88185b1c9958591e481c185a5960621b6044820152606490fd5b5162461bcd60e51b8152808501839052602860248201527f5061796d656e7420616d6f756e74206d7573742062652067726561746572207460448201526768616e207a65726f60c01b6064820152608490fd5b509034610085576020366003190112610085578060c09383358152806020522080549260018060a01b0360018301541692600283015490600560ff60038601549486015416940154948151968752602087015285015260608401521515608083015260a0820152f35b5050346102fa57816003193601126102fa576020906002549051908152f35b5080fd5b9291905034610329576020366003190112610329573583526001602090815292205460ff1615158152f35b8380fdfea26469706673582212201658efda2d9874cef9229805679449f633d1657c93309110eaad1d6849bf546d64736f6c63430008130033",
+  "deployedBytecode": "0x6080604081815260048036101561001557600080fd5b600092833560e01c9081631d7c96b7146102fe5750806376840b60146102db57806387d8178914610272578063a9ad498e146100895763c063806a1461005a57600080fd5b34610085576020366003190112610085578160209360ff923581526001855220541690519015158152f35b8280fd5b5091906020908160031936011261008557833590341561021f57818452600180845260ff82862054166101e55760025460001981146101d25781018060025582519060c0820182811067ffffffffffffffff8211176101bf5792849260058896938b60a099977f819ad4e191d509edf3ef1ce419ff7fe793d9157e0cc1ff15b049daef35a9dfac9b96528184528b868501338152888601908a82528960608801933485528060808a019b8b8d5260a08b0198428a528252522096518755878701906001808f1b039051166bffffffffffffffffffffffff8e1b8254161790555160028601555160038501558301945115159460ff199560ff87835416911617905551910155838852808552828820918254161790556002549281519384523390840152820152346060820152426080820152a180f35b634e487b7160e01b885260418952602488fd5b634e487b7160e01b865260118752602486fd5b815162461bcd60e51b8152808701859052601460248201527310da185b1b185b88185b1c9958591e481c185a5960621b6044820152606490fd5b5162461bcd60e51b8152808501839052602860248201527f5061796d656e7420616d6f756e74206d7573742062652067726561746572207460448201526768616e207a65726f60c01b6064820152608490fd5b509034610085576020366003190112610085578060c09383358152806020522080549260018060a01b0360018301541692600283015490600560ff60038601549486015416940154948151968752602087015285015260608401521515608083015260a0820152f35b5050346102fa57816003193601126102fa576020906002549051908152f35b5080fd5b9291905034610329576020366003190112610329573583526001602090815292205460ff1615158152f35b8380fdfea26469706673582212201658efda2d9874cef9229805679449f633d1657c93309110eaad1d6849bf546d64736f6c63430008130033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "60:1909:0:-:0;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "60:1909:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;-1:-1:-1;;;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;;;994:66;60:1909;;;;;;;909:69;60:1909;;;;;;;;;:::i;:::-;;;;;;909:69;;60:1909;;;909:69;;;60:1909;;;;;909:69;;60:1909;;;;909:69;;;;60:1909;;;;;909:69;;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;994:66;60:1909;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1777:50;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1785:15;;1777:50;:::i;:::-;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;;;;;360:40;;60:1909;360:40;;;60:1909;;360:40;;60:1909;360:40;;;60:1909;360:40;;;;60:1909;;;;;;-1:-1:-1;;;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;439:26;60:1909;;;;;;;;-1:-1:-1;60:1909:0;;-1:-1:-1;;60:1909:0;;;;;;;;;;;;;;;1189:50;60:1909;;1197:15;;1189:50;:::i;:::-;1255:14;;;60:1909;;;;;;;;;1322:18;;60:1909;1309:9;:31;60:1909;;;;1508:40;60:1909;;;;;;;;1452:24;1479:15;1452:24;;60:1909;;;;;;1479:15;60:1909;;;;1508:40;60:1909;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;60:1909:0;;;;;;;;;;;;-1:-1:-1;;;60:1909:0;;;;;;",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract FinePayment {\r\n    // Struct to store payment details\r\n    struct Payment {\r\n        uint id;\r\n        address violator;\r\n        uint challanId;\r\n        uint fineAmount;\r\n        bool isPaid;\r\n        uint paymentTimestamp;\r\n    }\r\n\r\n    // Mapping to store payments with a unique ID\r\n    mapping(uint => Payment) public payments;\r\n    // Counter for payment IDs\r\n    uint public paymentCounter;\r\n\r\n    // Event to emit when a new payment is created\r\n    event PaymentCreated(uint id, address violator, uint challanId, uint fineAmount);\r\n    // Event to emit when a payment is made\r\n    event PaymentMade(uint id, uint timestamp);\r\n\r\n    // Function to create a payment for a challan\r\n    function createPayment(address _violator, uint _challanId, uint _fineAmount) public {\r\n        paymentCounter++;\r\n        payments[paymentCounter] = Payment(paymentCounter, _violator, _challanId, _fineAmount, false, 0);\r\n        emit PaymentCreated(paymentCounter, _violator, _challanId, _fineAmount);\r\n    }\r\n\r\n    function makePayment(uint _paymentId) public payable {\r\n    Payment storage payment = payments[_paymentId];\r\n    require(payment.id != 0, \"Payment does not exist\");\r\n    require(!payment.isPaid, \"Payment already made\");\r\n    require(msg.value == payment.fineAmount, \"Incorrect payment amount\"); // This is the check that should throw an error\r\n    payment.isPaid = true;\r\n    payment.paymentTimestamp = block.timestamp;\r\n\r\n    emit PaymentMade(_paymentId, block.timestamp);\r\n}\r\n\r\n    // Function to get payment details by ID\r\n    function getPaymentDetails(uint _paymentId) public view returns (uint, address, uint, uint, bool, uint) {\r\n        Payment memory payment = payments[_paymentId];\r\n        require(payment.id != 0, \"Payment does not exist\");\r\n\r\n        return (payment.id, payment.violator, payment.challanId, payment.fineAmount, payment.isPaid, payment.paymentTimestamp);\r\n    }\r\n}\r\n",
-  "sourcePath": "D:\\naufil\\FineFlow-FYP\\Contracts\\contracts\\FinePayment.sol",
+  "sourceMap": "60:1592:0:-:0;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "60:1592:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;882:9;;:13;60:1592;;;;;;;;;;;;;;;;;1091:16;60:1592;-1:-1:-1;;60:1592:0;;;;;;;1091:16;60:1592;;;;;;;;;;;;;;;;;;;;;;;;1145:81;60:1592;;1384:84;60:1592;;;;;;1145:81;;;;1169:10;60:1592;;1145:81;;;60:1592;;;;1145:81;;;;882:9;;60:1592;;1145:81;;;;60:1592;;;;1145:81;;;1210:15;;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1091:16;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1091:16;60:1592;;;;;;;1169:10;60:1592;;;;;;;882:9;1145:81;60:1592;;;1210:15;1145:81;60:1592;;;1384:84;60:1592;;;-1:-1:-1;;;60:1592:0;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;;;;;;-1:-1:-1;;;60:1592:0;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;371:40;;60:1592;;371:40;;;;60:1592;371:40;;60:1592;;371:40;;60:1592;371:40;;;60:1592;;371:40;;60:1592;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;525:26;60:1592;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:1592:0;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract FinePayment {\r\n    // Struct to store payment details\r\n    struct Payment {\r\n        uint id;\r\n        address violator;\r\n        uint challanId;\r\n        uint fineAmount;\r\n        bool isPaid;\r\n        uint paymentTimestamp;\r\n    }\r\n\r\n    // Mappings to store payments and track challans' status\r\n    mapping(uint => Payment) public payments;\r\n    mapping(uint => bool) public challanStatus; // Mapping to track if a challan is paid/terminated\r\n    \r\n    uint public paymentCounter; // Counter for payments\r\n\r\n    // Event to emit when a new payment is processed\r\n    event PaymentProcessed(uint paymentId, address violator, uint challanId, uint fineAmount, uint timestamp);\r\n\r\n    // Function to handle payment for an existing challan\r\n    function payChallan(uint _challanId) public payable {\r\n        require(msg.value > 0, \"Payment amount must be greater than zero\");\r\n        require(!challanStatus[_challanId], \"Challan already paid\");\r\n\r\n        // Increment the payment counter and store payment details\r\n        paymentCounter++;\r\n        payments[paymentCounter] = Payment(paymentCounter, msg.sender, _challanId, msg.value, true, block.timestamp);\r\n\r\n        // Mark the challan as terminated (paid)\r\n        challanStatus[_challanId] = true;\r\n\r\n        // Emit the payment processed event\r\n        emit PaymentProcessed(paymentCounter, msg.sender, _challanId, msg.value, block.timestamp);\r\n    }\r\n\r\n    // Function to check if a challan is paid\r\n    function isChallanPaid(uint _challanId) public view returns (bool) {\r\n        return challanStatus[_challanId];\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\naufi\\Desktop\\FYP\\FineFlow-FYP\\Contracts\\contracts\\FinePayment.sol",
   "ast": {
     "absolutePath": "project:/contracts/FinePayment.sol",
     "exportedSymbols": {
       "FinePayment": [
-        174
+        108
       ]
     },
-    "id": 175,
+    "id": 109,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -232,9 +191,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 174,
+        "id": 108,
         "linearizedBaseContracts": [
-          174
+          108
         ],
         "name": "FinePayment",
         "nameLocation": "69:11:0",
@@ -411,7 +370,7 @@
             "name": "Payment",
             "nameLocation": "135:7:0",
             "nodeType": "StructDefinition",
-            "scope": 174,
+            "scope": 108,
             "src": "128:173:0",
             "visibility": "public"
           },
@@ -421,10 +380,10 @@
             "id": 19,
             "mutability": "mutable",
             "name": "payments",
-            "nameLocation": "392:8:0",
+            "nameLocation": "403:8:0",
             "nodeType": "VariableDeclaration",
-            "scope": 174,
-            "src": "360:40:0",
+            "scope": 108,
+            "src": "371:40:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -439,14 +398,14 @@
                 "id": 15,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "368:4:0",
+                "src": "379:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "360:24:0",
+              "src": "371:24:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payment_$14_storage_$",
                 "typeString": "mapping(uint256 => struct FinePayment.Payment)"
@@ -460,14 +419,14 @@
                   "id": 16,
                   "name": "Payment",
                   "nameLocations": [
-                    "376:7:0"
+                    "387:7:0"
                   ],
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 14,
-                  "src": "376:7:0"
+                  "src": "387:7:0"
                 },
                 "referencedDeclaration": 14,
-                "src": "376:7:0",
+                "src": "387:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
                   "typeString": "struct FinePayment.Payment"
@@ -478,14 +437,65 @@
           },
           {
             "constant": false,
+            "functionSelector": "1d7c96b7",
+            "id": 23,
+            "mutability": "mutable",
+            "name": "challanStatus",
+            "nameLocation": "447:13:0",
+            "nodeType": "VariableDeclaration",
+            "scope": 108,
+            "src": "418:42:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+              "typeString": "mapping(uint256 => bool)"
+            },
+            "typeName": {
+              "id": 22,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 20,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "426:4:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "418:21:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                "typeString": "mapping(uint256 => bool)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 21,
+                "name": "bool",
+                "nodeType": "ElementaryTypeName",
+                "src": "434:4:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
             "functionSelector": "76840b60",
-            "id": 21,
+            "id": 25,
             "mutability": "mutable",
             "name": "paymentCounter",
-            "nameLocation": "451:14:0",
+            "nameLocation": "537:14:0",
             "nodeType": "VariableDeclaration",
-            "scope": 174,
-            "src": "439:26:0",
+            "scope": 108,
+            "src": "525:26:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -493,10 +503,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 20,
+              "id": 24,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "439:4:0",
+              "src": "525:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -506,82 +516,25 @@
           },
           {
             "anonymous": false,
-            "eventSelector": "6c23fabebe866e0b54591aeafeac12175f653dc7e660f6e5459b83d72c0cac70",
-            "id": 31,
-            "name": "PaymentCreated",
-            "nameLocation": "532:14:0",
+            "eventSelector": "819ad4e191d509edf3ef1ce419ff7fe793d9157e0cc1ff15b049daef35a9dfac",
+            "id": 37,
+            "name": "PaymentProcessed",
+            "nameLocation": "644:16:0",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 30,
+              "id": 36,
               "nodeType": "ParameterList",
               "parameters": [
-                {
-                  "constant": false,
-                  "id": 23,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "id",
-                  "nameLocation": "552:2:0",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 31,
-                  "src": "547:7:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 22,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "547:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 25,
-                  "indexed": false,
-                  "mutability": "mutable",
-                  "name": "violator",
-                  "nameLocation": "564:8:0",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 31,
-                  "src": "556:16:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 24,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "556:7:0",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
                 {
                   "constant": false,
                   "id": 27,
                   "indexed": false,
                   "mutability": "mutable",
-                  "name": "challanId",
-                  "nameLocation": "579:9:0",
+                  "name": "paymentId",
+                  "nameLocation": "666:9:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 31,
-                  "src": "574:14:0",
+                  "scope": 37,
+                  "src": "661:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -592,7 +545,7 @@
                     "id": 26,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "574:4:0",
+                    "src": "661:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -605,11 +558,40 @@
                   "id": 29,
                   "indexed": false,
                   "mutability": "mutable",
-                  "name": "fineAmount",
-                  "nameLocation": "595:10:0",
+                  "name": "violator",
+                  "nameLocation": "685:8:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 31,
-                  "src": "590:15:0",
+                  "scope": 37,
+                  "src": "677:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 28,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "677:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "challanId",
+                  "nameLocation": "700:9:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "695:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -617,43 +599,27 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 28,
+                    "id": 30,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "590:4:0",
+                    "src": "695:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "visibility": "internal"
-                }
-              ],
-              "src": "546:60:0"
-            },
-            "src": "526:81:0"
-          },
-          {
-            "anonymous": false,
-            "eventSelector": "0e9e4ec6fa83fe2a2893fd5d6517a890df20f72cc0ba40495b21e65d12223503",
-            "id": 37,
-            "name": "PaymentMade",
-            "nameLocation": "664:11:0",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 36,
-              "nodeType": "ParameterList",
-              "parameters": [
+                },
                 {
                   "constant": false,
                   "id": 33,
                   "indexed": false,
                   "mutability": "mutable",
-                  "name": "id",
-                  "nameLocation": "681:2:0",
+                  "name": "fineAmount",
+                  "nameLocation": "716:10:0",
                   "nodeType": "VariableDeclaration",
                   "scope": 37,
-                  "src": "676:7:0",
+                  "src": "711:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -664,7 +630,7 @@
                     "id": 32,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "676:4:0",
+                    "src": "711:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -678,10 +644,10 @@
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "timestamp",
-                  "nameLocation": "690:9:0",
+                  "nameLocation": "733:9:0",
                   "nodeType": "VariableDeclaration",
                   "scope": 37,
-                  "src": "685:14:0",
+                  "src": "728:14:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -692,7 +658,7 @@
                     "id": 34,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "685:4:0",
+                    "src": "728:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -701,19 +667,262 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "675:25:0"
+              "src": "660:83:0"
             },
-            "src": "658:43:0"
+            "src": "638:106:0"
           },
           {
             "body": {
-              "id": 69,
+              "id": 94,
               "nodeType": "Block",
-              "src": "844:224:0",
+              "src": "863:613:0",
               "statements": [
                 {
                   "expression": {
-                    "id": 47,
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 46,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 43,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "882:3:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 44,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "886:5:0",
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "882:9:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "hexValue": "30",
+                          "id": 45,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "894:1:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "882:13:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5061796d656e7420616d6f756e74206d7573742062652067726561746572207468616e207a65726f",
+                        "id": 47,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "897:42:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e2246010387a228f868d1acba812e62afa27dc6e64ff849a39dbdb08a750d914",
+                          "typeString": "literal_string \"Payment amount must be greater than zero\""
+                        },
+                        "value": "Payment amount must be greater than zero"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_e2246010387a228f868d1acba812e62afa27dc6e64ff849a39dbdb08a750d914",
+                          "typeString": "literal_string \"Payment amount must be greater than zero\""
+                        }
+                      ],
+                      "id": 42,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "874:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 48,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "874:66:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 49,
+                  "nodeType": "ExpressionStatement",
+                  "src": "874:66:0"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 54,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "UnaryOperation",
+                        "operator": "!",
+                        "prefix": true,
+                        "src": "959:26:0",
+                        "subExpression": {
+                          "baseExpression": {
+                            "id": 51,
+                            "name": "challanStatus",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 23,
+                            "src": "960:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                              "typeString": "mapping(uint256 => bool)"
+                            }
+                          },
+                          "id": 53,
+                          "indexExpression": {
+                            "id": 52,
+                            "name": "_challanId",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 39,
+                            "src": "974:10:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "IndexAccess",
+                          "src": "960:25:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4368616c6c616e20616c72656164792070616964",
+                        "id": 55,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "987:22:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_9efb2552bc0d67d35a4a58e3286092be2f66d1f5c06d46e77ea20bcad031a85b",
+                          "typeString": "literal_string \"Challan already paid\""
+                        },
+                        "value": "Challan already paid"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_9efb2552bc0d67d35a4a58e3286092be2f66d1f5c06d46e77ea20bcad031a85b",
+                          "typeString": "literal_string \"Challan already paid\""
+                        }
+                      ],
+                      "id": 50,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "951:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 56,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "951:59:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 57,
+                  "nodeType": "ExpressionStatement",
+                  "src": "951:59:0"
+                },
+                {
+                  "expression": {
+                    "id": 59,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -721,14 +930,14 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "855:16:0",
+                    "src": "1091:16:0",
                     "subExpression": {
-                      "id": 46,
+                      "id": 58,
                       "name": "paymentCounter",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 21,
-                      "src": "855:14:0",
+                      "referencedDeclaration": 25,
+                      "src": "1091:14:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -739,38 +948,38 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 48,
+                  "id": 60,
                   "nodeType": "ExpressionStatement",
-                  "src": "855:16:0"
+                  "src": "1091:16:0"
                 },
                 {
                   "expression": {
-                    "id": 60,
+                    "id": 75,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 49,
+                        "id": 61,
                         "name": "payments",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 19,
-                        "src": "882:8:0",
+                        "src": "1118:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payment_$14_storage_$",
                           "typeString": "mapping(uint256 => struct FinePayment.Payment storage ref)"
                         }
                       },
-                      "id": 51,
+                      "id": 63,
                       "indexExpression": {
-                        "id": 50,
+                        "id": 62,
                         "name": "paymentCounter",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 21,
-                        "src": "891:14:0",
+                        "referencedDeclaration": 25,
+                        "src": "1127:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -781,7 +990,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "882:24:0",
+                      "src": "1118:24:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Payment_$14_storage",
                         "typeString": "struct FinePayment.Payment storage ref"
@@ -792,84 +1001,125 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 53,
+                          "id": 65,
                           "name": "paymentCounter",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 21,
-                          "src": "917:14:0",
+                          "referencedDeclaration": 25,
+                          "src": "1153:14:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
                         {
-                          "id": 54,
-                          "name": "_violator",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 39,
-                          "src": "933:9:0",
+                          "expression": {
+                            "id": 66,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1169:3:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 67,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1173:6:0",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "1169:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
                         {
-                          "id": 55,
+                          "id": 68,
                           "name": "_challanId",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 41,
-                          "src": "944:10:0",
+                          "referencedDeclaration": 39,
+                          "src": "1181:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
                         {
-                          "id": 56,
-                          "name": "_fineAmount",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 43,
-                          "src": "956:11:0",
+                          "expression": {
+                            "id": 69,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967281,
+                            "src": "1193:3:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 70,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1197:5:0",
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "src": "1193:9:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
                         {
-                          "hexValue": "66616c7365",
-                          "id": 57,
+                          "hexValue": "74727565",
+                          "id": 71,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
                           "kind": "bool",
                           "lValueRequested": false,
                           "nodeType": "Literal",
-                          "src": "969:5:0",
+                          "src": "1204:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
                           },
-                          "value": "false"
+                          "value": "true"
                         },
                         {
-                          "hexValue": "30",
-                          "id": 58,
+                          "expression": {
+                            "id": 72,
+                            "name": "block",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4294967292,
+                            "src": "1210:5:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_block",
+                              "typeString": "block"
+                            }
+                          },
+                          "id": 73,
                           "isConstant": false,
                           "isLValue": false,
-                          "isPure": true,
-                          "kind": "number",
+                          "isPure": false,
                           "lValueRequested": false,
-                          "nodeType": "Literal",
-                          "src": "976:1:0",
+                          "memberLocation": "1216:9:0",
+                          "memberName": "timestamp",
+                          "nodeType": "MemberAccess",
+                          "src": "1210:15:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_rational_0_by_1",
-                            "typeString": "int_const 0"
-                          },
-                          "value": "0"
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
                         }
                       ],
                       "expression": {
@@ -895,22 +1145,22 @@
                             "typeString": "bool"
                           },
                           {
-                            "typeIdentifier": "t_rational_0_by_1",
-                            "typeString": "int_const 0"
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
                           }
                         ],
-                        "id": 52,
+                        "id": 64,
                         "name": "Payment",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 14,
-                        "src": "909:7:0",
+                        "src": "1145:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_struct$_Payment_$14_storage_ptr_$",
                           "typeString": "type(struct FinePayment.Payment storage pointer)"
                         }
                       },
-                      "id": 59,
+                      "id": 74,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -919,729 +1169,62 @@
                       "nameLocations": [],
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "909:69:0",
+                      "src": "1145:81:0",
                       "tryCall": false,
                       "typeDescriptions": {
                         "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
                         "typeString": "struct FinePayment.Payment memory"
                       }
                     },
-                    "src": "882:96:0",
+                    "src": "1118:108:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Payment_$14_storage",
                       "typeString": "struct FinePayment.Payment storage ref"
                     }
                   },
-                  "id": 61,
+                  "id": 76,
                   "nodeType": "ExpressionStatement",
-                  "src": "882:96:0"
-                },
-                {
-                  "eventCall": {
-                    "arguments": [
-                      {
-                        "id": 63,
-                        "name": "paymentCounter",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 21,
-                        "src": "1009:14:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      {
-                        "id": 64,
-                        "name": "_violator",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 39,
-                        "src": "1025:9:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "id": 65,
-                        "name": "_challanId",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 41,
-                        "src": "1036:10:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      {
-                        "id": 66,
-                        "name": "_fineAmount",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 43,
-                        "src": "1048:11:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      ],
-                      "id": 62,
-                      "name": "PaymentCreated",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 31,
-                      "src": "994:14:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_uint256_$_t_uint256_$returns$__$",
-                        "typeString": "function (uint256,address,uint256,uint256)"
-                      }
-                    },
-                    "id": 67,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "994:66:0",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 68,
-                  "nodeType": "EmitStatement",
-                  "src": "989:71:0"
-                }
-              ]
-            },
-            "functionSelector": "f585a1ee",
-            "id": 70,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "createPayment",
-            "nameLocation": "769:13:0",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 44,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 39,
-                  "mutability": "mutable",
-                  "name": "_violator",
-                  "nameLocation": "791:9:0",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "783:17:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 38,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "783:7:0",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 41,
-                  "mutability": "mutable",
-                  "name": "_challanId",
-                  "nameLocation": "807:10:0",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "802:15:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 40,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "802:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 43,
-                  "mutability": "mutable",
-                  "name": "_fineAmount",
-                  "nameLocation": "824:11:0",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 70,
-                  "src": "819:16:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 42,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "819:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "782:54:0"
-            },
-            "returnParameters": {
-              "id": 45,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "844:0:0"
-            },
-            "scope": 174,
-            "src": "760:308:0",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 125,
-              "nodeType": "Block",
-              "src": "1129:423:0",
-              "statements": [
-                {
-                  "assignments": [
-                    77
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 77,
-                      "mutability": "mutable",
-                      "name": "payment",
-                      "nameLocation": "1152:7:0",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 125,
-                      "src": "1136:23:0",
-                      "stateVariable": false,
-                      "storageLocation": "storage",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                        "typeString": "struct FinePayment.Payment"
-                      },
-                      "typeName": {
-                        "id": 76,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 75,
-                          "name": "Payment",
-                          "nameLocations": [
-                            "1136:7:0"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 14,
-                          "src": "1136:7:0"
-                        },
-                        "referencedDeclaration": 14,
-                        "src": "1136:7:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                          "typeString": "struct FinePayment.Payment"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 81,
-                  "initialValue": {
-                    "baseExpression": {
-                      "id": 78,
-                      "name": "payments",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 19,
-                      "src": "1162:8:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payment_$14_storage_$",
-                        "typeString": "mapping(uint256 => struct FinePayment.Payment storage ref)"
-                      }
-                    },
-                    "id": 80,
-                    "indexExpression": {
-                      "id": 79,
-                      "name": "_paymentId",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 72,
-                      "src": "1171:10:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "isConstant": false,
-                    "isLValue": true,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "IndexAccess",
-                    "src": "1162:20:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Payment_$14_storage",
-                      "typeString": "struct FinePayment.Payment storage ref"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1136:46:0"
+                  "src": "1118:108:0"
                 },
                 {
                   "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        "id": 86,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 83,
-                            "name": "payment",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 77,
-                            "src": "1197:7:0",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                              "typeString": "struct FinePayment.Payment storage pointer"
-                            }
-                          },
-                          "id": 84,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "1205:2:0",
-                          "memberName": "id",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 3,
-                          "src": "1197:10:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "!=",
-                        "rightExpression": {
-                          "hexValue": "30",
-                          "id": 85,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "kind": "number",
-                          "lValueRequested": false,
-                          "nodeType": "Literal",
-                          "src": "1211:1:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_rational_0_by_1",
-                            "typeString": "int_const 0"
-                          },
-                          "value": "0"
-                        },
-                        "src": "1197:15:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "5061796d656e7420646f6573206e6f74206578697374",
-                        "id": 87,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1214:24:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_219b6ac2f55b7281f18560ba92e4a8a6190569908c392918b21cb2a0142651ca",
-                          "typeString": "literal_string \"Payment does not exist\""
-                        },
-                        "value": "Payment does not exist"
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_219b6ac2f55b7281f18560ba92e4a8a6190569908c392918b21cb2a0142651ca",
-                          "typeString": "literal_string \"Payment does not exist\""
-                        }
-                      ],
-                      "id": 82,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "1189:7:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 88,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1189:50:0",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 89,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1189:50:0"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "id": 93,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "UnaryOperation",
-                        "operator": "!",
-                        "prefix": true,
-                        "src": "1254:15:0",
-                        "subExpression": {
-                          "expression": {
-                            "id": 91,
-                            "name": "payment",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 77,
-                            "src": "1255:7:0",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                              "typeString": "struct FinePayment.Payment storage pointer"
-                            }
-                          },
-                          "id": 92,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "1263:6:0",
-                          "memberName": "isPaid",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 11,
-                          "src": "1255:14:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_bool",
-                            "typeString": "bool"
-                          }
-                        },
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "5061796d656e7420616c7265616479206d616465",
-                        "id": 94,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1271:22:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_d3e92b9f1524aec9d893b20b52b4bbf5bd862a913c4cd9e63d130bb8b4b9da67",
-                          "typeString": "literal_string \"Payment already made\""
-                        },
-                        "value": "Payment already made"
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_d3e92b9f1524aec9d893b20b52b4bbf5bd862a913c4cd9e63d130bb8b4b9da67",
-                          "typeString": "literal_string \"Payment already made\""
-                        }
-                      ],
-                      "id": 90,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "1246:7:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 95,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1246:48:0",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 96,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1246:48:0"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        "id": 102,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 98,
-                            "name": "msg",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 4294967281,
-                            "src": "1309:3:0",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_magic_message",
-                              "typeString": "msg"
-                            }
-                          },
-                          "id": 99,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "1313:5:0",
-                          "memberName": "value",
-                          "nodeType": "MemberAccess",
-                          "src": "1309:9:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "==",
-                        "rightExpression": {
-                          "expression": {
-                            "id": 100,
-                            "name": "payment",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 77,
-                            "src": "1322:7:0",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                              "typeString": "struct FinePayment.Payment storage pointer"
-                            }
-                          },
-                          "id": 101,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "1330:10:0",
-                          "memberName": "fineAmount",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 9,
-                          "src": "1322:18:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "src": "1309:31:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "496e636f7272656374207061796d656e7420616d6f756e74",
-                        "id": 103,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1342:26:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_4a16c9573ca62f8c24cb5353727f0f2b66335e340927a39a34715148881a826d",
-                          "typeString": "literal_string \"Incorrect payment amount\""
-                        },
-                        "value": "Incorrect payment amount"
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_4a16c9573ca62f8c24cb5353727f0f2b66335e340927a39a34715148881a826d",
-                          "typeString": "literal_string \"Incorrect payment amount\""
-                        }
-                      ],
-                      "id": 97,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "1301:7:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 104,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1301:68:0",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 105,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1301:68:0"
-                },
-                {
-                  "expression": {
-                    "id": 110,
+                    "id": 81,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "expression": {
-                        "id": 106,
-                        "name": "payment",
+                      "baseExpression": {
+                        "id": 77,
+                        "name": "challanStatus",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 77,
-                        "src": "1424:7:0",
+                        "referencedDeclaration": 23,
+                        "src": "1289:13:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                          "typeString": "struct FinePayment.Payment storage pointer"
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                          "typeString": "mapping(uint256 => bool)"
                         }
                       },
-                      "id": 108,
+                      "id": 79,
+                      "indexExpression": {
+                        "id": 78,
+                        "name": "_challanId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 39,
+                        "src": "1303:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
-                      "memberLocation": "1432:6:0",
-                      "memberName": "isPaid",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 11,
-                      "src": "1424:14:0",
+                      "nodeType": "IndexAccess",
+                      "src": "1289:25:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1651,114 +1234,40 @@
                     "operator": "=",
                     "rightHandSide": {
                       "hexValue": "74727565",
-                      "id": 109,
+                      "id": 80,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1441:4:0",
+                      "src": "1317:4:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       },
                       "value": "true"
                     },
-                    "src": "1424:21:0",
+                    "src": "1289:32:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 111,
+                  "id": 82,
                   "nodeType": "ExpressionStatement",
-                  "src": "1424:21:0"
-                },
-                {
-                  "expression": {
-                    "id": 117,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "expression": {
-                        "id": 112,
-                        "name": "payment",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 77,
-                        "src": "1452:7:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                          "typeString": "struct FinePayment.Payment storage pointer"
-                        }
-                      },
-                      "id": 114,
-                      "isConstant": false,
-                      "isLValue": true,
-                      "isPure": false,
-                      "lValueRequested": true,
-                      "memberLocation": "1460:16:0",
-                      "memberName": "paymentTimestamp",
-                      "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13,
-                      "src": "1452:24:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "expression": {
-                        "id": 115,
-                        "name": "block",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 4294967292,
-                        "src": "1479:5:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_magic_block",
-                          "typeString": "block"
-                        }
-                      },
-                      "id": 116,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "memberLocation": "1485:9:0",
-                      "memberName": "timestamp",
-                      "nodeType": "MemberAccess",
-                      "src": "1479:15:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "1452:42:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "id": 118,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1452:42:0"
+                  "src": "1289:32:0"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 120,
-                        "name": "_paymentId",
+                        "id": 84,
+                        "name": "paymentCounter",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 72,
-                        "src": "1520:10:0",
+                        "referencedDeclaration": 25,
+                        "src": "1401:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1766,26 +1275,92 @@
                       },
                       {
                         "expression": {
-                          "id": 121,
+                          "id": 85,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1417:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 86,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1421:6:0",
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "src": "1417:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 87,
+                        "name": "_challanId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 39,
+                        "src": "1429:10:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 88,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4294967281,
+                          "src": "1441:3:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 89,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1445:5:0",
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "src": "1441:9:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 90,
                           "name": "block",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 4294967292,
-                          "src": "1532:5:0",
+                          "src": "1452:5:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_block",
                             "typeString": "block"
                           }
                         },
-                        "id": 122,
+                        "id": 91,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
-                        "memberLocation": "1538:9:0",
+                        "memberLocation": "1458:9:0",
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
-                        "src": "1532:15:0",
+                        "src": "1452:15:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1799,22 +1374,34 @@
                           "typeString": "uint256"
                         },
                         {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 119,
-                      "name": "PaymentMade",
+                      "id": 83,
+                      "name": "PaymentProcessed",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 37,
-                      "src": "1508:11:0",
+                      "src": "1384:16:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
-                        "typeString": "function (uint256,uint256)"
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,address,uint256,uint256,uint256)"
                       }
                     },
-                    "id": 123,
+                    "id": 92,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1823,40 +1410,40 @@
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1508:40:0",
+                    "src": "1384:84:0",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 124,
+                  "id": 93,
                   "nodeType": "EmitStatement",
-                  "src": "1503:45:0"
+                  "src": "1379:89:0"
                 }
               ]
             },
-            "functionSelector": "5114cb52",
-            "id": 126,
+            "functionSelector": "a9ad498e",
+            "id": 95,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "makePayment",
-            "nameLocation": "1085:11:0",
+            "name": "payChallan",
+            "nameLocation": "820:10:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 73,
+              "id": 40,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 72,
+                  "id": 39,
                   "mutability": "mutable",
-                  "name": "_paymentId",
-                  "nameLocation": "1102:10:0",
+                  "name": "_challanId",
+                  "nameLocation": "836:10:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 126,
-                  "src": "1097:15:0",
+                  "scope": 95,
+                  "src": "831:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1864,10 +1451,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 71,
+                    "id": 38,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1097:4:0",
+                    "src": "831:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1876,91 +1463,48 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1096:17:0"
+              "src": "830:17:0"
             },
             "returnParameters": {
-              "id": 74,
+              "id": 41,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1129:0:0"
+              "src": "863:0:0"
             },
-            "scope": 174,
-            "src": "1076:476:0",
+            "scope": 108,
+            "src": "811:665:0",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 172,
+              "id": 106,
               "nodeType": "Block",
-              "src": "1710:256:0",
+              "src": "1598:51:0",
               "statements": [
                 {
-                  "assignments": [
-                    145
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 145,
-                      "mutability": "mutable",
-                      "name": "payment",
-                      "nameLocation": "1736:7:0",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 172,
-                      "src": "1721:22:0",
-                      "stateVariable": false,
-                      "storageLocation": "memory",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                        "typeString": "struct FinePayment.Payment"
-                      },
-                      "typeName": {
-                        "id": 144,
-                        "nodeType": "UserDefinedTypeName",
-                        "pathNode": {
-                          "id": 143,
-                          "name": "Payment",
-                          "nameLocations": [
-                            "1721:7:0"
-                          ],
-                          "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 14,
-                          "src": "1721:7:0"
-                        },
-                        "referencedDeclaration": 14,
-                        "src": "1721:7:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Payment_$14_storage_ptr",
-                          "typeString": "struct FinePayment.Payment"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 149,
-                  "initialValue": {
+                  "expression": {
                     "baseExpression": {
-                      "id": 146,
-                      "name": "payments",
+                      "id": 102,
+                      "name": "challanStatus",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 19,
-                      "src": "1746:8:0",
+                      "referencedDeclaration": 23,
+                      "src": "1616:13:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Payment_$14_storage_$",
-                        "typeString": "mapping(uint256 => struct FinePayment.Payment storage ref)"
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
+                        "typeString": "mapping(uint256 => bool)"
                       }
                     },
-                    "id": 148,
+                    "id": 104,
                     "indexExpression": {
-                      "id": 147,
-                      "name": "_paymentId",
+                      "id": 103,
+                      "name": "_challanId",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 128,
-                      "src": "1755:10:0",
+                      "referencedDeclaration": 97,
+                      "src": "1630:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1971,355 +1515,40 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1746:20:0",
+                    "src": "1616:25:0",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Payment_$14_storage",
-                      "typeString": "struct FinePayment.Payment storage ref"
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
                     }
                   },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1721:45:0"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "commonType": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        },
-                        "id": 154,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "leftExpression": {
-                          "expression": {
-                            "id": 151,
-                            "name": "payment",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 145,
-                            "src": "1785:7:0",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                              "typeString": "struct FinePayment.Payment memory"
-                            }
-                          },
-                          "id": 152,
-                          "isConstant": false,
-                          "isLValue": true,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "memberLocation": "1793:2:0",
-                          "memberName": "id",
-                          "nodeType": "MemberAccess",
-                          "referencedDeclaration": 3,
-                          "src": "1785:10:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
-                          }
-                        },
-                        "nodeType": "BinaryOperation",
-                        "operator": "!=",
-                        "rightExpression": {
-                          "hexValue": "30",
-                          "id": 153,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": true,
-                          "kind": "number",
-                          "lValueRequested": false,
-                          "nodeType": "Literal",
-                          "src": "1799:1:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_rational_0_by_1",
-                            "typeString": "int_const 0"
-                          },
-                          "value": "0"
-                        },
-                        "src": "1785:15:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "hexValue": "5061796d656e7420646f6573206e6f74206578697374",
-                        "id": 155,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "string",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1802:24:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_219b6ac2f55b7281f18560ba92e4a8a6190569908c392918b21cb2a0142651ca",
-                          "typeString": "literal_string \"Payment does not exist\""
-                        },
-                        "value": "Payment does not exist"
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        },
-                        {
-                          "typeIdentifier": "t_stringliteral_219b6ac2f55b7281f18560ba92e4a8a6190569908c392918b21cb2a0142651ca",
-                          "typeString": "literal_string \"Payment does not exist\""
-                        }
-                      ],
-                      "id": 150,
-                      "name": "require",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
-                      "referencedDeclaration": 4294967278,
-                      "src": "1777:7:0",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
-                        "typeString": "function (bool,string memory) pure"
-                      }
-                    },
-                    "id": 156,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "nameLocations": [],
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "1777:50:0",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 157,
-                  "nodeType": "ExpressionStatement",
-                  "src": "1777:50:0"
-                },
-                {
-                  "expression": {
-                    "components": [
-                      {
-                        "expression": {
-                          "id": 158,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1848:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 159,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1856:2:0",
-                        "memberName": "id",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 3,
-                        "src": "1848:10:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      {
-                        "expression": {
-                          "id": 160,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1860:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 161,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1868:8:0",
-                        "memberName": "violator",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 5,
-                        "src": "1860:16:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "expression": {
-                          "id": 162,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1878:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 163,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1886:9:0",
-                        "memberName": "challanId",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 7,
-                        "src": "1878:17:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      {
-                        "expression": {
-                          "id": 164,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1897:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 165,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1905:10:0",
-                        "memberName": "fineAmount",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 9,
-                        "src": "1897:18:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      {
-                        "expression": {
-                          "id": 166,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1917:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 167,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1925:6:0",
-                        "memberName": "isPaid",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 11,
-                        "src": "1917:14:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_bool",
-                          "typeString": "bool"
-                        }
-                      },
-                      {
-                        "expression": {
-                          "id": 168,
-                          "name": "payment",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 145,
-                          "src": "1933:7:0",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Payment_$14_memory_ptr",
-                            "typeString": "struct FinePayment.Payment memory"
-                          }
-                        },
-                        "id": 169,
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberLocation": "1941:16:0",
-                        "memberName": "paymentTimestamp",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": 13,
-                        "src": "1933:24:0",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      }
-                    ],
-                    "id": 170,
-                    "isConstant": false,
-                    "isInlineArray": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "nodeType": "TupleExpression",
-                    "src": "1847:111:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_uint256_$_t_address_$_t_uint256_$_t_uint256_$_t_bool_$_t_uint256_$",
-                      "typeString": "tuple(uint256,address,uint256,uint256,bool,uint256)"
-                    }
-                  },
-                  "functionReturnParameters": 142,
-                  "id": 171,
+                  "functionReturnParameters": 101,
+                  "id": 105,
                   "nodeType": "Return",
-                  "src": "1840:118:0"
+                  "src": "1609:32:0"
                 }
               ]
             },
-            "functionSelector": "9e70df21",
-            "id": 173,
+            "functionSelector": "c063806a",
+            "id": 107,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "getPaymentDetails",
-            "nameLocation": "1615:17:0",
+            "name": "isChallanPaid",
+            "nameLocation": "1540:13:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 129,
+              "id": 98,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 128,
+                  "id": 97,
                   "mutability": "mutable",
-                  "name": "_paymentId",
-                  "nameLocation": "1638:10:0",
+                  "name": "_challanId",
+                  "nameLocation": "1559:10:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1633:15:0",
+                  "scope": 107,
+                  "src": "1554:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2327,10 +1556,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 127,
+                    "id": 96,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1633:4:0",
+                    "src": "1554:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2339,130 +1568,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1632:17:0"
+              "src": "1553:17:0"
             },
             "returnParameters": {
-              "id": 142,
+              "id": 101,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 131,
+                  "id": 100,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1671:4:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 130,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1671:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 133,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1677:7:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 132,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1677:7:0",
-                    "stateMutability": "nonpayable",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 135,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1686:4:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 134,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1686:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 137,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1692:4:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 136,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1692:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 139,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1698:4:0",
+                  "scope": 107,
+                  "src": "1592:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2470,60 +1590,33 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 138,
+                    "id": 99,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1698:4:0",
+                    "src": "1592:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
                   "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 141,
-                  "mutability": "mutable",
-                  "name": "",
-                  "nameLocation": "-1:-1:-1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 173,
-                  "src": "1704:4:0",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 140,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1704:4:0",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
                 }
               ],
-              "src": "1670:39:0"
+              "src": "1591:6:0"
             },
-            "scope": 174,
-            "src": "1606:360:0",
+            "scope": 108,
+            "src": "1531:118:0",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 175,
-        "src": "60:1909:0",
+        "scope": 109,
+        "src": "60:1592:0",
         "usedErrors": []
       }
     ],
-    "src": "33:1938:0"
+    "src": "33:1621:0"
   },
   "compiler": {
     "name": "solc",
@@ -2533,12 +1626,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x8C005E3548933Aff61A69D5dBF0A77aEFC1e8BFA",
-      "transactionHash": "0x4958d4c24a042fd9898fc32e92532c7da93bdf5b15ebe60e011aea8cf01a52aa"
+      "address": "0x6222eA8b69ba5A9927031539e2a07641DBcfdfde",
+      "transactionHash": "0x52df225a902b042cc6e133369faae23b9dd37a090b3628d9561d79dfcc620c09"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-09-29T12:01:13.157Z",
+  "updatedAt": "2024-09-30T19:20:40.227Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

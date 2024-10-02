@@ -15,6 +15,7 @@ contract violation {
         uint256 date;            // Timestamp of the violation
         uint256 fineAmount;      // Fine amount for the violation
         bool isTerminated;       // Status if challan is terminated
+        string registrationNumber; // Registration number of the vehicle
     }
 
     // Array to store all challans
@@ -24,6 +25,9 @@ contract violation {
 
     // Pre-defined violation details and their corresponding fines
     mapping(string => uint256) public violationFines;
+
+    // Admin address
+    address public admin;
 
     // Event to emit when a new challan is generated
     event ChallanGenerated(
@@ -36,7 +40,8 @@ contract violation {
         string violationDetails,
         string location,
         uint256 date,
-        uint fineAmount
+        uint fineAmount,
+        string registrationNumber // Add registration number to the event
     );
     
     // Event to emit when a challan is updated
@@ -45,14 +50,30 @@ contract violation {
     // Event to emit when a challan is terminated
     event ChallanTerminated(uint id);
 
-    // Constructor to initialize violation details with fines
+    // Constructor to initialize violation details with fines and set admin
     constructor() {
-        violationFines["Speeding"] = 500;
-        violationFines["Parking"] = 200;
-        violationFines["No Seatbelt"] = 100;
-        violationFines["Traffic Signal Violation"] = 800;
-        violationFines["Wrong Way"] = 300;
-        violationFines["Tinted Windows"] = 400;
+        admin = msg.sender; // Set the contract deployer as the admin
+        violationFines["Speeding (LTV)"] = 500;
+        violationFines["Parking (LTV)"] = 200;
+        violationFines["No Seatbelt (LTV)"] = 100;
+        violationFines["Traffic Signal Violation (LTV)"] = 800;
+        violationFines["Wrong Way (LTV)"] = 300;
+        violationFines["Tinted Windows (LTV)"] = 400;
+
+        violationFines["Speeding (Motorbike)"] = 500;
+        violationFines["Parking (Motorbike)"] = 200;
+        violationFines["No Helmet (Motorbike)"] = 100;
+        violationFines["Traffic Signal Violation (Motorbike)"] = 800;
+        violationFines["Wrong Way (Motorbike)"] = 300;
+        violationFines["Pillion Riding (Motorbike)"] = 400;
+
+        violationFines["Speeding (HTV)"] = 500;
+        violationFines["Parking (HTV)"] = 200;
+        violationFines["No Seatbelt (HTV)"] = 100;
+        violationFines["Traffic Signal Violation (HTV)"] = 800;
+        violationFines["Wrong Way (HTV)"] = 300;
+        violationFines["Tinted Windows (HTV)"] = 400;
+
         // Add more predefined violations and fines as needed
     }
 
@@ -63,7 +84,8 @@ contract violation {
         string memory _violatorName,
         string memory _violationDetails,
         string memory _location,
-        uint256 _date
+        uint256 _date,
+        string memory _registrationNumber // Accept registration number
     ) public {
         // Ensure the violation type exists in the pre-defined list
         require(violationFines[_violationDetails] > 0, "Invalid violation type");
@@ -82,7 +104,8 @@ contract violation {
             location: _location,
             date: _date,
             fineAmount: fineAmount,
-            isTerminated: false
+            isTerminated: false,
+            registrationNumber: _registrationNumber // Store registration number
         });
         challans.push(newChallan);  // Add the new challan to the array
 
@@ -96,7 +119,8 @@ contract violation {
             _violationDetails,
             _location,
             _date,
-            fineAmount
+            fineAmount,
+            _registrationNumber // Emit registration number
         );
     }
 
@@ -117,7 +141,8 @@ contract violation {
             string memory location,
             uint256 date,
             uint fineAmount,
-            bool isTerminated
+            bool isTerminated,
+            string memory registrationNumber // Return registration number
         )
     {
         // Ensure the challan exists
@@ -138,8 +163,15 @@ contract violation {
             challan.location,
             challan.date,
             challan.fineAmount,
-            challan.isTerminated
+            challan.isTerminated,
+            challan.registrationNumber // Include registration number
         );
+    }
+
+    // Function for the admin to get all challans
+    function getAllChallans() public view returns (Challan[] memory) {
+        require(msg.sender == admin, "Only admin can access all challans");
+        return challans;
     }
 
     // Function to get all challans by a specific citizen (violator)
