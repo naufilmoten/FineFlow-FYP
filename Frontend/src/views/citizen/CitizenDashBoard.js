@@ -196,7 +196,7 @@ export default function CitizenDashBoard() {
         </div>
       </div>
 
-      
+
     </div>
   );
 }

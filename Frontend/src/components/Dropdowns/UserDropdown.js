@@ -1,20 +1,32 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import { useHistory, useParams } from "react-router-dom";
 
 const UserDropdown = () => {
-  // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  const history = useHistory();
+  const { citizen_id } = useParams(); // Get citizen_id from URL params
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "bottom-start",
     });
     setDropdownPopoverShow(true);
   };
+
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  // Function to handle navigation to the citizen profile page
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    closeDropdownPopover(); // Close the dropdown
+    history.push(`/citizen/CitizenDashBoard/${citizen_id}/profile`); // Navigate to the citizen profile page with citizen_id
+  };
+
   return (
     <>
       <a
@@ -45,40 +57,18 @@ const UserDropdown = () => {
       >
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          onClick={handleProfileClick} // Call the profile navigation here
         >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
+          Profile
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           onClick={(e) => e.preventDefault()}
         >
-          Seprated link
+          Logout
         </a>
       </div>
     </>
