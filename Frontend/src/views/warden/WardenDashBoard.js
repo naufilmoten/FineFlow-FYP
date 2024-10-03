@@ -222,188 +222,340 @@ console.log(registrationNumber)
     // console.log("challan: ", challan.violatorCnic)
 
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-white p-8">
-      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2">
-        <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
-          <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
-        </div>
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-white p-8">
+//       <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2">
+//         <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
+//           <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
+//         </div>
 
-        {/* Step Indicator */}
-        <div className="flex items-center justify-between mt-4 mb-4 px-6">
-          {steps.map((step) => (
-            <React.Fragment key={step.id}>
-              <div className="flex flex-col items-center">
-                <div
-                  className={`flex items-center justify-center h-10 w-10 rounded-full ${
-                    currentStep >= step.id ? "bg-indigo-600" : "bg-gray-300"
-                  } transition duration-200`}
-                >
-                  {currentStep >= step.id ? (
-                    <span className="text-white">✓</span>
-                  ) : (
-                    <span className="text-black">{step.id}</span>
-                  )}
-                </div>
-                <span
-                  className={`mt-2 text-sm ${
-                    currentStep >= step.id ? "text-indigo-600" : "text-gray-500"
-                  }`}
-                >
-                  {step.name}
-                </span>
+//         {/* Step Indicator */}
+//         <div className="flex items-center justify-between mt-4 mb-4 px-6">
+//           {steps.map((step) => (
+//             <React.Fragment key={step.id}>
+//               <div className="flex flex-col items-center">
+//                 <div
+//                   className={`flex items-center justify-center h-10 w-10 rounded-full ${
+//                     currentStep >= step.id ? "bg-indigo-600" : "bg-gray-300"
+//                   } transition duration-200`}
+//                 >
+//                   {currentStep >= step.id ? (
+//                     <span className="text-white">✓</span>
+//                   ) : (
+//                     <span className="text-black">{step.id}</span>
+//                   )}
+//                 </div>
+//                 <span
+//                   className={`mt-2 text-sm ${
+//                     currentStep >= step.id ? "text-indigo-600" : "text-gray-500"
+//                   }`}
+//                 >
+//                   {step.name}
+//                 </span>
+//               </div>
+//               {step.id < steps.length && (
+//                 <div className="h-1 w-10 bg-gray-300 mx-2"></div>
+//               )}
+//             </React.Fragment>
+//           ))}
+//         </div>
+
+//         <div className="flex-auto px-6 py-6">
+//           {currentStep === 1 && (
+//             <form>
+//               <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">
+//                 Step 1: Enter Details
+//               </h6>
+//               <div className="flex flex-col space-y-4">
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
+//                   <input
+//                     type="text"
+//                     placeholder="Enter Registration Number"
+//                     value={registrationNumber}
+//                     onChange={(e) => setRegistrationNumber(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Upload Photo</label>
+//                   <input
+//                     type="file"
+//                     onChange={handlePhotoUpload}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Violation Type</label>
+//                   <select
+//                     value={violationType}
+//                     onChange={(e) => setViolationType(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   >
+//                     <option value="">Select Violation Type</option>
+//                     {violationTypes.map((violation) => (
+//                       <option key={violation.id} value={violation.name}>
+//                         {violation.name}
+//                       </option>
+//                     ))}
+//                   </select>
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Location</label>
+//                   <input
+//                     type="text"
+//                     placeholder="Enter Location of Violation"
+//                     value={Location}
+//                     onChange={(e) => setLocation(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//               </div>
+
+//               <div className="flex justify-center mt-6">
+//                 <button
+//                   onClick={handleNextStep}
+//                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//                   type="button"
+//                 >
+//                   Next
+//                 </button>
+//               </div>
+//             </form>
+//           )}
+
+// {currentStep === 2 && (
+//   <div>
+//     <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 2: Review Details</h6>
+//     <p>
+//       <strong>Registration Number:</strong> {registrationNumber}
+//     </p>
+//     <p>
+//       <strong>Violation Location:</strong> {Location}
+//     </p>
+//     <p>
+//       <strong>Owner CNIC:</strong> {dummyData.owner_cnic || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Vehicle:</strong> {dummyData.vehicle || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Violation Type:</strong> {dummyData.violation || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Name:</strong> {ownerData.citizen_name || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Phone Number:</strong> {ownerData.citizen_number || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Address:</strong> {ownerData.citizen_address || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Email:</strong> {ownerData.citizen_email || "Loading..."}
+//     </p>
+
+//     <div className="flex justify-between mt-6">
+//       <button
+//         onClick={handleBackStep}
+//         className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//       >
+//         Back
+//       </button>
+//       <button
+//         onClick={handleNextStep}
+//         className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//       >
+//         Generate Challan
+//       </button>
+//     </div>
+//   </div>
+// )}
+
+
+//           {currentStep === 3 && (
+//             <div>
+//               <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 3: Generate Challan</h6>
+//               <p>
+//                 <strong>Challan Preview</strong>
+//               </p>
+//               <p>Registration Number: {registrationNumber}</p>
+//               <p>Violation Location: {Location}</p>
+//               <p>Owner CNIC: {dummyData.owner_cnic || "N/A"}</p>
+//               <p>Vehicle: {dummyData.vehicle || "N/A"}</p>
+//               <p>Violation Type: {dummyData.violation || "N/A"}</p>
+//               <p>
+//                 <strong>Photo:</strong> {photo ? photo.name : "No photo uploaded"}
+//               </p>
+
+//               <div className="flex justify-center mt-6">
+//                 <button onClick={GenerateChallan}
+//                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//                 >
+//                   Submit Challan
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+return (
+  <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="relative w-full max-w-2xl bg-white shadow-lg rounded-lg p-8">
+      <div className="bg-blue-500 text-white text-center py-4 rounded-t-lg">
+        <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
+      </div>
+
+      {/* Step Indicator */}
+      <div className="flex justify-between mt-6 mb-4">
+        {steps.map((step) => (
+          <React.Fragment key={step.id}>
+            <div className="flex flex-col items-center">
+              <div
+                className={`flex items-center justify-center h-10 w-10 rounded-full ${
+                  currentStep >= step.id ? 'bg-blue-500' : 'bg-gray-300'
+                } transition duration-200`}
+              >
+                {currentStep >= step.id ? (
+                  <span className="text-white">✓</span>
+                ) : (
+                  <span className="text-black">{step.id}</span>
+                )}
               </div>
-              {step.id < steps.length && (
-                <div className="h-1 w-10 bg-gray-300 mx-2"></div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+              <span
+                className={`mt-2 text-sm ${
+                  currentStep >= step.id ? 'text-blue-500' : 'text-gray-500'
+                }`}
+              >
+                {step.name}
+              </span>
+            </div>
+            {step.id < steps.length && (
+              <div className="h-1 w-10 bg-gray-300 mx-2"></div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
 
-        <div className="flex-auto px-6 py-6">
-          {currentStep === 1 && (
-            <form>
-              <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">
-                Step 1: Enter Details
-              </h6>
-              <div className="flex flex-col space-y-4">
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Registration Number"
-                    value={registrationNumber}
-                    onChange={(e) => setRegistrationNumber(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Upload Photo</label>
-                  <input
-                    type="file"
-                    onChange={handlePhotoUpload}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Violation Type</label>
-                  <select
-                    value={violationType}
-                    onChange={(e) => setViolationType(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  >
-                    <option value="">Select Violation Type</option>
-                    {violationTypes.map((violation) => (
-                      <option key={violation.id} value={violation.name}>
-                        {violation.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Location of Violation"
-                    value={Location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
+      {/* Form Steps */}
+      <div className="flex-auto py-6">
+        {/* Step 1: Enter Details */}
+        {currentStep === 1 && (
+          <form>
+            <h6 className="text-blueGray-600 text-sm mb-4 font-bold uppercase">
+              Step 1: Enter Details
+            </h6>
+            <div className="flex flex-col space-y-4">
+              <div className="relative w-full">
+                <label className="block text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
+                <input
+                  type="text"
+                  placeholder="Enter Registration Number"
+                  className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blue-500 transition duration-200"
+                />
               </div>
-
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={handleNextStep}
-                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-                  type="button"
-                >
-                  Next
-                </button>
+              <div className="relative w-full">
+                <label className="block text-blueGray-600 text-xs font-bold mb-1">Upload Photo</label>
+                <input
+                  type="file"
+                  className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blue-500 transition duration-200"
+                />
               </div>
-            </form>
-          )}
-
-{currentStep === 2 && (
-  <div>
-    <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 2: Review Details</h6>
-    <p>
-      <strong>Registration Number:</strong> {registrationNumber}
-    </p>
-    <p>
-      <strong>Violation Location:</strong> {Location}
-    </p>
-    <p>
-      <strong>Owner CNIC:</strong> {dummyData.owner_cnic || "Loading..."}
-    </p>
-    <p>
-      <strong>Vehicle:</strong> {dummyData.vehicle || "Loading..."}
-    </p>
-    <p>
-      <strong>Violation Type:</strong> {dummyData.violation || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Name:</strong> {ownerData.citizen_name || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Phone Number:</strong> {ownerData.citizen_number || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Address:</strong> {ownerData.citizen_address || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Email:</strong> {ownerData.citizen_email || "Loading..."}
-    </p>
-
-    <div className="flex justify-between mt-6">
-      <button
-        onClick={handleBackStep}
-        className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-      >
-        Back
-      </button>
-      <button
-        onClick={handleNextStep}
-        className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-      >
-        Generate Challan
-      </button>
-    </div>
-  </div>
-)}
-
-
-          {currentStep === 3 && (
-            <div>
-              <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 3: Generate Challan</h6>
-              <p>
-                <strong>Challan Preview</strong>
-              </p>
-              <p>Registration Number: {registrationNumber}</p>
-              <p>Violation Location: {Location}</p>
-              <p>Owner CNIC: {dummyData.owner_cnic || "N/A"}</p>
-              <p>Vehicle: {dummyData.vehicle || "N/A"}</p>
-              <p>Violation Type: {dummyData.violation || "N/A"}</p>
-              <p>
-                <strong>Photo:</strong> {photo ? photo.name : "No photo uploaded"}
-              </p>
-
-              <div className="flex justify-center mt-6">
-                <button onClick={GenerateChallan}
-                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-                >
-                  Submit Challan
-                </button>
+              <div className="relative w-full">
+                <label className="block text-blueGray-600 text-xs font-bold mb-1">Violation Type</label>
+                <select className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blue-500 transition duration-200">
+                  <option value="">Select Violation Type</option>
+                  <option value="1">Speeding</option>
+                  <option value="2">Illegal Parking</option>
+                </select>
+              </div>
+              <div className="relative w-full">
+                <label className="block text-blueGray-600 text-xs font-bold mb-1">Location</label>
+                <input
+                  type="text"
+                  placeholder="Enter Location of Violation"
+                  className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blue-500 transition duration-200"
+                />
               </div>
             </div>
-          )}
-        </div>
+
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={handleNextStep}
+                className="bg-blue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-200"
+                type="button"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        )}
+
+        {/* Step 2: Review Details */}
+        {currentStep === 2 && (
+          <div>
+            <h6 className="text-blueGray-600 text-sm mb-4 font-bold uppercase">
+              Step 2: Review Details
+            </h6>
+            <p>
+              <strong>Registration Number:</strong> ABC-1234
+            </p>
+            <p>
+              <strong>Violation Location:</strong> Downtown
+            </p>
+            <p>
+              <strong>Violation Type:</strong> Speeding
+            </p>
+
+            <div className="flex justify-between mt-6">
+              <button
+                onClick={handleBackStep}
+                className="bg-gray-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:bg-gray-600 transition duration-200"
+              >
+                Back
+              </button>
+              <button
+                onClick={handleNextStep}
+                className="bg-blue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-200"
+              >
+                Generate Challan
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Generate Challan */}
+        {currentStep === 3 && (
+          <div>
+            <h6 className="text-blueGray-600 text-sm mb-4 font-bold uppercase">
+              Step 3: Generate Challan
+            </h6>
+            <p>
+              <strong>Challan Preview</strong>
+            </p>
+            <p>Registration Number: ABC-1234</p>
+            <p>Violation Location: Downtown</p>
+            <p>Violation Type: Speeding</p>
+
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={() => alert('Challan Generated!')}
+                className="bg-blue-500 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-200"
+              >
+                Submit Challan
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 };
-
-
 
 
 
