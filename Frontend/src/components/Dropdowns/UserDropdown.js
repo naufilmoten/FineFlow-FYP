@@ -1,13 +1,13 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import { useHistory } from "react-router-dom"; // Import useHistory for navigation
+import manImage from "assets/img/man.png";
 
-const UserDropdown = () => {
-  // dropdown props
+const UserDropdown = ({ citizenId }) => { // Accept citizenId as a prop
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
-  const history = useHistory(); // Get the history object for navigation
+  const history = useHistory();
 
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
@@ -22,14 +22,17 @@ const UserDropdown = () => {
 
   // Logout function
   const handleLogout = () => {
-    // Clear authentication data from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("warden_id");
     localStorage.removeItem("citizen_id");
+    history.push("/auth/login");
+  };
 
-    // Redirect to the login page
-    history.push("/auth/login"); // Adjust the path as needed
+  // Handle navigation to the profile
+  const handleProfileClick = () => {
+    history.push(`/citizen/profile/${citizenId}`); // Change to the correct profile route
+    closeDropdownPopover(); // Close the dropdown after navigation
   };
 
   return (
@@ -43,15 +46,20 @@ const UserDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg").default}
-            />
-          </span>
-        </div>
+        <div className="flex items-center">
+        <span className="w-12 h-12 inline-flex items-center justify-center rounded-full overflow-hidden bg-blueGray-200">
+      <img
+        alt="Profile"
+        className="w-full h-full object-cover rounded-full shadow-lg"
+        src={manImage} // Use the imported image here
+        onError={(e) => {
+          e.target.onerror = null; // Prevent looping
+          e.target.src = "https://via.placeholder.com/48"; // Fallback image
+        }}
+      />
+    </span>
+</div>
+
       </a>
       <div
         ref={popoverDropdownRef}
@@ -62,40 +70,18 @@ const UserDropdown = () => {
       >
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          onClick={handleProfileClick} // Navigate to profile
         >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
+          Profile
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
           href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
+          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           onClick={(e) => {
             e.preventDefault();
-            handleLogout(); // Call the logout function on click
+            handleLogout(); // Call handleLogout when clicking Logout
           }}
         >
           Logout

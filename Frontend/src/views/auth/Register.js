@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-
 import { Link, useHistory } from "react-router-dom";
+import { Alert } from '@mui/material'; // Import Alert component
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -17,21 +16,59 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const history = useHistory();
-  
- 
+
+  // Validate CNIC format and length
+  const validateCnic = (cnic) => {
+    const cnicRegex = /^\d{5}-\d{7}-\d{1}$/; // Regex for formatted CNIC
+    return cnicRegex.test(cnic);
+  };
+
+  // Handle CNIC input formatting
+  const formatCnic = (value) => {
+    const cleaned = value.replace(/\D/g, ''); // Remove non-digit characters
+    if (cleaned.length <= 5) return cleaned;
+    if (cleaned.length <= 12) {
+      return `${cleaned.slice(0, 5)}-${cleaned.slice(5)}`; // Add first hyphen
+    }
+    return `${cleaned.slice(0, 5)}-${cleaned.slice(5, 12)}-${cleaned.charAt(12)}`; // Full format
+  };
 
   // Handle form submission
   const handleRegister = async (e) => {
     e.preventDefault();
-  
+
     if (!role || !name || !cnic || !password) {
       setErrorMessage('Please fill in all required fields.');
       return;
     }
-  
+
+    // Validate CNIC
+    if (!validateCnic(cnic)) {
+      setErrorMessage('CNIC must be in the format xxxxx-xxxxxxx-x.');
+      return;
+    }
+
+    // Additional validation for other fields
+    if (username.trim() === '' || username.length < 3) {
+      setErrorMessage('Username must be at least 3 characters long.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long.');
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^\S+@\S+\.\S+$/; // Simple email regex
+    if (role === 'citizen' && !emailRegex.test(email)) {
+      setErrorMessage('Email format is invalid.');
+      return;
+    }
+
     let requestData;
     let route;
-  
+
     if (role === 'warden') {
       requestData = {
         warden_name: name,
@@ -41,11 +78,11 @@ export default function Register() {
       };
       route = 'http://localhost:5000/api/warden';
     } else if (role === 'citizen') {
-      if (!address || !phoneNumber || !dob || !email) {
+      if (!address || !phoneNumber || !dob) {
         setErrorMessage('Please fill in all fields for citizen registration.');
         return;
       }
-      
+
       requestData = {
         citizen_name: name,
         citizen_cnic: cnic,
@@ -61,12 +98,12 @@ export default function Register() {
       setErrorMessage('Invalid role selected.');
       return;
     }
-  
+
     try {
       await axios.post(route, requestData);
       setSuccessMessage(`${role.charAt(0).toUpperCase() + role.slice(1)} account created successfully`);
       setErrorMessage('');
-      
+
       // Redirect to the login page after a short delay to show success message
       setTimeout(() => {
         history.push('/auth/login'); // Redirect to the login page
@@ -74,10 +111,9 @@ export default function Register() {
     } catch (error) {
       console.error('Error details:', error);  // Log the full error
       setErrorMessage(`Failed to create ${role} account. ${error.response ? error.response.data.message : error.message}`);
-      setSuccessMessage('Sucessfully created account');
+      setSuccessMessage('');
     }
   };
-  
 
   return (
     <div className="container mx-auto px-4 h-full">
@@ -117,9 +153,9 @@ export default function Register() {
                   <input
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="CNIC"
+                    placeholder="CNIC (e.g. 35202-6345280-1)"
                     value={cnic}
-                    onChange={(e) => setCnic(e.target.value)}
+                    onChange={(e) => setCnic(formatCnic(e.target.value))}
                   />
                 </div>
 
@@ -195,13 +231,28 @@ export default function Register() {
                 )}
 
                 <div className="text-center mt-6">
-                  <button className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="submit">
+                  <button
+                    className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                    type="submit"
+                  >
                     Register
                   </button>
                 </div>
-                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-                {successMessage && <p className="text-green-500">{successMessage}</p>}
+
+                {/* Material-UI Alert components for displaying messages */}
+                {errorMessage && (
+                  <Alert severity="error" className="mt-4">{errorMessage}</Alert>
+                )}
+                {successMessage && (
+                  <Alert severity="success" className="mt-4">{successMessage}</Alert>
+                )}
               </form>
+
+              <div className="text-center mt-4">
+                <Link to="/auth/login" className="text-blueGray-800">
+                  Already have an account? Sign in
+                </Link>
+              </div>
             </div>
           </div>
         </div>

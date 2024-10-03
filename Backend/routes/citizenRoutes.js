@@ -132,16 +132,7 @@ router.put('/:citizen_id', async (req, res) => {
   const citizenData = req.body;
 
   try {
-    if (citizenData.account_id) {
-      const existingAccount = await Citizen.findOne({
-        account_id: citizenData.account_id,
-        citizen_id: { $ne: citizen_id }
-      });
-      if (existingAccount) {
-        return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
-      }
-    }
-
+    console.log('Updating citizen with ID:', citizen_id); // Log the ID being updated
     const updatedCitizen = await updateCitizen(citizen_id, citizenData);
     if (updatedCitizen) {
       res.status(200).json(updatedCitizen);
