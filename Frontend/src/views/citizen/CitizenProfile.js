@@ -113,7 +113,7 @@ export default function CitizenProfile() {
             )} 
           </div>
           <div className="w-full lg:w-4/12 px-4 mb-6">
-            <CardSettings /> 
+            <CardSettings userDetails={userDetails} /> 
           </div>
         </div>
       </div>

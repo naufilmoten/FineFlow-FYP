@@ -45,6 +45,7 @@ export default function Citizen() {
           <Switch>
             <Route path="/citizen/CitizenDashBoard/:citizen_id" exact component={CitizenDashBoard} />
             <Route path="/citizen/profile/:citizen_id" exact component={CitizenProfile} />
+            
             <Route path="/citizen/tables" exact component={Tables} />
             <Redirect from="/citizen" to={citizenId ? `/citizen/CitizenDashBoard/${citizenId}` : "/auth/login"} />
           </Switch>

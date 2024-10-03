@@ -182,6 +182,7 @@
 // }
 
 import React from "react";
+import manImage from "assets/img/man.png"
 
 // CardProfile component that takes userDetails and registrationDetails as props
 export default function CardProfile({ userDetails, registrationDetails }) {
@@ -197,7 +198,7 @@ export default function CardProfile({ userDetails, registrationDetails }) {
             <div className="relative">
               <img
                 alt={userDetails.citizen_name}
-                src={require("assets/img/team-2-800x800.jpg").default}
+                src={manImage}
                 className="shadow-xl rounded-full h-auto border-none -mt-16 max-w-150-px"
               />
             </div>
