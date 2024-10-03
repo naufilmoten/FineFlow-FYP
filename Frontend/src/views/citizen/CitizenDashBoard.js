@@ -15,6 +15,7 @@ export default function CitizenDashBoard() {
   const [contract, setContract] = useState(null);
   const [contract2, setContract2] = useState(null);
   const [userDetails, setUserDetails] = useState({});
+  const [Payment, setPayment] = useState([]);
   const [isPaymentFormOpen, setIsPaymentFormOpen] = useState(false); // State to control PaymentForm visibility
   const [selectedChallan, setSelectedChallan] = useState(null); // State to track the challan being paid
 

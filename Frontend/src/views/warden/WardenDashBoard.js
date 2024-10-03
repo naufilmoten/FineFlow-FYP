@@ -167,7 +167,8 @@ const WardenDashBoard = () => {
             ownerData.citizen_name,              // Citizen's name    // Warden's username
             dummyData.violation,                       // Violation type
             Location,                            // Violation location
-            date                                 // Date of violation
+            date,                                 // Date of violation
+            registrationNumber
         ).estimateGas({
             from: accounts[userDetails.account_index],// Warden's account (from userDetails)
         });
@@ -181,7 +182,8 @@ const WardenDashBoard = () => {
             ownerData.citizen_name,              // Citizen's name     // Warden's username
             dummyData.violation,                       // Violation type
             Location,                            // Violation location
-            date                                 // Date of violation
+            date,                                 // Date of violation
+            registrationNumber
         ).send({
             from: accounts[userDetails.account_index], // Warden's account (from userDetails)
             gas: estimatedGas                           // Use estimated gas
