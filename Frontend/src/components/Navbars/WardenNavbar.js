@@ -14,7 +14,7 @@ export default function WardenNavbar() {
             href="#"
             onClick={(e) => e.preventDefault()}
           >
-            Dashboard
+           Warden Dashboard
           </a>
 
           {/* Search Form */}

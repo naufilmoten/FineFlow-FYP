@@ -104,7 +104,7 @@ export default function CitizenProfile() {
         <CitizenNav />
       </div>
 
-      <div className="container mx-auto px-4 md:px-10 mt-10">
+      <div className="container mx-auto px-4 md:px-10 mt-12">
         <div className="flex flex-wrap">
           <div className="w-full lg:w-8/12 px-4 mb-6">
             {/* Pass userDetails and registrationDetails as props to CardProfile */}
@@ -113,7 +113,7 @@ export default function CitizenProfile() {
             )} 
           </div>
           <div className="w-full lg:w-4/12 px-4 mb-6">
-            <CardSettings userDetails={userDetails} /> 
+            <CardSettings  /> 
           </div>
         </div>
       </div>

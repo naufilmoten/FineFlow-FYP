@@ -31,7 +31,7 @@ export default function CitizenNavbar({ citizenId }) { // Accept citizenId as a 
               </span>
               <input
                 type="text"
-                placeholder="Search services, info, or more..."
+                placeholder="Search..."
                 className="border-0 px-3 py-3 placeholder-gray-300 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
               />
             </div>

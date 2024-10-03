@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Web3 from "web3";
 import violationContracts from "../../contracts/violation"
-const token = localStorage.getItem("token");
+import { Snackbar, Alert } from '@mui/material'; // Import Snackbar and Alert from Material UI
+
+
+const  token = localStorage.getItem("token");
+console.log("Token:", token);
 
 // Dummy data for violation types
 const violationTypes = [
@@ -53,12 +57,15 @@ const WardenDashBoard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const token = localStorage.getItem("token"); // Assuming you're storing JWT in local storage
         const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`, {
           headers: {
-            Authorization: `Bearer ${token}` // Add token to headers
+            Authorization: `Bearer ${token}`
           }
+
         });
+
+
+
         setUserDetails(response.data); // Assuming response contains user details
         console.log("User details:", response.data); // Log user details
       } catch (error) {
@@ -73,7 +80,8 @@ const WardenDashBoard = () => {
   //new
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState(null);
-
+  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
+  
 
 
   useEffect(() => {
@@ -107,13 +115,17 @@ const WardenDashBoard = () => {
   }, []);
 
   const handleNextStep = async () => {
+    if (!registrationNumber || !photo || !violationType || !Location) {
+      alert("Please fill in all required fields before proceeding.");
+      return; // Stop execution if any field is missing
+    }
     if (currentStep === 1) {
       try {
-        const token = localStorage.getItem("token");
         // Fetch vehicle details based on registration number
-        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`,{
+        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`, {
+
           headers: {
-            Authorization: `Bearer ${token}` // Add token to headers
+            Authorization: `Bearer ${token}`
           }
         });
         const vehicleData = await response.json();
@@ -128,9 +140,9 @@ const WardenDashBoard = () => {
         // Fetch owner details based on owner CNIC
         const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`,{
           headers: {
-            Authorization: `Bearer ${token}` // Add token to headers
+            Authorization: `Bearer ${token}`
           }
-      });
+        });
         const ownerDetails = await ownerResponse.json();
 
         // Set owner data
@@ -156,67 +168,58 @@ const WardenDashBoard = () => {
     setPhoto(event.target.files[0]);
   };
 
-  const GenerateChallan = async () => {
+   const GenerateChallan = async () => {
     const date = Math.floor(Date.now() / 1000);
-
+  
+    if (!contract) {
+      console.error("Contract is not initialized.");
+      alert("Error: Contract not available. Please refresh the page.");
+      return; // Exit the function if contract is not available
+    }
+  
     try {
-        // Estimate gas for the generateChallan transaction
-        const estimatedGas = await contract.methods.generateChallan(
-            accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,              // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name    // Warden's username
-            dummyData.violation,                       // Violation type
-            Location,                            // Violation location
-            date                                 // Date of violation
-        ).estimateGas({
-            from: accounts[userDetails.account_index],// Warden's account (from userDetails)
-        });
-
-        console.log("Estimated Gas:", estimatedGas); // Log estimated gas for debugging
-
-        // Send the transaction with the estimated gas limit
-        const response = await contract.methods.generateChallan(
-            accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,              // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name     // Warden's username
-            dummyData.violation,                       // Violation type
-            Location,                            // Violation location
-            date                                 // Date of violation
-        ).send({
-            from: accounts[userDetails.account_index], // Warden's account (from userDetails)
-            gas: estimatedGas                           // Use estimated gas
-        });
-
-        console.log("Successful", response);
-        alert("Challan generated successfully!");
-
-        // Resetting the form to Step 1 and clearing states
-        setCurrentStep(1);
-        setRegistrationNumber("");
-        setLocation("");
-        setPhoto(null);
-        setViolationType("");
-        setDummyData({});
-        setOwnerData({});
-        
-        // Optionally fetch new challans if needed
-        try {
-            const challans = await contract.methods.getChallansByWarden(accounts[userDetails.account_index]).call();
-            console.log("Fetched challans from contract:", challans); // Debug log
-            
-            if (!challans || challans.length === 0) {
-                console.warn("No challans found for this warden."); // Warning log
-            }
-            // setChallanDetails(challans); // Set the fetched challan details in state if needed
-        } catch (error) {
-            console.error("Error fetching challan details:", error);
-        }
+      // Estimate gas for the generateChallan transaction
+      const estimatedGas = await contract.methods.generateChallan(
+        accounts[ownerData.account_index],  // Owner's account
+        ownerData.citizen_cnic,             // Citizen's CNIC
+        ownerData.citizen_name,              // Citizen's name
+        dummyData.violation,                  // Violation type
+        Location,                             // Violation location
+        date,
+        registrationNumber
+      ).estimateGas({
+        from: accounts[userDetails.account_index], // Warden's account
+      });
+  
+      // Send the transaction with the estimated gas limit
+      const response = await contract.methods.generateChallan(
+        accounts[ownerData.account_index],  // Owner's account
+        ownerData.citizen_cnic,             // Citizen's CNIC
+        ownerData.citizen_name,              // Citizen's name
+        dummyData.violation,                  // Violation type
+        Location,                             // Violation location
+        date,
+        registrationNumber
+      ).send({
+        from: accounts[userDetails.account_index], // Warden's account
+        gas: estimatedGas                         // Use estimated gas
+      });
+  
+      console.log("Successful", response);
+      setSuccessSnackbarOpen(true); // Show success alert
+      // Resetting the form to Step 1 and clearing states
+      setCurrentStep(1);
+      setRegistrationNumber("");
+      setLocation("");
+      setPhoto(null);
+      setViolationType("");
+      setDummyData({});
+      setOwnerData({});
     } catch (error) {
-        console.error("Error occurred while generating challan:", error);
-    }
+      console.error("Error occurred while generating challan:", error);
+    }
 };
-
-
+  
 console.log(registrationNumber)
     // let challan = await contract.methods.getChallan(1);
     // console.log("challan: ", challan.violatorCnic)
@@ -395,6 +398,18 @@ console.log(registrationNumber)
                   Submit Challan
                 </button>
               </div>
+
+              {/* Snackbar for success alert */}
+      <Snackbar
+        open={successSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSuccessSnackbarOpen(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setSuccessSnackbarOpen(false)} severity="success">
+          Challan generated successfully!
+        </Alert>
+      </Snackbar>
             </div>
           )}
         </div>
@@ -403,11 +418,4 @@ console.log(registrationNumber)
   );
 };
 
-
-
-
-
-
 export default WardenDashBoard;
-
-
