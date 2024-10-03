@@ -1,6 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import { useHistory } from "react-router-dom"; // Import useHistory for navigation
+import manImage from "assets/img/man.png";
 
 const UserDropdown = () => {
   // dropdown props
@@ -43,15 +44,20 @@ const UserDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg").default}
-            />
-          </span>
-        </div>
+        <div className="flex items-center">
+        <span className="w-12 h-12 inline-flex items-center justify-center rounded-full overflow-hidden bg-blueGray-200">
+      <img
+        alt="Profile"
+        className="w-full h-full object-cover rounded-full shadow-lg"
+        src={manImage} // Use the imported image here
+        onError={(e) => {
+          e.target.onerror = null; // Prevent looping
+          e.target.src = "https://via.placeholder.com/48"; // Fallback image
+        }}
+      />
+    </span>
+</div>
+
       </a>
       <div
         ref={popoverDropdownRef}

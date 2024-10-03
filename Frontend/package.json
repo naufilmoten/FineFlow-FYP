@@ -2,7 +2,6 @@
   "name": "fine flow",
   "version": "1.1.0",
   "description": "FINE FLOW",
-  "repository": "https://github.com/creativetimofficial/notus-react",
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.13.3",
