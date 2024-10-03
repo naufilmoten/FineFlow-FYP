@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Web3 from "web3";
 import violationContracts from "../../contracts/violation"
+const token = localStorage.getItem("token");
 
 // Dummy data for violation types
 const violationTypes = [
@@ -52,7 +53,12 @@ const WardenDashBoard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`);
+        const token = localStorage.getItem("token"); // Assuming you're storing JWT in local storage
+        const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+        });
         setUserDetails(response.data); // Assuming response contains user details
         console.log("User details:", response.data); // Log user details
       } catch (error) {
@@ -103,8 +109,13 @@ const WardenDashBoard = () => {
   const handleNextStep = async () => {
     if (currentStep === 1) {
       try {
+        const token = localStorage.getItem("token");
         // Fetch vehicle details based on registration number
-        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`);
+        const response = await fetch(`http://localhost:5000/api/registration/${registrationNumber}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+        });
         const vehicleData = await response.json();
 
         // Set vehicle data
@@ -115,7 +126,11 @@ const WardenDashBoard = () => {
         });
 
         // Fetch owner details based on owner CNIC
-        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`);
+        const ownerResponse = await fetch(`http://localhost:5000/api/citizen/cnic/${vehicleData.owner_cnic}`,{
+          headers: {
+            Authorization: `Bearer ${token}` // Add token to headers
+          }
+      });
         const ownerDetails = await ownerResponse.json();
 
         // Set owner data
@@ -148,12 +163,11 @@ const WardenDashBoard = () => {
         // Estimate gas for the generateChallan transaction
         const estimatedGas = await contract.methods.generateChallan(
             accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,             // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name
-            dummyData.violation,                  // Violation type
-            Location,                             // Violation location
-            date,
-            registrationNumber
+            ownerData.citizen_cnic,              // Citizen's CNIC
+            ownerData.citizen_name,              // Citizen's name    // Warden's username
+            dummyData.violation,                       // Violation type
+            Location,                            // Violation location
+            date                                 // Date of violation
         ).estimateGas({
             from: accounts[userDetails.account_index],// Warden's account (from userDetails)
         });
@@ -163,12 +177,11 @@ const WardenDashBoard = () => {
         // Send the transaction with the estimated gas limit
         const response = await contract.methods.generateChallan(
             accounts[ownerData.account_index],  // Owner's account
-            ownerData.citizen_cnic,             // Citizen's CNIC
-            ownerData.citizen_name,              // Citizen's name
-            dummyData.violation,                  // Violation type
-            Location,                             // Violation location
-            date,
-            registrationNumber                                         // Date of violation
+            ownerData.citizen_cnic,              // Citizen's CNIC
+            ownerData.citizen_name,              // Citizen's name     // Warden's username
+            dummyData.violation,                       // Violation type
+            Location,                            // Violation location
+            date                                 // Date of violation
         ).send({
             from: accounts[userDetails.account_index], // Warden's account (from userDetails)
             gas: estimatedGas                           // Use estimated gas
@@ -202,6 +215,7 @@ const WardenDashBoard = () => {
         console.error("Error occurred while generating challan:", error);
     }
 };
+
 
 console.log(registrationNumber)
     // let challan = await contract.methods.getChallan(1);
@@ -389,4 +403,11 @@ console.log(registrationNumber)
   );
 };
 
+
+
+
+
+
 export default WardenDashBoard;
+
+
