@@ -57,6 +57,7 @@ const WardenDashBoard = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
+        //const token = localStorage.getItem("token"); // Assuming you're storing JWT in local storage
         const response = await axios.get(`http://localhost:5000/api/warden/${warden_id}`, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -225,141 +226,359 @@ console.log(registrationNumber)
     // console.log("challan: ", challan.violatorCnic)
 
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-white p-8">
-      <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2">
-        <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
-          <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
-        </div>
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-white p-8">
+//       <div className="relative flex flex-col min-w-0 break-words w-full max-w-md mb-6 shadow-lg rounded-lg bg-gray border-0 mt-2">
+//         <div className="bg-blueGray-800 text-white text-center py-10 rounded-t-lg">
+//           <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
+//         </div>
 
-        {/* Step Indicator */}
-        <div className="flex items-center justify-between mt-4 mb-4 px-6">
-          {steps.map((step) => (
-            <React.Fragment key={step.id}>
-              <div className="flex flex-col items-center">
-                <div
-                  className={`flex items-center justify-center h-10 w-10 rounded-full ${
-                    currentStep >= step.id ? "bg-indigo-600" : "bg-gray-300"
-                  } transition duration-200`}
-                >
-                  {currentStep >= step.id ? (
-                    <span className="text-white">✓</span>
-                  ) : (
-                    <span className="text-black">{step.id}</span>
-                  )}
-                </div>
-                <span
-                  className={`mt-2 text-sm ${
-                    currentStep >= step.id ? "text-indigo-600" : "text-gray-500"
-                  }`}
-                >
-                  {step.name}
-                </span>
-              </div>
-              {step.id < steps.length && (
-                <div className="h-1 w-10 bg-gray-300 mx-2"></div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+//         {/* Step Indicator */}
+//         <div className="flex items-center justify-between mt-4 mb-4 px-6">
+//           {steps.map((step) => (
+//             <React.Fragment key={step.id}>
+//               <div className="flex flex-col items-center">
+//                 <div
+//                   className={`flex items-center justify-center h-10 w-10 rounded-full ${
+//                     currentStep >= step.id ? "bg-indigo-600" : "bg-gray-300"
+//                   } transition duration-200`}
+//                 >
+//                   {currentStep >= step.id ? (
+//                     <span className="text-white">✓</span>
+//                   ) : (
+//                     <span className="text-black">{step.id}</span>
+//                   )}
+//                 </div>
+//                 <span
+//                   className={`mt-2 text-sm ${
+//                     currentStep >= step.id ? "text-indigo-600" : "text-gray-500"
+//                   }`}
+//                 >
+//                   {step.name}
+//                 </span>
+//               </div>
+//               {step.id < steps.length && (
+//                 <div className="h-1 w-10 bg-gray-300 mx-2"></div>
+//               )}
+//             </React.Fragment>
+//           ))}
+//         </div>
 
-        <div className="flex-auto px-6 py-6">
-          {currentStep === 1 && (
-            <form>
-              <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">
-                Step 1: Enter Details
-              </h6>
-              <div className="flex flex-col space-y-4">
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Registration Number"
-                    value={registrationNumber}
-                    onChange={(e) => setRegistrationNumber(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Upload Photo</label>
-                  <input
-                    type="file"
-                    onChange={handlePhotoUpload}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Violation Type</label>
-                  <select
-                    value={violationType}
-                    onChange={(e) => setViolationType(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  >
-                    <option value="">Select Violation Type</option>
-                    {violationTypes.map((violation) => (
-                      <option key={violation.id} value={violation.name}>
-                        {violation.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="relative w-full">
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter Location of Violation"
-                    value={Location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                  />
-                </div>
-              </div>
+//         <div className="flex-auto px-6 py-6">
+//           {currentStep === 1 && (
+//             <form>
+//               <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">
+//                 Step 1: Enter Details
+//               </h6>
+//               <div className="flex flex-col space-y-4">
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
+//                   <input
+//                     type="text"
+//                     placeholder="Enter Registration Number"
+//                     value={registrationNumber}
+//                     onChange={(e) => setRegistrationNumber(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Upload Photo</label>
+//                   <input
+//                     type="file"
+//                     onChange={handlePhotoUpload}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Violation Type</label>
+//                   <select
+//                     value={violationType}
+//                     onChange={(e) => setViolationType(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   >
+//                     <option value="">Select Violation Type</option>
+//                     {violationTypes.map((violation) => (
+//                       <option key={violation.id} value={violation.name}>
+//                         {violation.name}
+//                       </option>
+//                     ))}
+//                   </select>
+//                 </div>
+//                 <div className="relative w-full">
+//                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Location</label>
+//                   <input
+//                     type="text"
+//                     placeholder="Enter Location of Violation"
+//                     value={Location}
+//                     onChange={(e) => setLocation(e.target.value)}
+//                     className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+//                   />
+//                 </div>
+//               </div>
 
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={handleNextStep}
-                  className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
-                  type="button"
-                >
-                  Next
-                </button>
-              </div>
-            </form>
+//               <div className="flex justify-center mt-6">
+//                 <button
+//                   onClick={handleNextStep}
+//                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//                   type="button"
+//                 >
+//                   Next
+//                 </button>
+//               </div>
+//             </form>
+//           )}
+
+// {currentStep === 2 && (
+//   <div>
+//     <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 2: Review Details</h6>
+//     <p>
+//       <strong>Registration Number:</strong> {registrationNumber}
+//     </p>
+//     <p>
+//       <strong>Violation Location:</strong> {Location}
+//     </p>
+//     <p>
+//       <strong>Owner CNIC:</strong> {dummyData.owner_cnic || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Vehicle:</strong> {dummyData.vehicle || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Violation Type:</strong> {dummyData.violation || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Name:</strong> {ownerData.citizen_name || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Phone Number:</strong> {ownerData.citizen_number || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Address:</strong> {ownerData.citizen_address || "Loading..."}
+//     </p>
+//     <p>
+//       <strong>Owner Email:</strong> {ownerData.citizen_email || "Loading..."}
+//     </p>
+
+//     <div className="flex justify-between mt-6">
+//       <button
+//         onClick={handleBackStep}
+//         className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//       >
+//         Back
+//       </button>
+//       <button
+//         onClick={handleNextStep}
+//         className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//       >
+//         Generate Challan
+//       </button>
+//     </div>
+//   </div>
+// )}
+
+
+//           {currentStep === 3 && (
+//             <div>
+//               <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 3: Generate Challan</h6>
+//               <p>
+//                 <strong>Challan Preview</strong>
+//               </p>
+//               <p>Registration Number: {registrationNumber}</p>
+//               <p>Violation Location: {Location}</p>
+//               <p>Owner CNIC: {dummyData.owner_cnic || "N/A"}</p>
+//               <p>Vehicle: {dummyData.vehicle || "N/A"}</p>
+//               <p>Violation Type: {dummyData.violation || "N/A"}</p>
+//               <p>
+//                 <strong>Photo:</strong> {photo ? photo.name : "No photo uploaded"}
+//               </p>
+
+//               <div className="flex justify-center mt-6">
+//                 <button onClick={GenerateChallan}
+//                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+//                 >
+//                   Submit Challan
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+const handlePrint = () => {
+  // Assuming you're generating a PDF or printing the content of the dashboard.
+  const printContents = document.getElementById("challan-details").innerHTML;
+  const originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = printContents;
+  window.print();
+  document.body.innerHTML = originalContents;
+};
+
+return (
+  <div className="flex items-start justify-start min-h-screen bg-white p-8">
+  <div className="w-1/2 h-2/3 max-w-lg max-h-lg bg-gray-100 shadow-lg rounded-lg flex flex-col justify-start items-start p-8 mt-20">
+    <div className="bg-blueGray-800 text-white text-center py-6 rounded-t-lg w-full">
+      <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
+    </div>
+    
+
+    {/* Step Indicator */}
+    <div className="flex items-center justify-between mt-4 mb-4 px-6 w-full">
+  {steps.map((step) => (
+    <React.Fragment key={step.id}>
+      <div className="flex flex-col items-center">
+        <div
+          className={`flex items-center justify-center h-8 w-8 rounded-full ${
+            currentStep > step.id ? "bg-green-500" : currentStep >= step.id ? "bg-indigo-600" : "bg-gray-300"
+          } transition duration-200`}
+        >
+          {currentStep > step.id ? (
+            <svg className="w-15 h-10 text-blue" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M7 10l3 3 7-7-1.5-1.5-5.5 5.5L8.5 8 7 9.5z" />
+          </svg> // Completed step with green tick
+          ) : currentStep >= step.id ? (
+            <span className="text-black">{step.id}</span> // Current step indicator
+          ) : (
+            <span className="text-black">{step.id}</span> // Upcoming step indicator
           )}
+        </div>
+        <span
+          className={`mt-2 text-xs ${
+            currentStep >= step.id ? "text-indigo-600" : "text-gray-500"
+          }`}
+        >
+          {step.name}
+        </span>
+      </div>
+      {step.id < steps.length && (
+        <div className="h-1 w-8 bg-gray-300 mx-2"></div>
+      )}
+    </React.Fragment>
+  ))}
+</div>
 
-{currentStep === 2 && (
-  <div>
+
+      <div className="flex-auto px-6 py-6 w-full">
+        {/* Form Content Here */}
+        {currentStep === 1 && (
+          <form>
+            <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">
+              Step 1: Enter Details
+            </h6>
+            {/* Custom Margins for Increased Space */}
+            <div className="flex flex-col">
+              <div className="relative w-full mb-6"> {/* Increased margin */}
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+                  Registration Number
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Registration Number"
+                  value={registrationNumber}
+                  onChange={(e) => setRegistrationNumber(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+                />
+              </div>
+              <div className="relative w-full mb-6"> {/* Increased margin */}
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+                  Upload Photo
+                </label>
+                <input
+                  type="file"
+                  onChange={handlePhotoUpload}
+                  className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+                />
+              </div>
+              <div className="relative w-full mb-6"> {/* Increased margin */}
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+                  Violation Type
+                </label>
+                <select
+                  value={violationType}
+                  onChange={(e) => setViolationType(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+                >
+                  <option value="">Select Violation Type</option>
+                  {violationTypes.map((violation) => (
+                    <option key={violation.id} value={violation.name}>
+                      {violation.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="relative w-full mb-6"> {/* Increased margin */}
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Location of Violation"
+                  value={Location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={handleNextStep}
+                className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
+                type="button"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+
+        )}
+       {/* Step 2: Review Details */}
+       {currentStep === 2 && (
+  <div className="w-full">
     <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 2: Review Details</h6>
-    <p>
-      <strong>Registration Number:</strong> {registrationNumber}
-    </p>
-    <p>
-      <strong>Violation Location:</strong> {Location}
-    </p>
-    <p>
-      <strong>Owner CNIC:</strong> {dummyData.owner_cnic || "Loading..."}
-    </p>
-    <p>
-      <strong>Vehicle:</strong> {dummyData.vehicle || "Loading..."}
-    </p>
-    <p>
-      <strong>Violation Type:</strong> {dummyData.violation || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Name:</strong> {ownerData.citizen_name || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Phone Number:</strong> {ownerData.citizen_number || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Address:</strong> {ownerData.citizen_address || "Loading..."}
-    </p>
-    <p>
-      <strong>Owner Email:</strong> {ownerData.citizen_email || "Loading..."}
-    </p>
+    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Registration Number:</p>
+        <p className="text-blueGray-600 w-2/3">{registrationNumber}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Violation Location:</p>
+        <p className="text-blueGray-600 w-2/3">{Location}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Owner CNIC:</p>
+        <p className="text-blueGray-600 w-2/3">{dummyData.owner_cnic || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Vehicle:</p>
+        <p className="text-blueGray-600 w-2/3">{dummyData.vehicle || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Violation Type:</p>
+        <p className="text-blueGray-600 w-2/3">{dummyData.violation || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Owner Name:</p>
+        <p className="text-blueGray-600 w-2/3">{ownerData.citizen_name || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Owner Phone Number:</p>
+        <p className="text-blueGray-600 w-2/3">{ownerData.citizen_number || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Owner Address:</p>
+        <p className="text-blueGray-600 w-2/3">{ownerData.citizen_address || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Owner Email:</p>
+        <p className="text-blueGray-600  w-2/3 " >  {ownerData.citizen_email || "Loading..."}</p>
+      </div>
+    </div>
 
-    <div className="flex justify-between mt-6">
-      <button
+         <div className="flex justify-between mt-6">
+       <button
         onClick={handleBackStep}
         className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
       >
@@ -372,27 +591,32 @@ console.log(registrationNumber)
         Generate Challan
       </button>
     </div>
-  </div>
+    </div>
+  
 )}
 
 
-          {currentStep === 3 && (
-            <div>
-              <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 3: Generate Challan</h6>
-              <p>
-                <strong>Challan Preview</strong>
-              </p>
-              <p>Registration Number: {registrationNumber}</p>
-              <p>Violation Location: {Location}</p>
-              <p>Owner CNIC: {dummyData.owner_cnic || "N/A"}</p>
-              <p>Vehicle: {dummyData.vehicle || "N/A"}</p>
-              <p>Violation Type: {dummyData.violation || "N/A"}</p>
-              <p>
-                <strong>Photo:</strong> {photo ? photo.name : "No photo uploaded"}
-              </p>
-
-              <div className="flex justify-center mt-6">
-                <button onClick={GenerateChallan}
+{currentStep === 3 && (
+  <div className="w-full">
+    <h6 className="text-blueGray-600 text-sm mt-3 mb-4 font-bold uppercase">Step 3: Generate Challan</h6>
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <p className="text-blueGray-800 font-semibold mb-1">Challan Generated Successfully!</p>
+      <p className="text-blueGray-600 mb-4">Your challan has been created. Below are the details:</p>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Challan ID:</p>
+        <p className="text-blueGray-600 w-2/3">{dummyData.challanId || "Loading..."}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Registration Number:</p>
+        <p className="text-blueGray-600 w-2/3">{registrationNumber}</p>
+      </div>
+      <div className="flex justify-left mb-3">
+        <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Total Fine:</p>
+        <p className="text-blueGray-600 w-2/3">{dummyData.fineAmount || "Loading..."}</p>
+      </div>
+    </div>
+                   <div className="flex justify-center mt-6">
+                 <button onClick={GenerateChallan}
                   className="bg-blueGray-800 text-white font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md transition duration-200"
                 >
                   Submit Challan
@@ -413,9 +637,17 @@ console.log(registrationNumber)
             </div>
           )}
         </div>
-      </div>
     </div>
-  );
+  
+
+
+      </div>
+    
+);
 };
+
+
+
+
 
 export default WardenDashBoard;
