@@ -142,24 +142,24 @@ export default function CitizenDashBoard() {
   };
   
   return (
-    <div className="container mx-auto px-12 h-full pt-20 relative"> {/* Added 'relative' for absolute positioning */}
-      <div className="flex flex-wrap justify-center items-start py-4"> {/* Added vertical padding to the flex container */}
-        <div className="w-full lg:w-8/12 xl:w-6/12 px-10 mb-6 mx-8">
+    <div className="container mx-auto px-4 lg:px-12 h-full pt-20 relative">
+      <div className="flex flex-wrap justify-center items-start py-4">
+        <div className="w-full lg:w-10/12 mb-6 mx-4 lg:mx-8">
           <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="bg-blueGray-800 text-white text-center py-4 rounded-t-lg">
               <h1 className="text-2xl font-bold">Traffic Challans</h1>
             </div>
-            <div className="p-8">
-              <table className="min-w-full bg-white">
+            <div className="p-4">
+              <table className="w-full bg-white table-auto">
                 <thead>
                   <tr>
-                    <th className="py-2 px-4 border-b">Challan ID</th>
-                    <th className="py-2 px-4 border-b">Registration ID</th>
-                    <th className="py-2 px-4 border-b">Violation</th>
-                    <th className="py-2 px-4 border-b">Amount</th>
-                    <th className="py-2 px-4 border-b">Date</th>
-                    <th className="py-2 px-4 border-b">Status</th>
-                    <th className="py-2 px-4 border-b">Actions</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Challan ID</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Registration ID</th>
+                    <th className="py-2 px-4 border-b w-2/12 text-left">Violation</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Amount</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Date</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Status</th>
+                    <th className="py-2 px-4 border-b w-1/12 text-left">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -169,10 +169,10 @@ export default function CitizenDashBoard() {
                         <td className="py-2 px-4 border-b text-center">{challan.id.toString()}</td>
                         <td className="py-2 px-4 border-b text-center">{challan.registrationNumber}</td>
                         <td className="py-2 px-4 border-b">{challan.violationDetails}</td>
-                        <td className="py-2 px-4 border-b">{challan.fineAmount.toString()}</td>
-                        <td className="py-2 px-4 border-b">{challan.date.toString()}</td>
-                        <td className="py-2 px-4 border-b">{challan.isTerminated ? "Terminated" : "Active"}</td>
-                        <td className="py-2 px-4 border-b">
+                        <td className="py-2 px-4 border-b text-center">{challan.fineAmount.toString()}</td>
+                        <td className="py-2 px-4 border-b text-center">{challan.date.toString()}</td>
+                        <td className="py-2 px-4 border-b text-center">{challan.isTerminated ? "Terminated" : "Active"}</td>
+                        <td className="py-2 px-4 border-b text-center">
                           {!challan.isTerminated && (
                             <button
                               onClick={() => handlePay(challan)}
@@ -195,8 +195,10 @@ export default function CitizenDashBoard() {
           </div>
         </div>
       </div>
-
-      
     </div>
   );
-}
+  
+  
+  
+  
+}  

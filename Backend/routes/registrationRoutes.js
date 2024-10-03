@@ -96,4 +96,19 @@ router.delete('/:registration_id', async (req, res) => {
   }
 });
 
+// Get Registrations by Owner CNIC
+router.get('/cnic/:owner_cnic', async (req, res) => {
+  const owner_cnic = req.params.owner_cnic;
+  try {
+    const registrations = await Registration.find({ owner_cnic });
+    if (registrations.length > 0) {
+      res.status(200).json(registrations);
+    } else {
+      res.status(404).json({ message: 'No registrations found for this CNIC' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching registrations', error: err });
+  }
+});
+
 module.exports = router;
