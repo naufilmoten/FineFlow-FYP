@@ -96,6 +96,7 @@ router.get('/cnic/:citizen_cnic', async (req, res) => {
   }
 });
 
+
 // Create New Citizen
 router.post('/', async (req, res) => {
   const citizenData = req.body;
@@ -132,7 +133,16 @@ router.put('/:citizen_id', async (req, res) => {
   const citizenData = req.body;
 
   try {
-    console.log('Updating citizen with ID:', citizen_id); // Log the ID being updated
+    if (citizenData.account_id) {
+      const existingAccount = await Citizen.findOne({
+        account_id: citizenData.account_id,
+        citizen_id: { $ne: citizen_id }
+      });
+      if (existingAccount) {
+        return res.status(400).json({ message: 'Duplicate account_id (Ethereum Account)' });
+      }
+    }
+
     const updatedCitizen = await updateCitizen(citizen_id, citizenData);
     if (updatedCitizen) {
       res.status(200).json(updatedCitizen);
