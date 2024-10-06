@@ -165,9 +165,35 @@ const WardenDashBoard = () => {
     }
   };
 
-  const handlePhotoUpload = (event) => {
-    setPhoto(event.target.files[0]);
-  };
+  const [licensePlate, setLicensePlate] = useState("");
+
+  const handlePhotoUpload = async (event) => {
+    const selectedPhoto = event.target.files[0];
+    setPhoto(selectedPhoto);
+  
+    if (selectedPhoto) {
+      const formData = new FormData();
+      formData.append('file', selectedPhoto); // Changed 'photo' to 'file'
+  
+      try {
+        const response = await fetch('http://127.0.0.1:5000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Photo uploaded successfully:', data.license_plate);
+          setLicensePlate(data.license_plate)
+          setRegistrationNumber(data.license_plate)
+        } else {
+          console.error('Failed to upload photo:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error uploading photo:', error);
+      }
+    }
+  };
 
    const GenerateChallan = async () => {
     const date = Math.floor(Date.now() / 1000);
@@ -469,18 +495,26 @@ return (
             </h6>
             {/* Custom Margins for Increased Space */}
             <div className="flex flex-col">
-              <div className="relative w-full mb-6"> {/* Increased margin */}
-                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
-                  Registration Number
-                </label>
+              {/* <div className="relative w-full">
+                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Registration Number"
+                    value={licensePlate}
+                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
+                  />
+                </div> */}
+                  <div className="relative w-full">
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">Registration Number</label>
                 <input
                   type="text"
                   placeholder="Enter Registration Number"
-                  value={registrationNumber}
-                  onChange={(e) => setRegistrationNumber(e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200"
-                />
-              </div>
+                  value={licensePlate}
+                  readOnly
+                  className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200 cursor-none"
+                  style={{ caretColor: 'transparent' }}  // hides the text cursor
+                />
+              </div>
               <div className="relative w-full mb-6"> {/* Increased margin */}
                 <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
                   Upload Photo

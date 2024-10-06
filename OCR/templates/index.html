@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Plate OCR</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>License Plate OCR</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept="image/*" required>
+        <button type="submit">Upload and Process</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').on('submit', function(e) {
+                e.preventDefault();
+
+                // Get the selected file from the input
+                var formData = new FormData();
+                var fileInput = $('#fileInput')[0].files[0];
+                formData.append('file', fileInput);
+
+                // Send the file to the back-end via AJAX
+                $.ajax({
+                    url: '/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.license_plate) {
+                            $('#result').html('<h2>License Plate: ' + response.license_plate + '</h2>');
+                        } else if (response.message) {
+                            $('#result').html('<h2>' + response.message + '</h2>');
+                        } else if (response.error) {
+                            $('#result').html('<h2>Error: ' + response.error + '</h2>');
+                        }
+                    },
+                    error: function(error) {
+                        $('#result').html('<h2>An error occurred while processing the image.</h2>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
