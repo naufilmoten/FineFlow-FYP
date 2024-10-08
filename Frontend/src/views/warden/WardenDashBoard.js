@@ -6,7 +6,7 @@ import violationContracts from "../../contracts/violation"
 import { Snackbar, Alert } from '@mui/material'; // Import Snackbar and Alert from Material UI
 
 
-const  token = localStorage.getItem("token");
+const  token = localStorage.getItem ("token");
 console.log("Token:", token);
 
 // Dummy data for violation types
