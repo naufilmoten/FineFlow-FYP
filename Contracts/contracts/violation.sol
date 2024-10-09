@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+import "./violationdata.sol";  // Import the ViolationCounter contract
+
 
 contract violation {
     // Struct to store the details of a challan
@@ -29,6 +31,9 @@ contract violation {
     // Admin address
     address public admin;
 
+    // Address of the ViolationCounter contract
+    ViolationCounter public violationCounter;
+
     // Event to emit when a new challan is generated
     event ChallanGenerated(
         uint id,
@@ -51,8 +56,11 @@ contract violation {
     event ChallanTerminated(uint id);
 
     // Constructor to initialize violation details with fines and set admin
-    constructor() {
+    constructor(address _violationCounterAddress) {
         admin = msg.sender; // Set the contract deployer as the admin
+        violationCounter = ViolationCounter(_violationCounterAddress);  // Set the address of the deployed ViolationCounter contract
+
+
         violationFines["Speeding (LTV)"] = 500;
         violationFines["Parking (LTV)"] = 200;
         violationFines["No Seatbelt (LTV)"] = 100;
@@ -108,6 +116,9 @@ contract violation {
             registrationNumber: _registrationNumber // Store registration number
         });
         challans.push(newChallan);  // Add the new challan to the array
+
+        // Increment the violation count in the ViolationCounter contract
+        violationCounter.incrementViolationCount(_violationDetails);
 
         emit ChallanGenerated(
             challanCounter,
@@ -170,7 +181,7 @@ contract violation {
 
     // Function for the admin to get all challans
     function getAllChallans() public view returns (Challan[] memory) {
-        require(msg.sender == admin, "Only admin can access all challans");
+        //require(msg.sender == admin, "Only admin can access all challans");
         return challans;
     }
 

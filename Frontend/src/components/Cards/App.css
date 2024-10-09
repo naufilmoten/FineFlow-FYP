@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+
+.table-container {
+    max-width: 1200px; /* Increase the width of the table container */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-heading {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    font-family: 'Roboto', sans-serif; /* Change to your desired font */
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: none; /* Remove vertical borders */
+  }
+  
+  .table th {
+    background-color: #1e293b; /* Green background for header */
+    color: white; /* White text */
+    font-weight: bold;
+  }
+  
+  .table tbody tr {
+    border-bottom: 1px solid #ddd; /* Add a bottom border to rows */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1; /* Light grey on hover */
+  }
+  
+  .no-challans {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+  }
+  

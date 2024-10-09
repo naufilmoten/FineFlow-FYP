@@ -1,0 +1,632 @@
+{
+  "contractName": "ViolationCounter",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "violationType",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newCount",
+          "type": "uint256"
+        }
+      ],
+      "name": "ViolationCountUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "violationCounts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "violationType",
+          "type": "string"
+        }
+      ],
+      "name": "incrementViolationCount",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "violationType",
+          "type": "string"
+        }
+      ],
+      "name": "getViolationCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"violationType\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newCount\",\"type\":\"uint256\"}],\"name\":\"ViolationCountUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"violationType\",\"type\":\"string\"}],\"name\":\"getViolationCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"violationType\",\"type\":\"string\"}],\"name\":\"incrementViolationCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"violationCounts\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/violationdata.sol\":\"ViolationCounter\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/violationdata.sol\":{\"keccak256\":\"0xa1045298b62540c85db9a6f463bbafee616d7b73e75ec980b01e62e5cd8bfd61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d543632f91ddca5fff57cb6cf494ad72be257c23679ee6c3697d29f85c9636f3\",\"dweb:/ipfs/QmNyZ3d9hvg75GjCKYcHgCHB8SN7VfMf7oMPhBXdCd5MJ3\"]}},\"version\":1}",
+  "bytecode": "0x6080806040523461001657610235908161001c8239f35b600080fdfe604060808152600436101561001357600080fd5b600090813560e01c80630ecfca111461010a578063b69aacd61461010a5763ffc8e3db1461004057600080fd5b346101065761004e36610144565b8151815190602081818501936100658183876101dc565b810187815203019020805490600182018092116100f257917f488828828fcbc672253bdd673ce99c98fbfe7a66c7aa21c3cddac7e5c7760fa194939160609355835160208184516100b78183876101dc565b810189815203019020546100dd85519586948186525193848092870152868601906101dc565b6020830152601f01601f19168101030190a180f35b634e487b7160e01b86526011600452602486fd5b5080fd5b5034610106576101336020809361012036610144565b90828551948386809551938492016101dc565b820190815203019020549051908152f35b60206003198201126101c15767ffffffffffffffff906004358281116101c157816023820112156101c1578060040135918383116101c65760405193601f8401601f19908116603f01168501908111858210176101c657604052828452602483830101116101c15781600092602460209301838601378301015290565b600080fd5b634e487b7160e01b600052604160045260246000fd5b60005b8381106101ef5750506000910152565b81810151838201526020016101df56fea264697066735822122048d55543ed090c77d94df3c662c3d2134c3c06242a228662645029b54f31575864736f6c63430008130033",
+  "deployedBytecode": "0x604060808152600436101561001357600080fd5b600090813560e01c80630ecfca111461010a578063b69aacd61461010a5763ffc8e3db1461004057600080fd5b346101065761004e36610144565b8151815190602081818501936100658183876101dc565b810187815203019020805490600182018092116100f257917f488828828fcbc672253bdd673ce99c98fbfe7a66c7aa21c3cddac7e5c7760fa194939160609355835160208184516100b78183876101dc565b810189815203019020546100dd85519586948186525193848092870152868601906101dc565b6020830152601f01601f19168101030190a180f35b634e487b7160e01b86526011600452602486fd5b5080fd5b5034610106576101336020809361012036610144565b90828551948386809551938492016101dc565b820190815203019020549051908152f35b60206003198201126101c15767ffffffffffffffff906004358281116101c157816023820112156101c1578060040135918383116101c65760405193601f8401601f19908116603f01168501908111858210176101c657604052828452602483830101116101c15781600092602460209301838601378301015290565b600080fd5b634e487b7160e01b600052604160045260246000fd5b60005b8381106101ef5750506000910152565b81810151838201526020016101df56fea264697066735822122048d55543ed090c77d94df3c662c3d2134c3c06242a228662645029b54f31575864736f6c63430008130033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "60:878:2:-:0;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "60:878:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;574:1;60:878;;;;;;;;646:68;60:878;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;-1:-1:-1;;60:878:2;;;646:68;;;;60:878;;;-1:-1:-1;;;60:878:2;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:878:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;60:878:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;60:878:2;;;;;;;;;;;;;;:::o;:::-;-1:-1:-1;60:878:2;;;;;;-1:-1:-1;60:878:2;;;;;-1:-1:-1;60:878:2;;;;;;;;;-1:-1:-1;;60:878:2;;;;:::o;:::-;;;;;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ViolationCounter {\r\n    // Mapping to store count of each violation type\r\n    mapping(string => uint256) public violationCounts;\r\n\r\n    // Event emitted when a violation count is updated\r\n    event ViolationCountUpdated(string violationType, uint256 newCount);\r\n\r\n    // Function to increment the count of a specific violation type\r\n    function incrementViolationCount(string memory violationType) public {\r\n        // Increase the count for the violation type\r\n        violationCounts[violationType] += 1;\r\n\r\n        // Emit an event to notify about the update\r\n        emit ViolationCountUpdated(violationType, violationCounts[violationType]);\r\n    }\r\n\r\n    // Function to get the count of a specific violation type\r\n    function getViolationCount(string memory violationType) public view returns (uint256) {\r\n        return violationCounts[violationType];\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\naufi\\Desktop\\FYP\\FineFlow-FYP\\Contracts\\contracts\\violationdata.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/violationdata.sol",
+    "exportedSymbols": {
+      "ViolationCounter": [
+        900
+      ]
+    },
+    "id": 901,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 858,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ViolationCounter",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 900,
+        "linearizedBaseContracts": [
+          900
+        ],
+        "name": "ViolationCounter",
+        "nameLocation": "69:16:2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "b69aacd6",
+            "id": 862,
+            "mutability": "mutable",
+            "name": "violationCounts",
+            "nameLocation": "181:15:2",
+            "nodeType": "VariableDeclaration",
+            "scope": 900,
+            "src": "147:49:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+              "typeString": "mapping(string => uint256)"
+            },
+            "typeName": {
+              "id": 861,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 859,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "155:6:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "147:26:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                "typeString": "mapping(string => uint256)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 860,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "165:7:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "488828828fcbc672253bdd673ce99c98fbfe7a66c7aa21c3cddac7e5c7760fa1",
+            "id": 868,
+            "name": "ViolationCountUpdated",
+            "nameLocation": "267:21:2",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 867,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 864,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "violationType",
+                  "nameLocation": "296:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 868,
+                  "src": "289:20:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 863,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "289:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 866,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "newCount",
+                  "nameLocation": "319:8:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 868,
+                  "src": "311:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 865,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "311:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "288:40:2"
+            },
+            "src": "261:68:2"
+          },
+          {
+            "body": {
+              "id": 886,
+              "nodeType": "Block",
+              "src": "475:247:2",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 877,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 873,
+                        "name": "violationCounts",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 862,
+                        "src": "540:15:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                          "typeString": "mapping(string memory => uint256)"
+                        }
+                      },
+                      "id": 875,
+                      "indexExpression": {
+                        "id": 874,
+                        "name": "violationType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 870,
+                        "src": "556:13:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "540:30:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "+=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 876,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "574:1:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "540:35:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 878,
+                  "nodeType": "ExpressionStatement",
+                  "src": "540:35:2"
+                },
+                {
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 880,
+                        "name": "violationType",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 870,
+                        "src": "668:13:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      },
+                      {
+                        "baseExpression": {
+                          "id": 881,
+                          "name": "violationCounts",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 862,
+                          "src": "683:15:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                            "typeString": "mapping(string memory => uint256)"
+                          }
+                        },
+                        "id": 883,
+                        "indexExpression": {
+                          "id": 882,
+                          "name": "violationType",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 870,
+                          "src": "699:13:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "683:30:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 879,
+                      "name": "ViolationCountUpdated",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 868,
+                      "src": "646:21:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_uint256_$returns$__$",
+                        "typeString": "function (string memory,uint256)"
+                      }
+                    },
+                    "id": 884,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "646:68:2",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 885,
+                  "nodeType": "EmitStatement",
+                  "src": "641:73:2"
+                }
+              ]
+            },
+            "functionSelector": "ffc8e3db",
+            "id": 887,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "incrementViolationCount",
+            "nameLocation": "415:23:2",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 871,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 870,
+                  "mutability": "mutable",
+                  "name": "violationType",
+                  "nameLocation": "453:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 887,
+                  "src": "439:27:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 869,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "439:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "438:29:2"
+            },
+            "returnParameters": {
+              "id": 872,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "475:0:2"
+            },
+            "scope": 900,
+            "src": "406:316:2",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 898,
+              "nodeType": "Block",
+              "src": "879:56:2",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 894,
+                      "name": "violationCounts",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 862,
+                      "src": "897:15:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_uint256_$",
+                        "typeString": "mapping(string memory => uint256)"
+                      }
+                    },
+                    "id": 896,
+                    "indexExpression": {
+                      "id": 895,
+                      "name": "violationType",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 889,
+                      "src": "913:13:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "897:30:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 893,
+                  "id": 897,
+                  "nodeType": "Return",
+                  "src": "890:37:2"
+                }
+              ]
+            },
+            "functionSelector": "0ecfca11",
+            "id": 899,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getViolationCount",
+            "nameLocation": "802:17:2",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 889,
+                  "mutability": "mutable",
+                  "name": "violationType",
+                  "nameLocation": "834:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 899,
+                  "src": "820:27:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 888,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "820:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "819:29:2"
+            },
+            "returnParameters": {
+              "id": 893,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 892,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 899,
+                  "src": "870:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 891,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "870:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "869:9:2"
+            },
+            "scope": 900,
+            "src": "793:142:2",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 901,
+        "src": "60:878:2",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:907:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-10-09T19:38:20.350Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
