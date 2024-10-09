@@ -15,6 +15,7 @@
     "autoprefixer": "10.2.5",
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
+    "framer-motion": "^11.11.4",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "postcss": "8.4.39",

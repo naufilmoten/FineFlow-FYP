@@ -5,84 +5,44 @@ import { Link } from "react-router-dom";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import trafficvideo from "assets/img/traffic.mp4"
+import trafficvideo from "../assets/img/traffic.mp4"
 export default function Landing() {
   return (
-    <>
-      <Navbar transparent />
+    
+    <><div className="absolute top-0 w-full h-full ">
+    <video
+      className="absolute top-0 left-100 w-full h-full object-cover"
+      autoPlay
+      loop
+      muted
+      playsInline
+    >
+      <source src={trafficvideo} type="video/mp4" />
+    </video>
+   
+    <span
+      id="blackOverlay"
+      className="w-full h-full absolute opacity-50 bg-black"> 
+      
+    </span>
+  </div>
+  <Navbar />
       <main>
+      
+
+
+
+
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
-          {/* <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://unsplash.com/photos/aerial-photography-of-concrete-roads-7nrsVjvALnA')",
-            }}
-             >
+          <div className="relative">
             
-            <span
-              id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
-            ></span>
-          </div> */}
 
-<div className="relative">
-      <div className="absolute top-0 w-full h-full overflow-hidden">
-        <video
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src={trafficvideo} type="video/mp4" /> {/* Use the imported video here */}
-          
-        </video>
-
-        <span
-          id="blackOverlay"
-          className="w-full h-full absolute opacity-50 bg-black"
-        ></span>
-      </div>
-
-      {/* Your content goes here */}
-      <div className="relative z-10">
-        {/* <h1 className="text-white">Welcome to the Traffic Management System</h1> */}
-        {/* Add other content here */}
-      </div>
-    </div>
-
-
-
-<div className="absolute top-0 w-full h-full overflow-hidden">
-  <video
-    className="absolute top-0 left-0 w-full h-full object-cover"
-    autoPlay
-    loop
-    muted
-    playsInline
-  >
-    <source src="src\assets\img\traffic.mp4" type="video/mp4" />
-  
-  </video>
-  
-  <span
-    id="blackOverlay"
-    className="w-full h-full absolute opacity-50 bg-black"
-  ></span>
-</div>
-
-          <div className="container relative mx-auto">
-            <div className="items-center flex flex-wrap">
-              <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                 
-                <div className="pr-12">
-                 <h1 className="text-white font-semibold text-5xl whitespace-nowrap overflow-hidden">
-                          🚦 Future of Payments 🚦
-                  </h1>
-
-                </div>
+            <div className="relative z-10">
+              <h1 className="text-white font-semibold text-5xl whitespace-nowrap overflow-hidden">
+               Future of Payments
+              </h1>
+            
 
               </div>
             </div>
@@ -106,8 +66,7 @@ export default function Landing() {
               ></polygon>
             </svg>
           </div>
-        </div>
-
+        
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
@@ -291,160 +250,7 @@ export default function Landing() {
 
 
         <section className="pt-20 pb-48">
-          {/* <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center text-center mb-24">
-              <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">Here are our heroes</h2>
-                <p className="text-lg leading-relaxed m-4 text-blueGray-500">
-                  According to the National Oceanic and Atmospheric
-                  Administration, Ted, Scambos, NSIDClead scentist, puts the
-                  potentially record maximum.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap">
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/team-1-800x800.jpg").default}
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Ryan Tompson</h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Web Developer
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/team-2-800x800.jpg").default}
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Romina Hadid</h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Marketing Specialist
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/team-3-800x800.jpg").default}
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Alexa Smith</h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      UI/UX Designer
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                <div className="px-6">
-                  <img
-                    alt="..."
-                    src={require("assets/img/team-4-470x470.png").default}
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
-                  />
-                  <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Jenna Kardi</h5>
-                    <p className="mt-1 text-sm text-blueGray-400 uppercase font-semibold">
-                      Founder and CEO
-                    </p>
-                    <div className="mt-6">
-                      <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-dribbble"></i>
-                      </button>
-                      <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-                      <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-                      <button
-                        className="bg-blueGray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                      >
-                        <i className="fab fa-instagram"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
+          
         </section>
 
         <section className="pb-20 relative block bg-blueGray-800">
@@ -469,18 +275,7 @@ export default function Landing() {
           </div>
 
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
-            {/* <div className="flex flex-wrap text-center justify-center">
-              <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold text-white">
-                  Build something
-                </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
-                </p>
-              </div>
-            </div> */}
+            
             <div className="flex flex-wrap mt-12 justify-center">
   <div className="w-full lg:w-3/12 px-4 text-center">
     <div className="text-blueGray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
@@ -531,6 +326,7 @@ export default function Landing() {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
+                    
                     <h4 className="text-2xl font-semibold">
                       Want to work with us?
                     </h4>
@@ -598,4 +394,4 @@ export default function Landing() {
       <Footer />
     </>
   );
-}
+} 

@@ -46,8 +46,9 @@ export default function Navbar(props) {
               </li> */}
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="flex items-center">
-                <PagesDropdown />
+              <li className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold">
+                E-CHALLAN
+                {/* <PagesDropdown /> */}
               </li>
               <li className="flex items-center">
                 {/* <a
@@ -97,3 +98,54 @@ export default function Navbar(props) {
     </>
   );
 }
+// import React, { useState } from 'react';
+// import close from 'assets/img/close.svg';
+// import menu from 'assets/img/menu.svg';
+// import logo from 'assets/img/logo.svg';
+// import { navLinks } from './constants';
+
+// const AuthNavbar = () => {
+//   const [toggle, setToggle] = useState(false); // State to manage mobile menu toggle
+
+//   return (
+//     <nav className="w-full flex py-6 justify-between items-center navbar">
+//       <img src={logo} alt="Logo" className="w-[124px] h-[32px]" />
+      
+//       {/* Desktop Navigation Links */}
+//       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
+//         {navLinks.map((el, index) => (
+//           <li key={el.id} className={`font-poppins font-normal cursor-pointer text-[16px] ${index === navLinks.length - 1 ? 'mr-0' : 'mr-10'} text-white`}>
+//             <a href={`#${el.id}`}>
+//               {el.title}
+//             </a>
+//           </li>
+//         ))}
+//       </ul>
+
+//       {/* Mobile Menu Button */}
+//       <div className="sm:hidden flex flex-1 justify-end items-center">
+//         <img
+//           src={toggle ? close : menu} // Toggle between menu and close icons
+//           alt="Menu"
+//           className={`w-[28px] h-[28px] object-contain transition-transform duration-300 ${toggle ? 'rotate-180' : 'rotate-0'}`} // Rotate effect
+//           onClick={() => setToggle((prev) => !prev)} // Toggle function
+//         />
+
+//         {/* Mobile Navigation Links */}
+//         <div className={`absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl bg-black-gradient transition-all duration-300 ease-in-out transform ${toggle ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none'}`}>
+//           <ul className="list-none flex flex-col justify-end items-center flex-1 p-6">
+//             {navLinks.map((el, index) => (
+//               <li key={el.id} className={`font-poppins font-normal cursor-pointer text-[16px] ${index === navLinks.length - 1 ? 'mr-0' : 'mb-4'} text-white`}>
+//                 <a href={`#${el.id}`}>
+//                   {el.title}
+//                 </a>
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default AuthNavbar; // Export the component for use in other files

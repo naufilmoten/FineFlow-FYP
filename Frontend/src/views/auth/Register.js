@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
-import { Alert } from '@mui/material'; // Import Alert component
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -25,8 +24,9 @@ export default function Register() {
 
   // Handle CNIC input formatting
   const formatCnic = (value) => {
-    const cleaned = value.replace(/\D/g, ''); // Remove non-digit characters
-    if (cleaned.length <= 5) return cleaned;
+    // Remove any non-digit characters
+    const cleaned = value.replace(/\D/g, '');
+    if (cleaned.length <= 5) return cleaned; // Only keep first 5 digits
     if (cleaned.length <= 12) {
       return `${cleaned.slice(0, 5)}-${cleaned.slice(5)}`; // Add first hyphen
     }
@@ -76,7 +76,7 @@ export default function Register() {
         warden_cnic: cnic,
         warden_password: password,
       };
-      route = 'http://localhost:5000/api/warden';
+      route = 'http://localhost:5000/api/warden/signup';
     } else if (role === 'citizen') {
       if (!address || !phoneNumber || !dob) {
         setErrorMessage('Please fill in all fields for citizen registration.');
@@ -93,11 +93,14 @@ export default function Register() {
         citizen_dob: dob,
         citizen_email: email,
       };
-      route = 'http://localhost:5000/api/citizen';
+      route = 'http://localhost:5000/api/citizen/signup';
     } else {
       setErrorMessage('Invalid role selected.');
       return;
     }
+
+    // Log the request data before sending
+    console.log('Registering with data:', requestData); // Add this line
 
     try {
       await axios.post(route, requestData);
@@ -231,28 +234,13 @@ export default function Register() {
                 )}
 
                 <div className="text-center mt-6">
-                  <button
-                    className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                    type="submit"
-                  >
+                  <button className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="submit">
                     Register
                   </button>
                 </div>
-
-                {/* Material-UI Alert components for displaying messages */}
-                {errorMessage && (
-                  <Alert severity="error" className="mt-4">{errorMessage}</Alert>
-                )}
-                {successMessage && (
-                  <Alert severity="success" className="mt-4">{successMessage}</Alert>
-                )}
+                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                {successMessage && <p className="text-green-500">{successMessage}</p>}
               </form>
-
-              <div className="text-center mt-4">
-                <Link to="/auth/login" className="text-blueGray-800">
-                  Already have an account? Sign in
-                </Link>
-              </div>
             </div>
           </div>
         </div>
