@@ -5,6 +5,7 @@ import Web3 from "web3";
 import violationContracts from "../../contracts/violation";
 import FinePayment from "../../contracts/FinePayment";
 import Modal from 'react-modal';
+import Image from "assets/img/svgbd.gif" //Frontend\src\assets\img\svgbd.gif
 
 Modal.setAppElement('#root'); // For accessibility warning
 
@@ -162,16 +163,39 @@ export default function CitizenDashBoard() {
     });
   };
 
+
+
   return (
-    <div className="container mx-auto px-4 lg:px-12 h-full pt-20 relative">
-      <div className="flex flex-wrap justify-center items-start py-4">
+
+<div 
+  className="container mx-auto h-full pt-20 relative"
+  style={{ 
+    backgroundImage: `url(${Image})`,  // Set the background image here
+    backgroundSize: 'cover',            // Ensures the image covers the entire container
+    backgroundPosition: 'center',       // Centers the image
+    backgroundRepeat: 'no-repeat',      // Ensures the image doesn't repeat
+    minHeight: '100vh',                 // Ensures the container takes up the full viewport height
+    color: 'white',                     // Optional: Change text color for contrast
+    padding: 0,                         // Remove any padding
+  }}
+>
+  <div className="flex justify-start mb-8 ml-6">
+    <div className="relative" style={{ top: '218px' }}> 
+      {/* Additional content can go here */}
+    </div>
+  </div>
+
+
+      <div className="flex flex-wrap justify-center items-start py-4 mt-[-20px]">
         <div className="w-full lg:w-10/12 mb-6 mx-4 lg:mx-8">
+          
+
           <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="bg-blueGray-800 text-white text-center py-4 rounded-t-lg">
               <h1 className="text-2xl font-bold">Traffic Challans</h1>
             </div>
             <div className="p-4">
-              <table className="w-full bg-white table-auto">
+              <table className="w-full bg-white text-blueGray-800 table-auto">
                 <thead>
                   <tr>
                     <th className="py-2 px-4 border-b">Challan ID</th>

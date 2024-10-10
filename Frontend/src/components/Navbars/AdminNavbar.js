@@ -1,7 +1,5 @@
 import React from "react";
-
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
-
+import WardenDropdown from "components/Dropdowns/WardenDropdown";
 export default function Navbar() {
   return (
     <>
@@ -31,7 +29,7 @@ export default function Navbar() {
           </form>
           {/* User */}
           <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-            <UserDropdown />
+            <WardenDropdown />
           </ul>
         </div>
       </nav>

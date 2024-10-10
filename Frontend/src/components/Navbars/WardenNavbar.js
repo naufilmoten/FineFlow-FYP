@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa"; // Importing search icon
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
+
+import WardenDropdown from "components/Dropdowns/WardenDropdown";
 
 export default function WardenNavbar() {
   return (
@@ -33,7 +34,7 @@ export default function WardenNavbar() {
 
           {/* User Dropdown */}
           <ul className="flex-col list-none items-center hidden md:flex">
-            <UserDropdown />
+            <WardenDropdown />
           </ul>
         </div>
       </nav>
