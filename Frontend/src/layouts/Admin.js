@@ -15,9 +15,11 @@ import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 
+
 export default function Admin() {
   return (
     <>
+
       {/* <Sidebar /> */}
       <div className="relative  bg-blueGray-100">  
       {/* className="relative md:ml-64 bg-blueGray-100" */}

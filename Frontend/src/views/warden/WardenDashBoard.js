@@ -165,35 +165,26 @@ const WardenDashBoard = () => {
     }
   };
 
-  const [licensePlate, setLicensePlate] = useState("");
+  // const handlePhotoUpload = (event) => {
+  //   setPhoto(event.target.files[0]);
+    
+  // };
+  const [loading, setLoading] = useState(false); //state for loading
+  const handlePhotoUpload = (event) => {
+    setLoading(true); // Set loading to true when upload starts
+    const file = event.target.files[0];
+    
+    if (file) {
+        setPhoto(file);
 
-  const handlePhotoUpload = async (event) => {
-    const selectedPhoto = event.target.files[0];
-    setPhoto(selectedPhoto);
-  
-    if (selectedPhoto) {
-      const formData = new FormData();
-      formData.append('file', selectedPhoto); // Changed 'photo' to 'file'
-  
-      try {
-        const response = await fetch('http://127.0.0.1:5000/upload', {
-          method: 'POST',
-          body: formData,
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Photo uploaded successfully:', data.license_plate);
-          setLicensePlate(data.license_plate)
-          setRegistrationNumber(data.license_plate)
-        } else {
-          console.error('Failed to upload photo:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error uploading photo:', error);
-      }
-    }
-  };
+        // Simulating an upload delay (e.g., to a server)
+        setTimeout(() => {
+            setLoading(false); // Set loading to false when upload completes
+        }, 2000); // Simulate 2 seconds delay for uploading
+    } else {
+        setLoading(false); // Reset loading if no file is selected
+    }
+  };
 
    const GenerateChallan = async () => {
     const date = Math.floor(Date.now() / 1000);
@@ -265,24 +256,21 @@ return (
   
   <div className="flex items-start justify-start min-h-screen bg-white p-8">
  <div className="flex justify-start mb-8 ml-6">
-  <div className="relative" style={{ top: '218px' }}> {/* Adjust 'top' to move image down */}
+  <div className="relative" style={{ top: '238px' }}> {/* Adjust 'top' to move image down */}
     <img
       src={Image}
-      className="shadow-xl h-70 w-50"
+      className="shadow-xl h-60 w-50"
       style={{ border: 'none' }}  
     />
   </div>
 </div>
 
-    
       <div className="w-1/2 h-2/3 max-w-lg max-h-lg bg-gray-100 shadow-lg rounded-lg flex flex-col justify-start items-start p-8 mt-20">
-        
       
-
         <div className="bg-blueGray-800 text-white text-center py-6 rounded-t-lg w-full">
           <h1 className="text-2xl font-bold">Traffic Violation Form</h1>
         </div>
-
+      
 
         {/* Step Indicator */}
         <div className="flex items-center justify-between mt-4 mb-4 px-6 w-full">
@@ -337,13 +325,28 @@ return (
                     className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200" />
                 </div>
                 <div className="relative w-full mb-6"> {/* Increased margin */}
-                  <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
-                    Upload Photo
+                  {/* <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+                    Upload Photo 
                   </label>
                   <input
                     type="file"
                     onChange={handlePhotoUpload}
-                    className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200" />
+                    className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200" /> */}
+                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
+        Upload Photo 
+    </label>
+    <input
+        type="file"
+        onChange={handlePhotoUpload}
+        className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring focus:ring-blueGray-600 transition duration-200" 
+    />
+    {loading && ( // Loader is added here
+        <div className="loader mt-2"> {/* Add your loader styles here */}
+            Uploading...
+        </div>
+    )}
+                
+                
                 </div>
                 <div className="relative w-full mb-6"> {/* Increased margin */}
                   <label className="block uppercase text-blueGray-600 text-xs font-bold mb-1">
@@ -459,7 +462,7 @@ return (
                 <p className="text-blueGray-600 mb-4">Your challan has been created. Below are the details:</p>
                 <div className="flex justify-left mb-3">
                   <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Challan ID:</p>
-                  <p className="text-blueGray-600 w-2/3">{dummyData.challanId || "Loading..."}</p>
+                  <p className="text-blueGray-600 w-2/3">{dummyData.challanId }</p>
                 </div>
                 <div className="flex justify-left mb-3">
                   <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Registration Number:</p>
@@ -467,7 +470,7 @@ return (
                 </div>
                 <div className="flex justify-left mb-3">
                   <p className="text-blueGray-800 font-semibold w-1/3 mr-4">Total Fine:</p>
-                  <p className="text-blueGray-600 w-2/3">{dummyData.fineAmount || "Loading..."}</p>
+                  <p className="text-blueGray-600 w-2/3">{dummyData.fineAmount}</p>
                 </div>
               </div>
               <div className="flex justify-center mt-6">

@@ -663,10 +663,12 @@ export default function Landing() {
         <div className="container mx-auto relative px-6 flex items-center justify-between min-h-screen">
           {/* Left Side Text */}
           <div className="w-full md:w-5/12 text-left z-10" data-aos="fade-right">
-            <h1 className="text-white font-extrabold text-5xl md:text-6xl mb-4 leading-tight">
+            {/* <h1 className="text-white font-extrabold text-5xl md:text-6xl mb-4 leading-tight"> */}
+            <h1 class="text-white font-bold text-5xl md:text-6xl mb-4 leading-tight">
+            
               E-Challan Blockchain System
             </h1>
-            <p className="mt-4 text-lg text-blueGray-300 leading-relaxed">
+            <p className="mt-6 text-lg text-blueGray-300 leading-relaxed">
               Revolutionizing traffic management with secure, transparent, and efficient solutions.
             </p>
             

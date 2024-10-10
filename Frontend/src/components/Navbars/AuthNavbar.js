@@ -16,7 +16,7 @@ export default function Navbar(props) {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              to="/"
+              to="/auth"
               className="flex items-center ml-[-10px]" // Adjust margin as needed
             >
               <img
