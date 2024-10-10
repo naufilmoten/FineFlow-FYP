@@ -12,12 +12,12 @@ contract FinePayment {
         uint paymentTimestamp;
     }
 
-    // Array to store all payments
     Payment[] public payments; // Store payments in an array
 
     mapping(uint => bool) public challanStatus; // Mapping to track if a challan is paid/terminated
 
     uint public paymentCounter; // Counter for payments
+    uint public totalFinePayments; // Aggregate total fine payments
 
     // Event to emit when a new payment is processed
     event PaymentProcessed(
@@ -46,6 +46,9 @@ contract FinePayment {
             )
         );
 
+        // Update the total fine payments
+        totalFinePayments += msg.value; // Update total payments
+
         // Mark the challan as terminated (paid)
         challanStatus[_challanId] = true;
 
@@ -62,6 +65,15 @@ contract FinePayment {
     // Function to check if a challan is paid
     function isChallanPaid(uint _challanId) public view returns (bool) {
         return challanStatus[_challanId];
+    }
+
+    // Function to get total fine payments
+    function getTotalFinePayments() public view returns (uint) {
+        return totalFinePayments;
+    }
+
+    function getPaymentCount() public view returns (uint256) {
+    return paymentCounter;
     }
 
     // Helper function to convert uint to string

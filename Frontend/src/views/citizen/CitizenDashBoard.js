@@ -145,24 +145,113 @@ export default function CitizenDashBoard() {
   };
 
   // Handle modal form submission
-  const handleModalSubmit = () => {
-    if (selectedChallan) {
-      if (cardDetails.cardNumber && cardDetails.expiry && cardDetails.cvv) {
-        handlePay(selectedChallan); // Trigger payment
-      } else {
-        alert("Please enter valid card details.");
-      }
-    }
-  };
+// Handle modal form submission
+const handleModalSubmit = () => {
+  const { cardNumber, expiry, cvv } = cardDetails;
 
-  // Handle input changes for card details
-  const handleInputChange = (e) => {
+  // Clean the card number by removing spaces for validation
+  const cleanedCardNumber = cardNumber.replace(/\s/g, '');
+
+  // Validate card number
+  if (cleanedCardNumber.length !== 16 || !/^\d{16}$/.test(cleanedCardNumber)) {
+    alert("Card number must be exactly 16 numeric digits.");
+    return;
+  }
+
+  // Validate expiry date
+  if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+    alert("Expiry date must be in MM/YY format.");
+    return;
+  }
+
+  // Validate CVV
+  if (!/^\d{1,3}$/.test(cvv)) {
+    alert("CVV must be up to 3 numeric digits.");
+    return;
+  }
+
+  // Proceed with payment if all validations pass
+  if (selectedChallan) {
+    handlePay(selectedChallan); // Trigger payment
+  }
+};
+
+
+// Handle input changes for card details
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+
+  // Prevent non-numeric input for card number and CVV
+  if (name === "cardNumber" && !/^\d*$/.test(value.replace(/\s/g, ''))) {
+    return; // Do not update state if input is non-numeric
+  }
+
+  // Handle card number input
+  if (name === "cardNumber") {
+    const cleanedValue = value.replace(/\s/g, ''); // Remove existing spaces
+    if (cleanedValue.length > 16) {
+      return; // Do not update state if length exceeds 16
+    }
+    // Format card number with spaces after every 4 digits
+    const formattedValue = cleanedValue.replace(/(.{4})/g, '$1 ').trim();
     setCardDetails({
       ...cardDetails,
-      [e.target.name]: e.target.value
+      [name]: formattedValue,
     });
-  };
+    return;
+  }
 
+  // Prevent non-numeric input for CVV
+  if (name === "cvv" && !/^\d*$/.test(value)) {
+    return; // Do not update state if input is non-numeric
+  }
+
+  // Limit CVV to 3 digits
+  if (name === "cvv" && value.length > 3) {
+    return; // Do not update state if length exceeds 3
+  }
+
+  // Handle expiry date input
+  if (name === "expiry") {
+    // Remove non-numeric characters
+    const cleanedExpiry = value.replace(/\D/g, ''); 
+    
+    // Limit input to a maximum of 4 digits (MMYY)
+    if (cleanedExpiry.length > 4) {
+      return;
+    }
+
+    // Format MM/YY
+    let formattedExpiry = '';
+    if (cleanedExpiry.length > 0) {
+      formattedExpiry += cleanedExpiry.slice(0, 2); // MM
+      if (cleanedExpiry.length >= 3) {
+        formattedExpiry += '/'; // Add '/' after MM
+      }
+      if (cleanedExpiry.length > 2) {
+        formattedExpiry += cleanedExpiry.slice(2, 4); // YY
+      }
+    }
+
+    // Validate month (MM) is between 01 and 12
+    const month = parseInt(cleanedExpiry.slice(0, 2), 10);
+    if (month > 12) {
+      return; // Do not update state if month exceeds 12
+    }
+
+    setCardDetails({
+      ...cardDetails,
+      [name]: formattedExpiry,
+    });
+    return;
+  }
+
+  // Update state for other fields
+  setCardDetails({
+    ...cardDetails,
+    [name]: value,
+  });
+};
 
 
   return (
