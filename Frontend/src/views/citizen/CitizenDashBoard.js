@@ -257,7 +257,7 @@ const handleInputChange = (e) => {
   return (
 
 <div 
-  className="container mx-auto h-full pt-20 relative"
+  className="h-full pt-0 relative"
   style={{ 
     backgroundImage: `url(${Image})`,  // Set the background image here
     backgroundSize: 'cover',            // Ensures the image covers the entire container
@@ -266,17 +266,21 @@ const handleInputChange = (e) => {
     minHeight: '100vh',                 // Ensures the container takes up the full viewport height
     color: 'white',                     // Optional: Change text color for contrast
     padding: 0,                         // Remove any padding
+    width: '100vw',                     // Full width of viewport
+    position: 'relative',               // Relative positioning for child elements
+    left: 0,                            // Align to the left edge
+    margin: 0,                           // Remove any padding
   }}
 >
   <div className="flex justify-start mb-8 ml-6">
-    <div className="relative" style={{ top: '218px' }}> 
+    <div className="relative" style={{ top: '0' }}> 
       {/* Additional content can go here */}
     </div>
   </div>
 
 
-      <div className="flex flex-wrap justify-center items-start py-4 mt-[-20px]">
-        <div className="w-full lg:w-10/12 mb-6 mx-4 lg:mx-8">
+      <div className="flex flex-wrap justify-center items-start py-4 mt-[20px]">
+      <div className="mb-2 mx-4 lg:mx-8" style={{ width: '80%' }}> 
           
 
           <div className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-200 border-0">

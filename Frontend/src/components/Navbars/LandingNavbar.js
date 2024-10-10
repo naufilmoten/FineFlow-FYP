@@ -4,9 +4,27 @@ import { Link } from "react-router-dom";
 import logo from "assets/img/logo2.svg"; // Update the path as necessary
 
 // components
-import PagesDropdown from "components/Dropdowns/PagesDropdown.js";
+import Button from '@mui/material/Button'; // Import the Material-UI Button
+import { styled } from '@mui/material/styles'; // Import styled for custom styling
+import AddCircleIcon from '@mui/icons-material/AddCircle'; // Import the icon
+import { indigo } from '@mui/material/colors'; // Import the indigo color
 
-// Custom Navbar component
+// Custom styled button
+const StyledButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.common.white,
+  backgroundColor: indigo[500], // Use indigo-500 for the background color
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+  padding: '10px 20px',
+  borderRadius: '22px',
+  display: 'flex', // Use flex to align icon and text
+  alignItems: 'center', // Center items vertically
+  '&:hover': {
+    backgroundColor: indigo[700], // Darker shade for hover effect
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
+  },
+}));
+
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
@@ -44,7 +62,12 @@ export default function Navbar(props) {
               {/* Other nav items can go here */}
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              {/* Removed signup button */}
+              <li className="flex items-center">
+                <StyledButton variant="contained">
+                  <AddCircleIcon style={{ marginRight: '8px' }} /> {/* Add icon here */}
+                  SignUp
+                </StyledButton>
+              </li>
               {/* Other list items */}
             </ul>
           </div>

@@ -19,7 +19,7 @@ export default function WardenNavbar() {
           </a>
 
           {/* Search Form */}
-          <form className="flex items-center lg:ml-auto mr-3">
+          {/* <form className="flex items-center lg:ml-auto mr-3">
             <div className="relative flex w-full flex-wrap items-stretch">
               <span className="absolute left-0 flex items-center pl-3">
                 <FaSearch className="text-blueGray-300" />
@@ -30,7 +30,7 @@ export default function WardenNavbar() {
                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
               />
             </div>
-          </form>
+          </form> */}
 
           {/* User Dropdown */}
           <ul className="flex-col list-none items-center hidden md:flex">

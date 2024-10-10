@@ -67,7 +67,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=nr-footer"
+                        // href="https://www.creative-tim.com/presentation?ref=nr-footer"
                       >
                         About Us
                       </a>
@@ -83,7 +83,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        // href="https://www.github.com/creativetimofficial?ref=nr-footer"
+                        href="https://github.com/naufilmoten/FineFlow-FYP"
                       >
                         Github
                       </a>
@@ -103,14 +103,7 @@ export default function Footer() {
                     Other Resources
                   </span>
                   <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        // href="https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md?ref=nr-footer"
-                      >
-                        MIT License
-                      </a>
-                    </li>
+                    
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
@@ -127,14 +120,7 @@ export default function Footer() {
                         Privacy Policy
                       </a>
                     </li>
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        // href="https://creative-tim.com/contact-us?ref=nr-footer"
-                      >
-                        Contact Us
-                      </a>
-                    </li>
+                    
                   </ul>
                 </div>
               </div>
@@ -146,7 +132,7 @@ export default function Footer() {
               <div className="text-sm text-blueGray-500 font-semibold py-1">
                 Copyright © {new Date().getFullYear()}  by{" "}
                 <a
-                  // href="https://www.creative-tim.com?ref=nr-footer"
+                  href="https://github.com/naufilmoten/FineFlow-FYP"
                   className="text-blueGray-500 hover:text-blueGray-800"
                 >
                   FINE FLOW
