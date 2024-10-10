@@ -308,7 +308,7 @@ const handleInputChange = (e) => {
                         <td className="py-2 px-4 border-b">{challan.registrationNumber}</td>
                         <td className="py-2 px-4 border-b">{challan.violationDetails}</td>
                         <td className="py-2 px-4 border-b">{challan.fineAmount.toString()}</td>
-                        <td className="py-2 px-4 border-b">{challan.date.toString()}</td>
+                        <td className="py-2 px-4 border-b">{new Date(Number(challan.date) * 1000).toLocaleString()}</td>
                         <td className="py-2 px-4 border-b">{challan.isTerminated ? "Terminated" : "Active"}</td>
                         <td className="py-2 px-4 border-b">
                           {!challan.isTerminated && (
